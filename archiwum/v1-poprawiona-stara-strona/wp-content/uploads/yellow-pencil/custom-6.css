@@ -1,0 +1,132 @@
+/*
+
+    The following CSS codes are created by the YellowPencil plugin.
+    https://yellowpencil.waspthemes.com/
+
+
+    T A B L E   O F   C O N T E N T S
+    ........................................................................
+
+    01. Global Styles
+    02. "Przepuklina brzuszna" Page
+
+*/
+
+
+
+/*-----------------------------------------------*/
+/*  Global Styles                                */
+/*-----------------------------------------------*/
+body .navbar-header a h1{
+	font-weight:400;
+	font-size:19px;
+}
+
+body .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > .op3-headline-wrapper h2{
+	font-family:'Poppins', sans-serif;
+	font-size:24px !important;
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+	line-height:1.7em !important;
+	color:#3498db !important;
+}
+
+body #main > div > div > .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > div > div > .op3-element .op3-background-parent > div > div .op3-text-wrapper div h2{
+	font-family:'Poppins', sans-serif;
+	font-size:23px !important;
+	color:#2c3e50;
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+	line-height:1.7em !important;
+}
+
+body #main{
+	font-family:'Poppins', sans-serif;
+}
+
+body #main > div > div > .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > .op3-text-wrapper > div > p{
+	font-size:23px;
+	line-height:1.7em;
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+}
+
+body #main > div > div > .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > .op3-text-wrapper{
+	font-size:23px;
+	line-height:1.7em;
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+}
+
+body #main > div > div > .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > .op3-text-wrapper > div h2{
+	font-family:'Poppins', sans-serif;
+}
+
+body .wptww-testimonials-list .wptww-quote p{
+	font-weight:300;
+	font-size:17px;
+	line-height:1.4em;
+}
+
+body #main > div > div > .op3-element > div > div > .op3-element > div > div > .op3-element > .op3-background-parent > div > div > .op3-element > div > div > .op3-element .op3-background-parent > div > div p{
+	font-size:19px;
+	font-style:italic;
+}
+
+@media (max-width:580px){
+
+	body .navbar-header a h1{
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+	font-weight:400;
+	font-size:23px;
+	}
+
+}
+
+
+
+@media (max-width:450px){
+
+	body .navbar-header a h1{
+	-webkit-transform:translatex(0px) translatey(0px);	-ms-transform:translatex(0px) translatey(0px);	transform:translatex(0px) translatey(0px);
+	font-weight:400;
+	font-size:30px;
+	}
+
+}
+
+
+
+@media (max-width:320px){
+
+	body .navbar-header a h1{
+	font-size:25px;
+	}
+
+}
+
+
+
+/*-----------------------------------------------*/
+/*  "Przepuklina brzuszna" Page                  */
+/*-----------------------------------------------*/
+body.page-id-8 .navbar-left a h1{
+	color:#2980b9;
+	font-weight:600;
+	font-size:16px;
+	letter-spacing:-0.1px;
+	font-family:'Lato', sans-serif;
+}
+
+body.page-id-8 .navbar-right li a{
+	font-weight:700;
+	color:#3498db !important;
+	word-spacing:4.8px;
+	text-shadow:none;
+	font-family:'Lato', sans-serif;
+}
+
+body.page-id-8 #main .op3-headline-wrapper span{
+	color:#5656b3 !important;
+}
+
+body.page-id-8 #masthead .navbar .navbar{
+	font-size:17px;
+	background-color:#fafcf7;
+}

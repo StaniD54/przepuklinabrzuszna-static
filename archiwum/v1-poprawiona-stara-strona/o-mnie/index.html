@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pl-PL" data-op3-support="no-js no-svg no-webp no-avif" data-op3-viewport-progressive-image="1">
+<head>
+<script>!function(){var t=function(){this._init()};t.prototype={constructor:t,_init:function(){this._domContentLoadedDispatched=!1,this._windowLoadDispatched=!1,this._isListening=!1,this._status="waiting",this._userInteractionEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","touchcancel","touchforcechange"],this._eventListenerOptions={passive:!0},this._registratedScripts={normal:[],async:[],defer:[]},this._jQueryScripts=[],this._boundHandleUserInteraction=this._handleUserInteraction.bind(this)},get status(){return this._status},get isDOMContentLoaded(){return this._domContentLoadedDispatched},get isWindowLoad(){return this._windowLoadDispatched},get isListening(){return this._isListening},load:function(){"waiting"===this.status&&(this.unlisten(),this._status="loading","loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadAll.bind(this)):this._loadAll())},listen:function(){this.isListening||"waiting"!==this.status||(this._userInteractionEvents.forEach(function(t){window.addEventListener(t,this._boundHandleUserInteraction,this._eventListenerOptions)}.bind(this)),this._isListening=!0)},unlisten:function(){this.isListening&&(this._userInteractionEvents.forEach(function(t){window.removeEventListener(t,this._boundHandleUserInteraction,this._eventListenerOptions)}.bind(this)),this._isListening=!1)},_isValidScriptType:function(t){return!t||"string"==typeof t&&-1!==["text/javascript","text/x-javascript","text/ecmascript","text/jscript","application/javascript","application/x-javascript","application/ecmascript","application/jscript","module"].indexOf(t.toLowerCase())},_applyCallback:function(t,n){"function"==typeof t&&t.apply(this,n)},_delayCallback:function(t,n){window.requestAnimationFrame(function(){this._applyCallback(t,n)}.bind(this))},_dispatchCustomEvent:function(t,n){var e;return n="oprocket-"+n,"function"!=typeof Event?(e=document.createEvent("Event")).initEvent(n,!1,!1):e=new Event(n),t.dispatchEvent(e),e},_loadAll:function(){this._delayEventListeners(),this._delayOnEvents(),this._delayJQueryEvents(),this._delayDocumentWrite(),this._registerScripts(),this._preloadScripts(),this._loadScripts(function(){this._dispatchDOMContentLoaded(function(){this._dispatchWindowLoad(function(){this._status="loaded",this._dispatchCustomEvent(window,"allScriptsLoaded")}.bind(this))}.bind(this))}.bind(this))},_delayEventListeners:function(){var t=window,n=document,e={},i=function(t,n){var i=function(n){return(n=Array.prototype.slice.call(n))[0]=e[t].eventsToRewrite.indexOf(n[0])>=0?"oprocket-"+n[0]:n[0],n};t in e||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){e[t].originalFunctions.add.apply(t,i(arguments))},t.removeEventListener=function(){e[t].originalFunctions.remove.apply(t,i(arguments))}),e[t].eventsToRewrite.push(n)};i(n,"DOMContentLoaded"),i(t,"DOMContentLoaded"),i(t,"load"),i(t,"pageshow"),i(n,"readystatechange")},_delayOnEvents:function(){var t=window,n=function(t,n){Object.defineProperty(t,n,{get:function(){return t["oprocket"+n]||t[n]||function(){}},set:function(e){t["oprocket"+n]=e}})};n(document,"onreadystatechange"),n(t,"onload"),n(t,"onpageshow")},_delayJQueryEvents:function(){var t=this,n=t._jQueryScripts,e=window,i=document,o=e.jQuery;Object.defineProperty(e,"jQuery",{get:function(){return o},set:function(e){if(e&&e.fn&&-1===n.indexOf(e)){var a=e.fn.on;e.fn.on=e.fn.init.prototype.on=function(){var t,n=Array.prototype.slice.call(arguments);("string"==typeof n[0]||n[0]instanceof String)&&(this[0]instanceof Window?t=/^(load)(\.|$)/:this[0]instanceof Document&&(t=/^(DOMContentLoaded)(\.|$)/),t&&(n[0]=n[0].split(" ").map(function(n){return n.replace(t,"oprocket-$1$2")}).join(" ")));return a.apply(this,n),this},e.fn.ready=e.fn.init.prototype.ready=function(n){return t.isDOMContentLoaded?n.call(i,e):o(i).on("DOMContentLoaded",function(t){n.call(this,e)}),this},n.push(e)}o=e}})},_delayDocumentWrite:function(){var t=document,n=t.write;t.write=function(e){var i=t.currentScript;if(i){var o=i.parentElement,a=o,s=i.nextSibling,r=t.createRange(),c=t.createDocumentFragment();for(r.setStart(c,0),c.appendChild(r.createContextualFragment(e));a&&-1===["HEAD","BODY"].indexOf(a.tagName);)a=a.parentElement;a&&"HEAD"===a.tagName&&(s=(o=t.body).firstChild),s?o.insertBefore(c,s):o.appendChild(c)}else n.apply(this,arguments)},t.writeln=function(n){t.write(n+"\n")}},_registerScripts:function(){var t=this._registratedScripts;document.querySelectorAll('script[type="oprocket"]').forEach(function(n){n.hasAttribute("src")?n.hasAttribute("async")&&n.async?t.async.push(n):n.hasAttribute("defer")&&n.defer||"module"===n.getAttribute("data-oprocket-type")?t.defer.push(n):t.normal.push(n):t.normal.push(n)}.bind(this))},_preloadScripts:function(){var t=this._registratedScripts;[].concat(t.normal,t.defer,t.async).forEach(function(t){var n=t.getAttribute("src");if(n){var e=document;link=e.createElement("link"),link.href=n,link.rel="preload",link.as="script",e.head.appendChild(link)}}.bind(this))},_loadScripts:function(t){var n=this._registratedScripts,e=[].concat(n.normal,n.defer,n.async),i=function(){var n=e.shift();void 0!==n?this._delayCallback(function(){var t,e=document.createElement("script");Array.prototype.slice.call(n.attributes).forEach(function(n){var i=n.nodeName;if("type"!==i){var o=n.nodeValue;"data-oprocket-type"===i&&(i="type",t=o),e.setAttribute(i,o)}}),n.hasAttribute("src")&&this._isValidScriptType(t)?(e.addEventListener("load",i),e.addEventListener("error",i)):(e.text=n.text,i()),n.parentNode.replaceChild(e,n)}.bind(this)):this._applyCallback(t)}.bind(this);i()},_dispatchDOMContentLoaded:function(t){var n=this._delayCallback.bind(this),e=window,i=document;n(function(){this._dispatchCustomEvent(i,"DOMContentLoaded"),n(function(){this._dispatchCustomEvent(e,"DOMContentLoaded"),n(function(){var e=this._dispatchCustomEvent(i,"readystatechange");"function"==typeof i.oprocketonreadystatechange&&i.oprocketonreadystatechange.call(i,e),n(function(){this._applyCallback(t)}.bind(this))}.bind(this))}.bind(this))}.bind(this)),this._domContentLoadedDispatched=!0},_dispatchWindowLoad:function(t){var n=this._delayCallback.bind(this),e=window;n(function(){var i=this._dispatchCustomEvent(e,"load");"function"==typeof e.oprocketonload&&e.oprocketonload.call(e,i),n(function(){var i=this._dispatchCustomEvent(e,"pageshow");"function"==typeof e.oprocketonpageshow&&e.oprocketonpageshow.call(e,i),n(function(){this._applyCallback(t)}.bind(this))}.bind(this))}.bind(this)),this._windowLoadDispatched=!0},_handleUserInteraction:function(t){this._dispatchCustomEvent(window,"userInteraction"),this.load()}},(new t).listen()}();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>O mnie - Przepuklina brzuszna</title>
+                        <script type="oprocket">/* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
+                            if ( typeof WebFontConfig === "undefined" ) {
+                                WebFontConfig = new Object();
+                            }
+                            WebFontConfig['google'] = {families: ['Oxygen', 'Montserrat:700,600,400,500', 'Source+Sans+Pro:400', 'Poppins:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic', 'Karla:400,700,400italic,700italic']};
+
+                            (function() {
+                                var wf = document.createElement( 'script' );
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName( 'script' )[0];
+                                s.parentNode.insertBefore( wf, s );
+                            })();</script>
+                        	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<meta name="description" content="Kariera zawodowa1979 – dyplom na Wydziale Lekarskim Akademii Medycznej w Gdańsku; 1987 – specjalizacja z chirurgii ogólnej; 1990 – doktorat; 1997 – habilitacja; 2013 – profesor zwyczajny (tzw. belwederski, nominacja z rąk prezydenta Bronisława Komorowskiego).Od 2002 r. prof. nadzw. AM im. L. Rydygiera w Bydgoszczy, a w latach 2002-2004 Prorektor&hellip;">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://przepuklinabrzuszna.pl/o-mnie/">
+<meta property="og:url" content="https://przepuklinabrzuszna.pl/o-mnie/">
+<meta property="og:site_name" content="Przepuklina brzuszna">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:type" content="article">
+<meta property="article:author" content="https://www.facebook.com/prof.dabrowiecki">
+<meta property="article:publisher" content="https://www.facebook.com/prof.dabrowiecki">
+<meta property="og:title" content="O mnie - Przepuklina brzuszna">
+<meta property="og:description" content="Kariera zawodowa1979 – dyplom na Wydziale Lekarskim Akademii Medycznej w Gdańsku; 1987 – specjalizacja z chirurgii ogólnej; 1990 – doktorat; 1997 – habilitacja; 2013 – profesor zwyczajny (tzw. belwederski, nominacja z rąk prezydenta Bronisława Komorowskiego).Od 2002 r. prof. nadzw. AM im. L. Rydygiera w Bydgoszczy, a w latach 2002-2004 Prorektor&hellip;">
+<meta property="fb:pages">
+<meta property="fb:admins">
+<meta property="fb:app_id">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="https://twitter.com/dabrowiecki_s">
+<meta name="twitter:creator" content="https://twitter.com/dabrowiecki_s">
+<meta name="twitter:title" content="O mnie - Przepuklina brzuszna">
+<meta name="twitter:description" content="Kariera zawodowa1979 – dyplom na Wydziale Lekarskim Akademii Medycznej w Gdańsku; 1987 – specjalizacja z chirurgii ogólnej; 1990 – doktorat; 1997 – habilitacja; 2013 – profesor zwyczajny (tzw. belwederski, nominacja z rąk prezydenta Bronisława Komorowskiego).Od 2002 r. prof. nadzw. AM im. L. Rydygiera w Bydgoszczy, a w latach 2002-2004 Prorektor&hellip;">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+
+<!-- Fonts used by OptimizePress -->
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,400i,700,700i|Lato:400,400i,700,700i&amp;display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,400i,700,700i|Lato:400,400i,700,700i&amp;display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,400i,700,700i|Lato:400,400i,700,700i&amp;display=swap" media="print" onload="this.onload=null;this.media='all'">
+<!-- / OptimizePress. -->
+<!-- Images used by OptimizePress -->
+<link class="op3-viewport-image-preload op3-viewport-image-preload-progressive" rel="preload" as="image" href="/wp-content/uploads/2022/06/SD-karykatura2-progressive.jpg" type="image/jpeg" media="screen">
+<link class="op3-viewport-image-preload op3-viewport-image-preload-original" rel="preload" as="image" href="/wp-content/uploads/2022/06/SD-karykatura2-225x300.jpg" type="image/jpeg" media="screen">
+<!-- / OptimizePress. -->
+<script type="oprocket" data-oprocket-type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🐦‍⬛","🐦​⬛")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link rel="stylesheet" id="opst-css-style-css" href="/wp-content/themes/op-smart-theme3/css/all.min.css?ver=1.0.17" type="text/css" media="all">
+<style id="wp-emoji-styles-inline-css" type="text/css">img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}</style>
+<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.7.1" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css" type="text/css">/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}</style>
+<style id="global-styles-inline-css" type="text/css">:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet" id="wpos-font-awesome-css" href="/wp-content/plugins/wp-testimonial-with-widget/assets/css/font-awesome.min.css?ver=3.5.3" type="text/css" media="all">
+<link rel="stylesheet" id="wpos-slick-style-css" href="/wp-content/plugins/wp-testimonial-with-widget/assets/css/slick.css?ver=3.5.3" type="text/css" media="all">
+<link rel="stylesheet" id="wtwp-public-css-css" href="/wp-content/plugins/wp-testimonial-with-widget/assets/css/wtwp-public.css?ver=3.5.3" type="text/css" media="all">
+<link rel="stylesheet" id="cmplz-general-css" href="/wp-content/plugins/complianz-gdpr-premium/assets/css/cookieblocker.min.css?ver=1737807345" type="text/css" media="all">
+<link rel="stylesheet" id="poppins-css" href="https://fonts.googleapis.com/css2?family=Poppins%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700&#038;display=swap&#038;ver=6.7.1" type="text/css" media="all">
+<link rel="stylesheet" id="op3-frontend-stylesheet-css" href="/wp-content/plugins/op-builder/public/assets/cache/page-85.css?ver=78b1b279fa9bda2fa3d2d71cd33dd484" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce_responsive_frontend_styles-css" href="/wp-content/themes/op-smart-theme3/css/woocommerce.min.css?ver=1.0.17" type="text/css" media="all">
+<link rel="stylesheet" id="wyp-custom-css" href="/wp-content/uploads/yellow-pencil/custom-6.css?revision=6#038;ver=6.7.1" type="text/css" media="all">
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" id="op3-dashboard-tracking-js-extra">
+/* <![CDATA[ */
+var OPDashboardStats = {"pid":"85","nonce":"d320d37bf0","pageview_record_id":null,"rest_url":"\/wp-json\/opd\/v1\/tracking"};
+/* ]]> */
+</script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/plugins/op-dashboard/public/assets/js/tracking.js?ver=1.0.66" id="op3-dashboard-tracking-js"></script>
+<script type="text/javascript" id="op3-support-js-after">
+/* <![CDATA[ */
+!function(){var A=document,e=A.documentElement,t="data-op3-support",n=function(A){e.setAttribute(t,e.getAttribute(t).replace(new RegExp("no-"+A,"g"),A))},a=function(A,e){var t=new Image;t.onload=function(){n(A)},t.src="data:image/"+A+";base64,"+e};n("js"),A.createElementNS&&A.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect&&n("svg"),a("webp","UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="),a("avif","AAAAFGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAC8AAAAGwAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAARWlwcnAAAAAoaXBjbwAAABRpc3BlAAAAAAAAAAQAAAAEAAAADGF2MUOBAAAAAAAAFWlwbWEAAAAAAAAAAQABAgECAAAAI21kYXQSAAoIP8R8hAQ0BUAyDWeeUy0JG+QAACANEkA=")}();
+/* ]]> */
+</script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+
+<!-- Google Analytics snippet added by Site Kit -->
+<script type="oprocket" data-oprocket-type="text/javascript" id="google_gtagjs-js-before">
+/* <![CDATA[ */
+	
+			
+	
+/* ]]> */
+</script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-7WWPWXJS30" id="google_gtagjs-js" async></script>
+<script type="oprocket" data-oprocket-type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["localhost"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "G-7WWPWXJS30");
+/* ]]> */
+</script>
+
+<!-- End Google tag (gtag.js) snippet added by Site Kit -->
+
+
+
+<meta name="generator" content="WordPress 6.7.1">
+<link rel="shortlink" href="/?p=85">
+
+
+<meta name="generator" content="Site Kit by Google 1.144.0">			<style>.cmplz-hidden {
+					display: none !important;
+				}</style>
+<style type="text/css" title="dynamic-css" class="options-output">.sub-menu{border-bottom-color:#005BDC;}.op-navbar{background:#ffffff;}.op-navbar{border-bottom-color:#f0f0f0;}.header-style-centered #navbar, .header-style-with-tagline #navbar{border-top-color:#f0f0f0;}.op-footer{background:#dda6a6;}.op-footer h1, .op-footer h2, .op-footer h3, .op-footer h4, .op-footer h5, .op-footer h6, .op-footer .calendar_wrap{color:#191919;}.op-footer, .footer-copyright, .op-footer p, .op-footer ul, .op-footer{color:#6d6d6d;}.op-footer a{color:#6d6d6d;}.op-footer a:hover{color:#6d6d6d;}.op-footer a:active{color:#6d6d6d;}.op-entry a{color:#222;}.op-entry a:hover{color:#222;}.op-entry a:active{color:#222;}.btn a, .btn, .btn-primary,
+                                        .op-navbar .nav-close-wrap,
+                                        .pagination > .btn,
+                                        #infinite-handle span button,
+                                        .woocommerce-product-search [type=submit],
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle{background-color:#005BDC;}.op-read-more{border-color:#005BDC;}.btn a:hover,
+                                        .btn:hover,
+                                        .btn-primary:hover,
+                                        .btn a:active,
+                                        .btn:active,
+                                        .btn-primary:active,
+                                        .pagination > .btn:hover,
+                                        .pagination > .btn:active,
+                                        #infinite-handle span button:hover,
+                                        #infinite-handle span button:active,
+                                        .woocommerce-product-search [type=submit]:hover,
+                                        .woocommerce-product-search [type=submit]:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:active,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:hover,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:active{background-color:#0054cc;}.op-read-more:hover,
+                                        .op-read-more:active{border-color:#0054cc;}.btn a, .btn, .btn-primary,
+                            .pagination > .btn,
+                            .pagination > .btn:hover,
+                            .pagination > .btn:active,
+                            #infinite-handle span button,
+                            #infinite-handle span button:hover,
+                            #infinite-handle span button:hover:active,
+                            .op-navbar .nav-close-wrap,
+                            .woocommerce-product-search [type=submit]{color:#ffffff;}.op-navbar .navbar-nav > .menu-item > a, .op-navbar .navbar-nav li .navbar-tagline,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button,
+                                .op-navbar.navbar-default .navbar-toggle,
+                                .op-search-form-top-menu {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item:hover > a,
+                                .op-navbar .navbar-nav li .navbar-tagline:hover,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link:hover,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button:hover,
+                                .op-navbar.navbar-default .navbar-toggle:hover,
+                                .op-navbar .navbar-nav li .sub-menu a:hover {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item.active a,
+                                .op-navbar .navbar-nav > .menu-item.active:hover a {color:#6b6b6b;} .op-small-category-link a,
+                            .op-small-category-link a:hover,
+                            .op-small-category-link a:focus,
+                            .op-small-category-link a:active,
+                            .op-small-category-link span,
+                            .op-content-grid-row .op-small-category-link a,
+                            .op-homepage-hero-category,
+                            .op-homepage-hero-category:hover,
+                            .op-homepage-hero-category:focus,
+                            .op-homepage-hero-category:active{color:#ffffff;}.op-small-category-link a,
+                                        .op-small-category-link a:hover,
+                                        .op-small-category-link a:focus,
+                                        .op-small-category-link a:active,
+                                        .op-small-category-link span,
+                                        .op-homepage-hero-category,
+                                        .op-homepage-hero-category:hover,
+                                        .op-homepage-hero-category:focus,
+                                        .op-homepage-hero-category:active{background-color:#005BDC;}body, p, .sm-wrap{font-family:Oxygen;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body,.wf-loading  p,.wf-loading  .sm-wrap{}.ie.wf-loading body,.ie.wf-loading  p,.ie.wf-loading  .sm-wrap{}body, p{font-size:17px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body,.wf-loading  p{}.ie.wf-loading body,.ie.wf-loading  p{}h1, h2, h3, h4, h5, h6, .op-entry .op-author-name{font-family:Oxygen;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1,.wf-loading  h2,.wf-loading  h3,.wf-loading  h4,.wf-loading  h5,.wf-loading  h6,.wf-loading  .op-entry .op-author-name{}.ie.wf-loading h1,.ie.wf-loading  h2,.ie.wf-loading  h3,.ie.wf-loading  h4,.ie.wf-loading  h5,.ie.wf-loading  h6,.ie.wf-loading  .op-entry .op-author-name{}h1{line-height:40px;font-size:35px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1{}.ie.wf-loading h1{}h2{line-height:34px;font-size:26px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h2{}.ie.wf-loading h2{}h3{line-height:33px;font-size:22px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h3{}.ie.wf-loading h3{}h4{line-height:30px;font-size:20px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h4{}.ie.wf-loading h4{}h5{line-height:27px;font-size:17px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h5{}.ie.wf-loading h5{}h6{line-height:24px;font-size:14px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h6{}.ie.wf-loading h6{}.op-homepage-hero-button,
+                            .op-homepage-hero-button:hover,
+                            .op-homepage-hero-button:active,
+                            .op-homepage-hero-button:focus{color:#ffffff;}.op-homepage-hero-button-style-2{border-color:#ffffff;}.op-homepage-hero-button{background-color:#005BDC;}.op-homepage-hero-button:hover,
+                                        .op-homepage-hero-button:active,
+                                        .op-homepage-hero-button:focus{background-color:#0054cc;}.op-homepage-hero, .op-homepage-hero-content, .op-homepage-hero-title, .op-homepage-hero-subtitle, .op-homepage-hero-excerpt{color:#ffffff;}.op-homepage-hero-title::after{background-color:#ffffff;}.op-homepage-hero-title{font-family:Poppins;font-weight:600;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-title{}.ie.wf-loading .op-homepage-hero-title{}.op-homepage-hero-subtitle,.op-homepage-hero-excerpt{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-subtitle,.wf-loading .op-homepage-hero-excerpt{}.ie.wf-loading .op-homepage-hero-subtitle,.ie.wf-loading .op-homepage-hero-excerpt{}.op-homepage-hero-button{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-button{}.ie.wf-loading .op-homepage-hero-button{}.op-hero-header,
+                .op-hero-area .feature-title,
+                .op-hero-area .op-headline,
+                .op-hero-area p,
+                .op-hero-layout-meta-wrap,
+                .op-blog-meta-wrapper,
+                .op-hero-layout-meta-wrap a{color:#ffffff;}.page .op-hero-header, .page .op-hero-area .feature-title, .page .op-hero-area .op-headline, .page .op-hero-layout-meta-wrap, .page .op-blog-meta-wrapper, .page .op-hero-layout-meta-wrap a{color:#ffffff;}</style>
+<style type="text/css">.op-blog-post-header {background-color: #23282d;
+                background-image: -moz-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: -webkit-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: linear-gradient(to bottom, #23282d 0%, #23282d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23282d', endColorstr='#23282d', GradientType=0); color: #ffffff; }.op-hero-area .feature-title {color: #ffffff; }.op-hero-area .op-headline {color: #ffffff; }.page .op-hero-area .op-headline {color: #ffffff; }.op-hero-area .op-blog-meta-wrapper {color: #ffffff; }.op-hero-area .op-hero-layout-meta-wrap a {color: #ffffff; }.op-blog-post-header .op-small-category-link a {color: ; background-color: ; }</style>
+<style id="op3-custom-css"></style>
+</head>
+
+<body data-cmplz="1" class="page-template page-template-op_builder_full_width page page-id-85 non-logged-in" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+        <div id="page" class="page-container hfeed site">
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <header id="masthead" class="site-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
+            <nav class="op-navbar navbar navbar-default header-style-basic" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+                                <div class="container op-container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">
+                            <h1>Przepuklina brzuszna</h1>                        </a>
+                        <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                    </div> <!--/.navbar-header -->
+                    <div id="navbar" class="pull-right navbar-menu">
+                        <div class="nav-close-wrap text-right ">
+                            <span class="glyphicon glyphicon-remove closenav"></span>
+                        </div>
+                        <div class="menu-menu-container"><ul id="menu-menu" class="nav navbar-nav">
+<li id="menu-item-439" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-85 current_page_item menu-item-has-children menu-item-439 active ">
+<a href="/o-mnie/" aria-current="page">O mnie</a>
+<ul class="sub-menu">
+	<li id="menu-item-466" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-466"><a href="/cookies/">Polityka prywatności</a></li>
+</ul>
+</li>
+</ul></div>                    </div>
+<!--/.nav-collapse -->
+                </div> <!--/.container-fluid -->
+            </nav>
+        </header>
+        <main id="main" class="site-content" role="main">
+<div id="op3-designer-element">
+<div data-op3-children="5">
+<div id="op3-element-FuAzmBwd" class="op3-element " data-op3-uuid="FuAzmBwd" data-op3-gid="" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #FuAzmBwd" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1"><div id="op3-element-m1cmzmhx" class="op3-element " data-op3-uuid="m1cmzmhx" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #m1cmzmhx" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-M0dXoeR6" class="op3-element " data-op3-uuid="M0dXoeR6" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #M0dXoeR6" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-8BBX4KKB" class="op3-element " data-op3-uuid="8BBX4KKB" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #8BBX4KKB" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h2>Kariera zawodowa</h2></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div id="op3-element-CJqzPeTs" class="op3-element " data-op3-uuid="CJqzPeTs" data-op3-gid="" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #CJqzPeTs" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1"><div id="op3-element-HanY9TmH" class="op3-element " data-op3-uuid="HanY9TmH" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #HanY9TmH" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="3" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0">
+<div id="op3-element-JiHnBVTi" class="op3-element " data-op3-uuid="JiHnBVTi" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #JiHnBVTi" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-4xZuKYsF" class="op3-element " data-op3-uuid="4xZuKYsF" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #4xZuKYsF" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable>
+<h2>1979 – dyplom na Wydziale Lekarskim Akademii Medycznej w Gdańsku; 1987 – specjalizacja z chirurgii ogólnej; 1990 – doktorat; 1997 – habilitacja; 2013 – profesor zwyczajny (tzw. belwederski, nominacja z rąk prezydenta Bronisława Komorowskiego).<br>
+</h2>
+<h2>Od 2002 r. prof. nadzw. AM im. L. Rydygiera w Bydgoszczy, a w latach 2002-2004 Prorektor ds. Klinicznych i Kształcenia Podyplomowego AM w Bydgoszczy. Po połączeniu AM w Bydgoszczy z Uniwersytetem Mikołaja Kopernika w Toruniu – profesor UMK i pełnomocnik Rektora UMK ds. Klinicznych i Kształcenia Podyplomowego (lata 2004 – 2005). W latach 2001-2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy.</h2>
+</div></div></div></div></div></div></div>
+<div id="op3-element-WBfpFEKB" class="op3-element " data-op3-uuid="WBfpFEKB" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #WBfpFEKB" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-HIyWxVwE" class="op3-element " data-op3-uuid="HIyWxVwE" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #HIyWxVwE" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable>
+<h2>W okresie kierowania przeze mnie Kliniką Chirurgii powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin, jedyny w regionie ośrodek chirurgii otyłości, przodujący ośrodek regionu w zakresie chirurgii endokrynologicznej, dostępu do łożyska naczyniowego oraz jednym z lepszych oddziałów chirurgii ogólnej w regionie i Polsce.&nbsp;</h2>
+<h2>W latach 2009-2012 byłem przewodniczącym Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy (co sobie bardzo cenię).<br>
+</h2>
+<p><br></p>
+<h2><br></h2>
+</div></div></div></div></div></div></div>
+<div id="op3-element-ZXTvUlx6" class="op3-element " data-op3-uuid="ZXTvUlx6" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #ZXTvUlx6" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="2">
+<div id="op3-element-oCoqs6S1" class="op3-element " data-op3-uuid="oCoqs6S1" data-op3-gid="" data-op3-element-type="image" data-op3-element-spec="" data-op3-element-caption="Image #oCoqs6S1" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><figure class="op3-background-ancestor" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div class="op3-image-overlay-container">
+<picture class="op3-viewport-progressive-image"><source srcset="/wp-content/uploads/2022/06/SD-karykatura2-progressive.jpg" type="image/jpeg" media="screen and (min-width: 1024px)"><source srcset="/wp-content/uploads/2022/06/SD-karykatura2-progressive.jpg" type="image/jpeg" media="screen and (max-width: 1023px) and (min-width: 768px)"><source srcset="/wp-content/uploads/2022/06/SD-karykatura2-progressive.jpg" type="image/jpeg" media="screen and (max-width: 767px)"><img decoding="async" src="/wp-content/uploads/2022/06/SD-karykatura2-progressive.jpg" alt="" width="24" height="32"></picture><img decoding="async" src="/wp-content/uploads/2022/06/SD-karykatura2-225x300.jpg" alt="Stanisław Dąbrowiecki" title="SD-karykatura2" width="512" height="256" data-op3-attachment-id="90" loading="lazy">
+</div></figure></div>
+<div id="op3-element-PcLCE8IJ" class="op3-element " data-op3-uuid="PcLCE8IJ" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #PcLCE8IJ" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h3 style="text-align: justify;">
+<span style="font-family: Lato, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; color: rgb(38, 22, 235);">Od 2020 roku praktykuję jedynie prywatnie.&nbsp;<br></span><span style="font-family: Lato, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; color: rgb(38, 22, 235);">Nie mam kontraktu z NFZ, a więc moje konsultacje<br></span><span style="font-family: Lato, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; color: rgb(38, 22, 235);">&nbsp;i operacje są płatne.</span>
+</h3></div></div></div>
+</div></div></div></div>
+</div></div></div></div></div></div>
+<div id="op3-element-lZrxLTTH" class="op3-element " data-op3-uuid="lZrxLTTH" data-op3-gid="" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #lZrxLTTH" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="2">
+<div id="op3-element-qVoCgYK7" class="op3-element " data-op3-uuid="qVoCgYK7" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #qVoCgYK7" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-CGlnuZn8" class="op3-element " data-op3-uuid="CGlnuZn8" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #CGlnuZn8" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="4">
+<div id="op3-element-hRkxiJhw" class="op3-element " data-op3-uuid="hRkxiJhw" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #hRkxiJhw" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h2>
+<span style="color: rgb(52, 152, 219); font-family: Lato, sans-serif; font-size: 22px; font-style: normal; font-weight: 600;">Koszty: operuję prywatnie. Odpłatnie.</span><!--EndFragment--><br>
+</h2></div></div></div>
+<div id="op3-element-OxCghdtf" class="op3-element " data-op3-uuid="OxCghdtf" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #OxCghdtf" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><p><!--StartFragment--><span style="color: rgb(66, 66, 66); font-family: Lato, sans-serif; font-size: 15px; font-style: normal; font-weight: 400;">Spotykam się z opinią, że jest to bez sensu, gdyż można się leczyć „za darmo”, na koszt NFZ. Tak, jest to prawda. Jest wiele oddziałów chirurgii ogólnej w publicznych szpitalach, w których są wykonywane operacjeprzepuklin. </span><span style="color: rgb(66, 66, 66); font-family: Lato, sans-serif; font-size: 15px; font-style: normal; font-weight: 400;">Dla nich jest to fragment działalności. Jednak ciekawsze jest inne pytanie....</span><br></p></div></div></div>
+<div id="op3-element-uLXebW0n" class="op3-element " data-op3-uuid="uLXebW0n" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #uLXebW0n" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h2><br></h2></div></div></div>
+<div id="op3-element-iODtv1eg" class="op3-element " data-op3-uuid="iODtv1eg" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #iODtv1eg" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h2>
+<font color="#3498db" face="Lato, sans-serif"><span style="font-size: 22px;">Co powoduje, że są osoby, które decydują się na leczenie u mnie „prywatnie” i „odpłatnie”?</span></font><br>
+</h2></div></div></div>
+</div></div></div></div></div></div></div>
+<div id="op3-element-26StJ1OS" class="op3-element " data-op3-uuid="26StJ1OS" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #26StJ1OS" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-keUYxodC" class="op3-element " data-op3-uuid="keUYxodC" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #keUYxodC" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="3">
+<div id="op3-element-kimMI7Ug" class="op3-element " data-op3-uuid="kimMI7Ug" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #kimMI7Ug" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><p><span style="font-family: Karla; font-size: 1em; background-color: initial;">Przyczyn jest pewnie wiele. Główne to: (1) zapewniam indywidualną, troskliwą opiekę, (2) pacjent wie, kto będzie go operować,&nbsp; (3) zabieg zostanie wykonany tak samo jak w najlepszych szpitalach świata,&nbsp; (4) nie będzie operować osoba, która się dopiero tego uczy, (5) pacjent zna i ufa osobie, która opowiada za wynik leczenia.</span><br></p></div></div></div>
+<div id="op3-element-EMw6TFN1" class="op3-element " data-op3-uuid="EMw6TFN1" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #EMw6TFN1" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable>
+<p>Pacjent może sobie cenić, że będzie (6) dobrze przygotowany do zabiegu, (7) wie, kto zadba o niezbędną dokumentację, wystawi recepty, zwolnienie, (8) wie, kto odpowie na pytania dotyczące leczenia, (9) jest spokojny, że dostanie pełną informację dotyczącą okresu przed i pooperacyjnego.</p>
+<p>Znaczenie może mieć również to, że będzie leczony w świetnie wyposażonym szpitalu. Personel, który będzie się nim opiekował nie będzie przepracowany i sfrustrowany niskimi pensjami.</p>
+</div></div></div>
+<div id="op3-element-Tmzv8Dqy" class="op3-element " data-op3-uuid="Tmzv8Dqy" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #Tmzv8Dqy" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><p>Pacjent może sobie cenić, że nie będzie anonimową osobą, zagubioną w pośpiesznie działającym oddziale. Acha.., część sobie ceni, że układ finansowy jest jasny i nikt nie oczekuje „wdzięczności”.<br></p></div></div></div>
+</div></div></div></div></div></div></div>
+</div></div></div>
+<div id="op3-element-xzKhNSaK" class="op3-element " data-op3-uuid="xzKhNSaK" data-op3-gid="445" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #xzKhNSaK" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="2">
+<div id="op3-element-cq4WF2t4" class="op3-element " data-op3-uuid="cq4WF2t4" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #cq4WF2t4" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-1NW4BpXR" class="op3-element " data-op3-uuid="1NW4BpXR" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #1NW4BpXR" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-eZg4xBwB" class="op3-element " data-op3-uuid="eZg4xBwB" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #eZg4xBwB" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><h2>Najbliższe konsultacje</h2></div></div></div></div></div></div></div></div></div></div>
+<div id="op3-element-LQ6ihQ2a" class="op3-element " data-op3-uuid="LQ6ihQ2a" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #LQ6ihQ2a" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="3" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0">
+<div id="op3-element-wI37HoKk" class="op3-element " data-op3-uuid="wI37HoKk" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #wI37HoKk" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-rEcENmMC" class="op3-element " data-op3-uuid="rEcENmMC" data-op3-gid="" data-op3-element-type="customhtml" data-op3-element-spec="" data-op3-element-caption="Custom HTML #rEcENmMC" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-custom-html-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-code-html>
+<div style="position: relative; width: 100%; height: 0; padding-top: 52.3333%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAFyuhNJXPc/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+</div></div></div></div></div></div></div>
+<div id="op3-element-glyZ5Ucr" class="op3-element " data-op3-uuid="glyZ5Ucr" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #glyZ5Ucr" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-Z0D18fXb" class="op3-element " data-op3-uuid="Z0D18fXb" data-op3-gid="" data-op3-element-type="customhtml" data-op3-element-spec="" data-op3-element-caption="Custom HTML #Z0D18fXb" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-custom-html-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-code-html>
+<div style="position: relative; width: 100%; height: 0; padding-top: 52.3333%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAEI0CanWjE/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+</div></div></div></div></div></div></div>
+<div id="op3-element-bkY3SRQu" class="op3-element " data-op3-uuid="bkY3SRQu" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #bkY3SRQu" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-K6froIRu" class="op3-element " data-op3-uuid="K6froIRu" data-op3-gid="" data-op3-element-type="customhtml" data-op3-element-spec="" data-op3-element-caption="Custom HTML #K6froIRu" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-custom-html-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-code-html>
+<div style="position: relative; width: 100%; height: 0; padding-top: 52.3333%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAD8yr_QCBo/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+</div></div></div></div></div></div></div>
+</div></div></div>
+</div></div></div>
+<div id="op3-element-OVJdCl4n" class="op3-element " data-op3-uuid="OVJdCl4n" data-op3-gid="" data-op3-element-type="popoverlay" data-op3-element-spec="blankpopoverlay" data-op3-element-caption="Pop Overlay #OVJdCl4n" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0">
+<div class="op3-popoverlay-background"></div>
+<div class="op3-popoverlay-wrapper"><div data-op3-text="Overlay 1" class="op3-popoverlay-content" data-op-animation="1" data-op-timer="0sec" data-op-animation-trigger="none" data-op3-use-on-devices="0" data-op3-cookie-expires="0">
+<div data-op3-children="0"></div>
+<a class="op3-popoverlay-close"><span class="op3-popoverlay-close-text">Close</span><span class="op3-popoverlay-close-icon"></span></a>
+</div></div>
+</div>
+</div>
+</div>
+<!-- #op3-designer-element -->
+
+        </main>
+    </div> <!-- #page .hfeed .site -->
+        <footer id="colophon" class="site-footer" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+            <section class="op-footer">
+                <div class="container op-container">
+                    <div class="row">
+                        
+        <div class="col-sm-12">
+                    </div>
+
+                            </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                                                    </div>
+                        <div class="col-sm-12 footer-copyright">
+                            <p><strong>Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki. </strong><strong><strong>©2010-2025 </strong>All Rights Reserved.</strong>
+
+Strona ma już 15 lat i nadal jest aktualizowana (25.01.2025)</p>                                                    </div>
+                    </div>
+                </div>
+            </section>
+            
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container">
+<div class="cmplz-cookiebanner cmplz-hidden banner-1 polityka-prywatnosci optin cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Zarządzaj zgodą</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="zamknij-dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<details class="cmplz-category cmplz-functional">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Funkcjonalne</span>
+							<span class="cmplz-always-active">
+								<span class="cmplz-banner-checkbox">
+									<input type="checkbox" id="cmplz-functional-optin" data-category="cmplz_functional" class="cmplz-consent-checkbox cmplz-functional" size="40" value="1">
+									<label class="cmplz-label" for="cmplz-functional-optin" tabindex="0"><span class="screen-reader-text">Funkcjonalne</span></label>
+								</span>
+								Zawsze aktywne							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-functional">Przechowywanie lub dostęp do danych technicznych jest ściśle konieczny do uzasadnionego celu umożliwienia korzystania z konkretnej usługi wyraźnie żądanej przez subskrybenta lub użytkownika, lub wyłącznie w celu przeprowadzenia transmisji komunikatu przez sieć łączności elektronicznej.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-preferences">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Preferencje</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-preferences-optin" data-category="cmplz_preferences" class="cmplz-consent-checkbox cmplz-preferences" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-preferences-optin" tabindex="0"><span class="screen-reader-text">Preferencje</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-preferences">Przechowywanie lub dostęp techniczny jest niezbędny do uzasadnionego celu przechowywania preferencji, o które nie prosi subskrybent lub użytkownik.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-statistics">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Statystyka</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-statistics-optin" data-category="cmplz_statistics" class="cmplz-consent-checkbox cmplz-statistics" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-statistics-optin" tabindex="0"><span class="screen-reader-text">Statystyka</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-statistics">Przechowywanie techniczne lub dostęp, który jest używany wyłącznie do celów statystycznych.</span>
+					<span class="cmplz-description-statistics-anonymous">Przechowywanie techniczne lub dostęp, który jest używany wyłącznie do anonimowych celów statystycznych. Bez wezwania do sądu, dobrowolnego podporządkowania się dostawcy usług internetowych lub dodatkowych zapisów od strony trzeciej, informacje przechowywane lub pobierane wyłącznie w tym celu zwykle nie mogą być wykorzystywane do identyfikacji użytkownika.</span>
+				</div>
+			</details>
+			<details class="cmplz-category cmplz-marketing">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Marketing</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-marketing-optin" data-category="cmplz_marketing" class="cmplz-consent-checkbox cmplz-marketing" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-marketing-optin" tabindex="0"><span class="screen-reader-text">Marketing</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-marketing">Przechowywanie lub dostęp techniczny jest wymagany do tworzenia profili użytkowników w celu wysyłania reklam lub śledzenia użytkownika na stronie internetowej lub na kilku stronach internetowych w podobnych celach marketingowych.</span>
+				</div>
+			</details>
+		</div>
+<!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Zarządzaj opcjami</a>
+		<a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Zarządzaj serwisami</a>
+		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Zarządzaj {vendor_count} dostawcami</a>
+		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/">Przeczytaj więcej o tych celach</a>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Akceptuję</button>
+		<button class="cmplz-btn cmplz-deny">Odmów</button>
+		<button class="cmplz-btn cmplz-view-preferences">Zobacz preferencje</button>
+		<button class="cmplz-btn cmplz-save-preferences">Zapisz preferencje</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Zobacz preferencje</a>
+			</div>
+
+	<div class="cmplz-links cmplz-documents">
+		<a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a>
+			</div>
+
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true">
+<button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1">Zarządzaj zgodą</button>
+
+</div>        <span class="ssp-id" style="display:none">85</span>
+		<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/themes/op-smart-theme3/js/all.min.js?ver=1.0.17" id="opst-js-script-js"></script>
+<script type="text/javascript" id="op3-frontend-scripts-inline-js-after">
+/* <![CDATA[ */
+;window.OP3={"Meta":{"wpLocale":"pl_PL","pageTitle":"O mnie","pageDescription":"","pageFeaturedImage":false,"pageId":85,"homeUrl":"","siteUrl":"","pageUrl":"\/o-mnie\/","facebookAppId":false,"facebookLang":false},"GoogleRecaptcha":{"googleRecaptchaSiteKey":false},"Settings":{"lazyLoadAssets":"native"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-content/plugins/op-builder/public/assets/cache/page-85.nodelay.js?ver=78b1b279fa9bda2fa3d2d71cd33dd484" id="op3-frontend-scripts-nodelay-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/plugins/op-builder/public/assets/cache/page-85.js?ver=78b1b279fa9bda2fa3d2d71cd33dd484" id="op3-frontend-scripts-main-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" id="cmplz-cookiebanner-js-extra">
+/* <![CDATA[ */
+var complianz = {"prefix":"cmplz_","user_banner_id":"1","set_cookies":[],"block_ajax_content":"","banner_version":"20","version":"7.3.2","store_consent":"1","do_not_track_enabled":"1","consenttype":"optin","region":"eu","geoip":"1","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"\/wp-json\/complianz\/v1\/","locale":"lang=pl&locale=pl_PL","set_cookies_on_root":"","cookie_domain":"","current_policy_id":"30","cookie_path":"\/hv\/","categories":{"statistics":"statystyki","marketing":"marketing"},"tcf_active":"","placeholdertext":"Kliknij, żeby zaakceptować {category} pliki cookies i włączyć tę treść","css_file":"\/wp-content\/uploads\/complianz\/css\/banner-{banner_id}-{type}.css?v=20","page_links":{"eu":{"cookie-statement":{"title":"","url":"\/"},"privacy-statement":{"title":"","url":"\/"},"impressum":{"title":"","url":"\/"}},"us":{"impressum":{"title":"","url":"\/"}},"uk":{"impressum":{"title":"","url":"\/"}},"ca":{"impressum":{"title":"","url":"\/"}},"au":{"impressum":{"title":"","url":"\/"}},"za":{"impressum":{"title":"","url":"\/"}},"br":{"impressum":{"title":"","url":"\/"}}},"tm_categories":"1","forceEnableStats":"","preview":"","clean_cookies":"","aria_label":"Kliknij, żeby zaakceptować {category} pliki cookies i włączyć tę treść"};
+/* ]]> */
+</script>
+<script defer type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/plugins/complianz-gdpr-premium/cookiebanner/js/complianz.min.js?ver=1737807350" id="cmplz-cookiebanner-js"></script>
+        </footer>
+
+</body>
+</html>

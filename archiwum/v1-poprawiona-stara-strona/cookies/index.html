@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pl-PL" class="no-js no-svg" data-op3-support="no-js no-svg no-webp no-avif">
+<head>
+<script>!function(){var t=function(){this._init()};t.prototype={constructor:t,_init:function(){this._domContentLoadedDispatched=!1,this._windowLoadDispatched=!1,this._isListening=!1,this._status="waiting",this._userInteractionEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","touchcancel","touchforcechange"],this._eventListenerOptions={passive:!0},this._registratedScripts={normal:[],async:[],defer:[]},this._jQueryScripts=[],this._boundHandleUserInteraction=this._handleUserInteraction.bind(this)},get status(){return this._status},get isDOMContentLoaded(){return this._domContentLoadedDispatched},get isWindowLoad(){return this._windowLoadDispatched},get isListening(){return this._isListening},load:function(){"waiting"===this.status&&(this.unlisten(),this._status="loading","loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadAll.bind(this)):this._loadAll())},listen:function(){this.isListening||"waiting"!==this.status||(this._userInteractionEvents.forEach(function(t){window.addEventListener(t,this._boundHandleUserInteraction,this._eventListenerOptions)}.bind(this)),this._isListening=!0)},unlisten:function(){this.isListening&&(this._userInteractionEvents.forEach(function(t){window.removeEventListener(t,this._boundHandleUserInteraction,this._eventListenerOptions)}.bind(this)),this._isListening=!1)},_isValidScriptType:function(t){return!t||"string"==typeof t&&-1!==["text/javascript","text/x-javascript","text/ecmascript","text/jscript","application/javascript","application/x-javascript","application/ecmascript","application/jscript","module"].indexOf(t.toLowerCase())},_applyCallback:function(t,n){"function"==typeof t&&t.apply(this,n)},_delayCallback:function(t,n){window.requestAnimationFrame(function(){this._applyCallback(t,n)}.bind(this))},_dispatchCustomEvent:function(t,n){var e;return n="oprocket-"+n,"function"!=typeof Event?(e=document.createEvent("Event")).initEvent(n,!1,!1):e=new Event(n),t.dispatchEvent(e),e},_loadAll:function(){this._delayEventListeners(),this._delayOnEvents(),this._delayJQueryEvents(),this._delayDocumentWrite(),this._registerScripts(),this._preloadScripts(),this._loadScripts(function(){this._dispatchDOMContentLoaded(function(){this._dispatchWindowLoad(function(){this._status="loaded",this._dispatchCustomEvent(window,"allScriptsLoaded")}.bind(this))}.bind(this))}.bind(this))},_delayEventListeners:function(){var t=window,n=document,e={},i=function(t,n){var i=function(n){return(n=Array.prototype.slice.call(n))[0]=e[t].eventsToRewrite.indexOf(n[0])>=0?"oprocket-"+n[0]:n[0],n};t in e||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){e[t].originalFunctions.add.apply(t,i(arguments))},t.removeEventListener=function(){e[t].originalFunctions.remove.apply(t,i(arguments))}),e[t].eventsToRewrite.push(n)};i(n,"DOMContentLoaded"),i(t,"DOMContentLoaded"),i(t,"load"),i(t,"pageshow"),i(n,"readystatechange")},_delayOnEvents:function(){var t=window,n=function(t,n){Object.defineProperty(t,n,{get:function(){return t["oprocket"+n]||t[n]||function(){}},set:function(e){t["oprocket"+n]=e}})};n(document,"onreadystatechange"),n(t,"onload"),n(t,"onpageshow")},_delayJQueryEvents:function(){var t=this,n=t._jQueryScripts,e=window,i=document,o=e.jQuery;Object.defineProperty(e,"jQuery",{get:function(){return o},set:function(e){if(e&&e.fn&&-1===n.indexOf(e)){var a=e.fn.on;e.fn.on=e.fn.init.prototype.on=function(){var t,n=Array.prototype.slice.call(arguments);("string"==typeof n[0]||n[0]instanceof String)&&(this[0]instanceof Window?t=/^(load)(\.|$)/:this[0]instanceof Document&&(t=/^(DOMContentLoaded)(\.|$)/),t&&(n[0]=n[0].split(" ").map(function(n){return n.replace(t,"oprocket-$1$2")}).join(" ")));return a.apply(this,n),this},e.fn.ready=e.fn.init.prototype.ready=function(n){return t.isDOMContentLoaded?n.call(i,e):o(i).on("DOMContentLoaded",function(t){n.call(this,e)}),this},n.push(e)}o=e}})},_delayDocumentWrite:function(){var t=document,n=t.write;t.write=function(e){var i=t.currentScript;if(i){var o=i.parentElement,a=o,s=i.nextSibling,r=t.createRange(),c=t.createDocumentFragment();for(r.setStart(c,0),c.appendChild(r.createContextualFragment(e));a&&-1===["HEAD","BODY"].indexOf(a.tagName);)a=a.parentElement;a&&"HEAD"===a.tagName&&(s=(o=t.body).firstChild),s?o.insertBefore(c,s):o.appendChild(c)}else n.apply(this,arguments)},t.writeln=function(n){t.write(n+"\n")}},_registerScripts:function(){var t=this._registratedScripts;document.querySelectorAll('script[type="oprocket"]').forEach(function(n){n.hasAttribute("src")?n.hasAttribute("async")&&n.async?t.async.push(n):n.hasAttribute("defer")&&n.defer||"module"===n.getAttribute("data-oprocket-type")?t.defer.push(n):t.normal.push(n):t.normal.push(n)}.bind(this))},_preloadScripts:function(){var t=this._registratedScripts;[].concat(t.normal,t.defer,t.async).forEach(function(t){var n=t.getAttribute("src");if(n){var e=document;link=e.createElement("link"),link.href=n,link.rel="preload",link.as="script",e.head.appendChild(link)}}.bind(this))},_loadScripts:function(t){var n=this._registratedScripts,e=[].concat(n.normal,n.defer,n.async),i=function(){var n=e.shift();void 0!==n?this._delayCallback(function(){var t,e=document.createElement("script");Array.prototype.slice.call(n.attributes).forEach(function(n){var i=n.nodeName;if("type"!==i){var o=n.nodeValue;"data-oprocket-type"===i&&(i="type",t=o),e.setAttribute(i,o)}}),n.hasAttribute("src")&&this._isValidScriptType(t)?(e.addEventListener("load",i),e.addEventListener("error",i)):(e.text=n.text,i()),n.parentNode.replaceChild(e,n)}.bind(this)):this._applyCallback(t)}.bind(this);i()},_dispatchDOMContentLoaded:function(t){var n=this._delayCallback.bind(this),e=window,i=document;n(function(){this._dispatchCustomEvent(i,"DOMContentLoaded"),n(function(){this._dispatchCustomEvent(e,"DOMContentLoaded"),n(function(){var e=this._dispatchCustomEvent(i,"readystatechange");"function"==typeof i.oprocketonreadystatechange&&i.oprocketonreadystatechange.call(i,e),n(function(){this._applyCallback(t)}.bind(this))}.bind(this))}.bind(this))}.bind(this)),this._domContentLoadedDispatched=!0},_dispatchWindowLoad:function(t){var n=this._delayCallback.bind(this),e=window;n(function(){var i=this._dispatchCustomEvent(e,"load");"function"==typeof e.oprocketonload&&e.oprocketonload.call(e,i),n(function(){var i=this._dispatchCustomEvent(e,"pageshow");"function"==typeof e.oprocketonpageshow&&e.oprocketonpageshow.call(e,i),n(function(){this._applyCallback(t)}.bind(this))}.bind(this))}.bind(this)),this._windowLoadDispatched=!0},_handleUserInteraction:function(t){this._dispatchCustomEvent(window,"userInteraction"),this.load()}},(new t).listen()}();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <title>Polityka prywatności - Przepuklina brzuszna</title>
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<meta name="description" content="Polityka prywatnościO co chodzi z tymi &quot;ciasteczkami&quot;?Polityka Zgody1. WprowadzenieTwoja prywatność oraz ochrona danych osobowych są dla nas priorytetem. Na stronie www.mniejzoladka.pl stosujemy pliki cookies oraz inne technologie śledzące w celu zapewnienia prawidłowego funkcjonowania strony, analizowania ruchu, personalizacji treści i wyświetlania dopasowanych reklam. Poniżej znajdziesz szczegółowe informacje na temat zasad wyrażania&hellip;">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://przepuklinabrzuszna.pl/cookies/">
+<meta property="og:url" content="https://przepuklinabrzuszna.pl/cookies/">
+<meta property="og:site_name" content="Przepuklina brzuszna">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:type" content="article">
+<meta property="article:author" content="https://www.facebook.com/prof.dabrowiecki">
+<meta property="article:publisher" content="https://www.facebook.com/prof.dabrowiecki">
+<meta property="og:title" content="Polityka prywatności - Przepuklina brzuszna">
+<meta property="og:description" content="Polityka prywatnościO co chodzi z tymi &quot;ciasteczkami&quot;?Polityka Zgody1. WprowadzenieTwoja prywatność oraz ochrona danych osobowych są dla nas priorytetem. Na stronie www.mniejzoladka.pl stosujemy pliki cookies oraz inne technologie śledzące w celu zapewnienia prawidłowego funkcjonowania strony, analizowania ruchu, personalizacji treści i wyświetlania dopasowanych reklam. Poniżej znajdziesz szczegółowe informacje na temat zasad wyrażania&hellip;">
+<meta property="fb:pages">
+<meta property="fb:admins">
+<meta property="fb:app_id">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="https://twitter.com/dabrowiecki_s">
+<meta name="twitter:creator" content="https://twitter.com/dabrowiecki_s">
+<meta name="twitter:title" content="Polityka prywatności - Przepuklina brzuszna">
+<meta name="twitter:description" content="Polityka prywatnościO co chodzi z tymi &quot;ciasteczkami&quot;?Polityka Zgody1. WprowadzenieTwoja prywatność oraz ochrona danych osobowych są dla nas priorytetem. Na stronie www.mniejzoladka.pl stosujemy pliki cookies oraz inne technologie śledzące w celu zapewnienia prawidłowego funkcjonowania strony, analizowania ruchu, personalizacji treści i wyświetlania dopasowanych reklam. Poniżej znajdziesz szczegółowe informacje na temat zasad wyrażania&hellip;">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+
+<!-- Fonts used by OptimizePress -->
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Hind:400,700|IBM+Plex+Sans:400,700|Montserrat:400,700|Poppins:400,700&amp;display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:400,700|IBM+Plex+Sans:400,700|Montserrat:400,700|Poppins:400,700&amp;display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:400,700|IBM+Plex+Sans:400,700|Montserrat:400,700|Poppins:400,700&amp;display=swap" media="print" onload="this.onload=null;this.media='all'">
+<!-- / OptimizePress. -->
+<script type="oprocket" data-oprocket-type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🐦‍⬛","🐦​⬛")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link rel="stylesheet" id="op3-reboot-css" href="/wp-content/plugins/op-builder/public/assets/css/op3-reboot.css?ver=6.7.1" type="text/css" media="all">
+<link rel="stylesheet" id="op3-frontend-stylesheet-css" href="/wp-content/plugins/op-builder/public/assets/cache/page-462.css?ver=713fd3e0f53c94a0e1ace0e835e6aff0" type="text/css" media="all">
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" id="op3-dashboard-tracking-js-extra">
+/* <![CDATA[ */
+var OPDashboardStats = {"pid":"462","nonce":"d320d37bf0","pageview_record_id":null,"rest_url":"\/wp-json\/opd\/v1\/tracking"};
+/* ]]> */
+</script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/plugins/op-dashboard/public/assets/js/tracking.js?ver=1.0.66" id="op3-dashboard-tracking-js"></script>
+<script type="text/javascript" id="op3-support-js-after">
+/* <![CDATA[ */
+!function(){var A=document,e=A.documentElement,t="data-op3-support",n=function(A){e.setAttribute(t,e.getAttribute(t).replace(new RegExp("no-"+A,"g"),A))},a=function(A,e){var t=new Image;t.onload=function(){n(A)},t.src="data:image/"+A+";base64,"+e};n("js"),A.createElementNS&&A.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect&&n("svg"),a("webp","UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="),a("avif","AAAAFGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAC8AAAAGwAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAARWlwcnAAAAAoaXBjbwAAABRpc3BlAAAAAAAAAAQAAAAEAAAADGF2MUOBAAAAAAAAFWlwbWEAAAAAAAAAAQABAgECAAAAI21kYXQSAAoIP8R8hAQ0BUAyDWeeUy0JG+QAACANEkA=")}();
+/* ]]> */
+</script>
+
+
+
+<meta name="generator" content="WordPress 6.7.1">
+<link rel="shortlink" href="/?p=462">
+
+
+<meta name="generator" content="Site Kit by Google 1.144.0">			<style>.cmplz-hidden {
+					display: none !important;
+				}</style>
+<style id="op3-custom-css"></style>
+</head>
+
+<body data-cmplz="1" class="page-template page-template-op_builder_blank page page-id-462 non-logged-in">
+
+<div id="op3-designer-element">
+<div data-op3-children="2">
+<div id="op3-element-3Zxxol7o" class="op3-element " data-op3-uuid="3Zxxol7o" data-op3-gid="" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #3Zxxol7o" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0" data-op3-sticky-top-tablet="0" data-op3-sticky-top-mobile="0" data-op3-sticky-until="0" data-op3-sticky-until-element="">
+<div data-op3-border><div data-op3-background="base"></div></div>
+<div data-op3-children="1"><div id="op3-element-rVg5Gj8u" class="op3-element " data-op3-uuid="rVg5Gj8u" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #rVg5Gj8u" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0" data-op3-sticky-top-tablet="0" data-op3-sticky-top-mobile="0" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-OCdyJ7SD" class="op3-element " data-op3-uuid="OCdyJ7SD" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #OCdyJ7SD" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="3">
+<div id="op3-element-yOdBt0wG" class="op3-element " data-op3-uuid="yOdBt0wG" data-op3-gid="" data-op3-element-type="icon" data-op3-element-spec="" data-op3-element-caption="Icon #yOdBt0wG" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-icon-container" data-op3-iconframe="filled" data-op3-iconshape="circle" data-op3-icon="op3-icon-email-84-2"><i class="op3-icon op3-icon-email-84-2" data-op3-icon="op3-icon-email-84-2"><svg width="1em" height="1em"><use href="/wp-content/plugins/op-builder/public/assets/cache/page-462.svg?ver=1737486047#op3-icons-email-84-2"></use></svg></i></div></div>
+<div id="op3-element-6wj1nBIr" class="op3-element " data-op3-uuid="6wj1nBIr" data-op3-gid="" data-op3-element-type="headline" data-op3-element-spec="" data-op3-element-caption="Headline #6wj1nBIr" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-headline-wrapper" data-op-animation-trigger="" data-op-animation-style="" data-op-animation-loop="" data-op-timer-minutes="" data-op-timer-seconds=""><div data-op3-contenteditable><h2>Polityka prywatności</h2></div></div></div>
+<div id="op3-element-CblKkzhP" class="op3-element " data-op3-uuid="CblKkzhP" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #CblKkzhP" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable><p>O co chodzi z tymi "ciasteczkami"?</p></div></div></div>
+</div></div></div></div></div></div></div></div>
+</div></div>
+<div id="op3-element-uVlrTLMl" class="op3-element " data-op3-uuid="uVlrTLMl" data-op3-gid="" data-op3-element-type="section" data-op3-element-spec="" data-op3-element-caption="Section #uVlrTLMl" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="" data-op-animation-style="" data-op-animation-loop="" data-op-timer-minutes="" data-op-timer-seconds="" data-op3-sticky="" data-op3-sticky-active-desktop="" data-op3-sticky-active-tablet="" data-op3-sticky-active-mobile="" data-op3-sticky-top-desktop="" data-op3-sticky-top-tablet="" data-op3-sticky-top-mobile="" data-op3-sticky-until="" data-op3-sticky-until-element="">
+<div data-op3-border><div data-op3-background="base"></div></div>
+<div data-op3-children="2">
+<div id="op3-element-Ls5fQ9hA" class="op3-element " data-op3-uuid="Ls5fQ9hA" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #Ls5fQ9hA" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-FAiWI1IY" class="op3-element " data-op3-uuid="FAiWI1IY" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #FAiWI1IY" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="1"><div id="op3-element-17ynx7KU" class="op3-element " data-op3-uuid="17ynx7KU" data-op3-gid="" data-op3-element-type="text" data-op3-element-spec="" data-op3-element-caption="Text Editor #17ynx7KU" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-text-wrapper" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-contenteditable>
+<h3>Polityka Zgody</h3>
+<h4>1. Wprowadzenie</h4>
+<p>Twoja prywatność oraz ochrona danych osobowych są dla nas priorytetem. Na stronie <a href="http://www.mniejzoladka.pl/">www.mniejzoladka.pl</a> stosujemy pliki cookies oraz inne technologie śledzące w celu zapewnienia prawidłowego funkcjonowania strony, analizowania ruchu, personalizacji treści i wyświetlania dopasowanych reklam. Poniżej znajdziesz szczegółowe informacje na temat zasad wyrażania zgody oraz zarządzania ustawieniami.</p>
+<h4>2. Czym są pliki cookies?</h4>
+<p>Pliki cookies to niewielkie pliki tekstowe przechowywane na Twoim urządzeniu (komputerze, tablecie, smartfonie), które pozwalają nam rozpoznać Twoje urządzenie podczas kolejnych wizyt na stronie. Cookies mogą być wykorzystywane do różnych celów, takich jak poprawa funkcjonalności strony, zapamiętywanie preferencji użytkownika czy zbieranie anonimowych danych statystycznych.</p>
+<h4>3. Rodzaje plików cookies, które wykorzystujemy</h4>
+<ul>
+<li>Niezbędne cookies: Konieczne do prawidłowego funkcjonowania strony. Bez nich niektóre funkcje mogą być niedostępne.</li>
+<li>Funkcjonalne cookies: Umożliwiają zapamiętywanie Twoich ustawień, takich jak język czy preferencje dotyczące wyglądu strony.</li>
+<li>Analityczne cookies: Pomagają nam zrozumieć, jak użytkownicy korzystają z naszej strony, co pozwala na jej optymalizację (np. Google Analytics).</li>
+<li>Reklamowe cookies: Używane do wyświetlania dopasowanych reklam oraz mierzenia ich skuteczności.</li>
+</ul>
+<h4>4. Podstawa prawna przetwarzania danych</h4>
+<p>Zgodnie z art. 6 ust. 1 lit. a) Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO), przetwarzanie danych na podstawie plików cookies wymaga Twojej zgody, z wyjątkiem niezbędnych cookies, które są wymagane do prawidłowego działania strony.</p>
+<h4>5. Wyrażenie zgody</h4>
+<p>Podczas pierwszej wizyty na naszej stronie wyświetlany jest baner informujący o wykorzystaniu plików cookies. Możesz wówczas:</p>
+<ul>
+<li>Wyrazić zgodę na wszystkie rodzaje cookies.</li>
+<li>Dostosować swoje preferencje, wybierając konkretne kategorie cookies.</li>
+<li>Odmówić zgody (poza niezbędnymi cookies).</li>
+</ul>
+<h4>6. Zarządzanie ustawieniami cookies</h4>
+<p>W dowolnym momencie możesz zmienić swoje preferencje dotyczące cookies, korzystając z opcji dostępnych w ustawieniach przeglądarki lub klikając na link „Zarządzaj zgodą” na dole strony. Pamiętaj, że wyłączenie niektórych cookies może wpłynąć na funkcjonalność strony.</p>
+<h4>7. Udostępnianie danych stronom trzecim</h4>
+<p>Współpracujemy z zewnętrznymi dostawcami usług, takimi jak Google czy Meta, którzy mogą przetwarzać Twoje dane w związku z analityką i reklamami. Dane te są przetwarzane zgodnie z ich własnymi politykami prywatności.</p>
+<h4>8. Twoje prawa</h4>
+<p>Zgodnie z RODO przysługują Ci następujące prawa:</p>
+<ul>
+<li>Prawo dostępu do swoich danych.</li>
+<li>Prawo do ich sprostowania.</li>
+<li>Prawo do ograniczenia przetwarzania.</li>
+<li>Prawo do usunięcia danych („prawo do bycia zapomnianym”).</li>
+<li>Prawo do wniesienia sprzeciwu wobec przetwarzania.</li>
+<li>Prawo do przenoszenia danych.</li>
+</ul>
+<p>Aby skorzystać z tych praw, skontaktuj się z nami pod adresem: <a href="mailto:s.dabrowiecki@outlook.com">s.dabrowiecki@outlook.com</a></p>
+<h4>9. Kontakt</h4>
+<p>W razie pytań dotyczących niniejszej polityki zgody lub ochrony Twoich danych osobowych prosimy o kontakt:</p>
+<ul>
+<li>E-mail:&nbsp;
+
+<!--StartFragment-->&nbsp;<a href="mailto:s.dabrowiecki@outlook.com">s.dabrowiecki@outlook.com</a><!--EndFragment-->
+</li>
+<li>Adres: 85-654 Bydgoszcz, Mierosławskiego 9</li>
+</ul>
+<h4>10. Zmiany w polityce zgody</h4>
+<p>Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej polityce zgody. Wszelkie zmiany będą publikowane na tej stronie. Zachęcamy do regularnego sprawdzania jej treści.</p>
+</div></div></div></div></div></div></div></div></div></div>
+<div id="op3-element-KdBmfMdc" class="op3-element " data-op3-uuid="KdBmfMdc" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #KdBmfMdc" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="" data-op-animation-style="" data-op-animation-loop="" data-op-timer-minutes="" data-op-timer-seconds="" data-op3-sticky="" data-op3-sticky-active-desktop="" data-op3-sticky-active-tablet="" data-op3-sticky-active-mobile="" data-op3-sticky-top-desktop="" data-op3-sticky-top-tablet="" data-op3-sticky-top-mobile="" data-op3-sticky-until="" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="1" data-op3-wrap-columns-tablet="1" data-op3-wrap-columns-mobile="0"><div id="op3-element-Z3eeYHcj" class="op3-element " data-op3-uuid="Z3eeYHcj" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #Z3eeYHcj" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="" data-op-animation-style="" data-op-animation-loop="" data-op-timer-minutes="" data-op-timer-seconds=""><div data-op3-element-container>
+<div data-op3-border><div data-op3-background="base"></div></div>
+<div data-op3-children="1"><div id="op3-element-NnLdiMb8" class="op3-element " data-op3-uuid="NnLdiMb8" data-op3-gid="" data-op3-element-type="row" data-op3-element-spec="" data-op3-element-caption="Row #NnLdiMb8" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="1"><div data-op3-element-container data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0" data-op3-sticky="0" data-op3-sticky-active-desktop="1" data-op3-sticky-active-tablet="1" data-op3-sticky-active-mobile="0" data-op3-sticky-top-desktop="0px" data-op3-sticky-top-tablet="0px" data-op3-sticky-top-mobile="0px" data-op3-sticky-until="0" data-op3-sticky-until-element=""><div data-op3-children="1" data-op3-stack-columns-desktop="0" data-op3-stack-columns-desktop-reverse="0" data-op3-stack-columns-tablet="0" data-op3-stack-columns-tablet-reverse="0" data-op3-stack-columns-mobile="1" data-op3-stack-columns-mobile-reverse="0" data-op3-wrap-columns-desktop="0" data-op3-wrap-columns-tablet="0" data-op3-wrap-columns-mobile="0"><div id="op3-element-rHec3eCq" class="op3-element " data-op3-uuid="rHec3eCq" data-op3-gid="" data-op3-element-type="column" data-op3-element-spec="" data-op3-element-caption="Column #rHec3eCq" data-op-visibility-hidden="0" data-op-element-hidden="0" data-op3-style-id="" data-op3-has-children="0"><div class="op3-column-content op3-background-parent" data-op-animation-trigger="none" data-op-animation-style="" data-op-animation-loop="0" data-op-timer-minutes="0" data-op-timer-seconds="0"><div data-op3-element-container><div data-op3-children="0"></div></div></div></div></div></div></div></div>
+</div></div></div></div></div></div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- #op3-designer-element -->
+
+
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container">
+<div class="cmplz-cookiebanner cmplz-hidden banner-1 polityka-prywatnosci optin cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Zarządzaj zgodą</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="zamknij-dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<details class="cmplz-category cmplz-functional">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Funkcjonalne</span>
+							<span class="cmplz-always-active">
+								<span class="cmplz-banner-checkbox">
+									<input type="checkbox" id="cmplz-functional-optin" data-category="cmplz_functional" class="cmplz-consent-checkbox cmplz-functional" size="40" value="1">
+									<label class="cmplz-label" for="cmplz-functional-optin" tabindex="0"><span class="screen-reader-text">Funkcjonalne</span></label>
+								</span>
+								Zawsze aktywne							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-functional">Przechowywanie lub dostęp do danych technicznych jest ściśle konieczny do uzasadnionego celu umożliwienia korzystania z konkretnej usługi wyraźnie żądanej przez subskrybenta lub użytkownika, lub wyłącznie w celu przeprowadzenia transmisji komunikatu przez sieć łączności elektronicznej.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-preferences">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Preferencje</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-preferences-optin" data-category="cmplz_preferences" class="cmplz-consent-checkbox cmplz-preferences" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-preferences-optin" tabindex="0"><span class="screen-reader-text">Preferencje</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-preferences">Przechowywanie lub dostęp techniczny jest niezbędny do uzasadnionego celu przechowywania preferencji, o które nie prosi subskrybent lub użytkownik.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-statistics">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Statystyka</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-statistics-optin" data-category="cmplz_statistics" class="cmplz-consent-checkbox cmplz-statistics" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-statistics-optin" tabindex="0"><span class="screen-reader-text">Statystyka</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-statistics">Przechowywanie techniczne lub dostęp, który jest używany wyłącznie do celów statystycznych.</span>
+					<span class="cmplz-description-statistics-anonymous">Przechowywanie techniczne lub dostęp, który jest używany wyłącznie do anonimowych celów statystycznych. Bez wezwania do sądu, dobrowolnego podporządkowania się dostawcy usług internetowych lub dodatkowych zapisów od strony trzeciej, informacje przechowywane lub pobierane wyłącznie w tym celu zwykle nie mogą być wykorzystywane do identyfikacji użytkownika.</span>
+				</div>
+			</details>
+			<details class="cmplz-category cmplz-marketing">
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Marketing</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox" id="cmplz-marketing-optin" data-category="cmplz_marketing" class="cmplz-consent-checkbox cmplz-marketing" size="40" value="1">
+								<label class="cmplz-label" for="cmplz-marketing-optin" tabindex="0"><span class="screen-reader-text">Marketing</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-marketing">Przechowywanie lub dostęp techniczny jest wymagany do tworzenia profili użytkowników w celu wysyłania reklam lub śledzenia użytkownika na stronie internetowej lub na kilku stronach internetowych w podobnych celach marketingowych.</span>
+				</div>
+			</details>
+		</div>
+<!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Zarządzaj opcjami</a>
+		<a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Zarządzaj serwisami</a>
+		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Zarządzaj {vendor_count} dostawcami</a>
+		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/">Przeczytaj więcej o tych celach</a>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Akceptuję</button>
+		<button class="cmplz-btn cmplz-deny">Odmów</button>
+		<button class="cmplz-btn cmplz-view-preferences">Zobacz preferencje</button>
+		<button class="cmplz-btn cmplz-save-preferences">Zapisz preferencje</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Zobacz preferencje</a>
+			</div>
+
+	<div class="cmplz-links cmplz-documents">
+		<a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a>
+			</div>
+
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true">
+<button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1">Zarządzaj zgodą</button>
+
+</div>        <span class="ssp-id" style="display:none">462</span>
+		<script type="text/javascript" id="op3-frontend-scripts-inline-js-after">
+/* <![CDATA[ */
+;window.OP3={"Meta":{"wpLocale":"pl_PL","pageTitle":"Polityka prywatności","pageDescription":"","pageFeaturedImage":false,"pageId":462,"homeUrl":"","siteUrl":"","pageUrl":"\/cookies\/","facebookAppId":false,"facebookLang":false},"GoogleRecaptcha":{"googleRecaptchaSiteKey":false},"Settings":{"lazyLoadAssets":"native"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-content/plugins/op-builder/public/assets/cache/page-462.nodelay.js?ver=713fd3e0f53c94a0e1ace0e835e6aff0" id="op3-frontend-scripts-nodelay-js"></script>
+<script type="oprocket" data-oprocket-type="text/javascript" src="/wp-content/plugins/op-builder/public/assets/cache/page-462.js?ver=713fd3e0f53c94a0e1ace0e835e6aff0" id="op3-frontend-scripts-main-js"></script>
+
+</body>
+</html>
