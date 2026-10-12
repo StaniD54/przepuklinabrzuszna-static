@@ -27,6 +27,7 @@ IMGS = {
  "otwarta": "otwary-brzuch-300x199.jpg", "siatka": "siatka-do-wszczepienia-300x191.jpg",
  "warstwy": "warstwy-gdzie-siatka-e1654947350302.jpg", "lapar": "HV-laaproskopia-300x224.jpg",
  "esk1": "esk4-1024x575-1.jpg", "esk2": "Eskulap-szpital.jpg",
+ "e-budynek": "eskulap-budynek.jpg", "e-pokoj": "eskulap-pokoj.jpg", "e-recepcja": "eskulap-recepcja.jpg", "e-lazienka": "eskulap-lazienka.jpg", "e-obraz": "eskulap-pracownia-obrazowa.jpg",
  "prof": "SD_n_1-scaled.jpg",
 }
 SIZES = {}
@@ -106,20 +107,23 @@ def review(name):
 
 def consult_block():
     return sec("Konsultacje", f"""
-<p>Zawsze badam pacjenta, wyjaśniam przyczyny powstania przepukliny brzusznej (o ile są do ustalenia), oceniam, jakie jest bezpieczeństwo ponownej operacji (całościowa ocena stanu zdrowia) oraz omawiam możliwe do zastosowania metody chirurgiczne. Stawiam prognozę, jaki będzie przebieg pooperacyjny i kiedy pacjent będzie mógł wrócić do pracy.</p>
+<h3>Konsultacja online</h3>
+<p>Pacjenta z przepukliną brzuszną kwalifikuję do leczenia po rozmowie online. Podczas rozmowy mogę przekazać tylko bardzo ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania.</p>
+<p>Rozmowy: Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o godzinie 20.00. Termin ustalamy telefonicznie lub SMS-em: <a href="tel:+48{TEL}">{TELF}</a>.</p>
+<h3>Konsultacje osobiste</h3>
+<p>Konsultuję obecnie wyłącznie w Bydgoszczy i w Poznaniu.</p>
 <dl class="where">
- <dt>Bydgoszcz</dt><dd><a href="tel:+48603751335">603 751 335</a></dd>
- <dt>Poznań</dt><dd><a href="tel:+48618550662">61 855 06 62</a></dd>
- <dt>Warszawa</dt><dd><a href="tel:+48609505600">609 505 600</a></dd>
- <dt>Online</dt><dd>WhatsApp, Skype, Messenger, praktycznie codziennie o 20.00 (termin wcześniej do uzgodnienia). W ten sposób nie zbadam pacjenta, ale ogólnie ustalę stan zdrowia i badania wymagane do zabiegu.</dd>
+ <dt>Bydgoszcz</dt><dd>ul. Mierosławskiego 9/3 · <a href="tel:+48{TEL}">{TELF}</a> · <a href="https://www.google.com/maps/search/?api=1&query=Mierosławskiego+9+Bydgoszcz">mapa</a></dd>
+ <dt>Poznań</dt><dd>ul. Szafirowa 3/5, 62-070 Dąbrowa k. Poznania · <a href="tel:+48618550662">61 855 06 62</a> · <a href="https://www.google.com/maps/search/?api=1&query=Szafirowa+3/5+62-070+Dąbrowa">mapa</a></dd>
 </dl>
 <p class="note">Wyślij SMS o treści <b>BRZUCH</b> na nr {TELF}. Odeślę adresy i terminy konsultacji oraz podstawowe informacje o leczeniu przepuklin brzusznych.</p>""", "konsultacje")
 
 def hospital_block():
-    return sec("Szpital", f"""
-<p>Leczenie prowadzę w szpitalu Eskulap w Osielsku koło Bydgoszczy. Jest to prywatny, luksusowo wyposażony szpital.</p>
-<ul class="check"><li>dobrze wyposażona sala operacyjna, dostępna całą dobę</li><li>lekarze specjaliści z innych dyscyplin medycznych, Intensywna Terapia przy sali operacyjnej</li><li>doświadczony zespół pielęgniarski, stale dostępny lekarz, również na dyżurze nocnym</li><li>pracownia RTG i laboratorium z możliwością wykonania nawet skomplikowanych badań</li></ul>
-<div class="duo">{img('esk1','Szpital Eskulap w Osielsku')}{img('esk2','Szpital Eskulap, widok z zewnątrz')}</div>""", "szpital")
+    return sec("Gdzie operuję", f"""
+<p>Operuję w szpitalu Eskulap w Osielsku koło Bydgoszczy. Jest to prywatny, luksusowo wyposażony szpital z własnym parkingiem przy wejściu.</p>
+<ul class="check"><li>jasne, klimatyzowane pokoje chorych, własne łazienki z prysznicem bez progu</li><li>dobrze wyposażona sala operacyjna, dostępna całą dobę, Intensywna Terapia przy sali operacyjnej</li><li>doświadczony zespół pielęgniarski, stale dostępny lekarz, również na dyżurze nocnym</li><li>pracownia RTG, nowoczesne obrazowanie Siemens na miejscu (w tym rezonans magnetyczny i pracownia angiografii cyfrowej) oraz laboratorium z możliwością wykonania nawet skomplikowanych badań</li></ul>
+<div class="gal">{img('e-budynek','Budynek szpitala Eskulap w Osielsku z parkingiem przy wejściu')}{img('e-pokoj','Jasny pokój chorych z regulowanym łóżkiem i klimatyzacją')}{img('e-recepcja','Recepcja i poczekalnia')}{img('e-lazienka','Łazienka z prysznicem bez progu i poręczami')}</div>
+<div class="duo">{img('e-obraz','Pracownia angiografii cyfrowej Siemens')}{img('esk1','Szpital Eskulap w Osielsku')}</div>""", "szpital")
 
 def faq_block(items):
     d = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in items)
@@ -133,7 +137,7 @@ FAQ_COMMON = [
  ("Czy przepuklina brzuszna może sama zniknąć?", "Nie. Gdy przepuklina się pojawi, sama już nie zniknie. Jedyną metodą leczenia jest operacja."),
  ("Ile kosztuje operacja?", "Koszt zostanie jednoznacznie określony po zbadaniu chorego. Dolna granica to 6000 zł (prosta przepuklina o średnicy wrót 1–2 cm, którą można zamknąć przez zeszycie szwami). <a href='/koszt-operacji-przepukliny-brzusznej/'>Szczegóły</a>."),
  ("Czy pacjent jest winny powstania przepukliny pooperacyjnej?", "Nie. Operowany pacjent nigdy nie jest winny powstania przepukliny."),
- ("Czy można odbyć konsultację online?", "Tak: WhatsApp, Skype lub Messenger, praktycznie codziennie o 20.00. Online nie zbadam pacjenta, ale ogólnie ustalę stan zdrowia i badania wymagane do zabiegu."),
+ ("Czy można odbyć konsultację online?", "Tak. Pacjenta z przepukliną brzuszną kwalifikuję do leczenia po rozmowie online (Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o 20.00). Mogę przekazać tylko bardzo ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania."),
 ]
 
 ALL = [
@@ -145,8 +149,8 @@ ALL = [
 
 # ============ STRONA GŁÓWNA ============
 home = hero("Przepukliny brzuszne i pooperacyjne", "Operuję przepukliny brzuszne. To moja specjalizacja.",
-            "Konsultacje w Bydgoszczy, Poznaniu, Warszawie i online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
-home += """<div class="facts"><div><b>1979</b><span>rok rozpoczęcia pracy jako lekarz</span></div><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
+            "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
+home += """<div class="facts"><div><b>Przepukliny</b><span>moja specjalizacja od początku pracy zawodowej</span></div><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
 home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
 home += sec("Tematy", '<ul class="cards">' + "".join(f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>' for u, t, d in ALL) +
@@ -155,13 +159,13 @@ home += consult_block()
 home += hospital_block()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
 home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
-<p>Pracuję od 1979 roku, a od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin. Wielu pacjentów z przepuklinami jest otyłych, a więc, chcąc skutecznie leczyć, musiałem zająć się też tym zagadnieniem.</p>
+<p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin. Wielu pacjentów z przepuklinami jest otyłych, a więc, chcąc skutecznie leczyć, musiałem zająć się też tym zagadnieniem.</p>
 <p>Od 10 lat konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi, otyłością oraz, przy dużych zniekształceniach, wykonuję plastyki brzucha.</p>
 <p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
 home += faq_block(FAQ_COMMON)
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
 open(f"{OUT}/index.html", "w", encoding="utf-8").write(page("/", "Przepuklina brzuszna: operacja, zdjęcia, koszty | Prof. Dąbrowiecki",
-    "Jak wygląda przepuklina brzuszna i pooperacyjna, kiedy operować, ile kosztuje. Prof. Dąbrowiecki, chirurg: konsultacje Bydgoszcz, Poznań, Warszawa, online.", home))
+    "Jak wygląda przepuklina brzuszna i pooperacyjna, kiedy operować, ile kosztuje. Prof. Dąbrowiecki, chirurg: konsultacje Bydgoszcz, Poznań, online.", home))
 
 def write(path, title, desc, body):
     d = f"{OUT}{path}"; os.makedirs(d, exist_ok=True)
@@ -184,7 +188,7 @@ b += consult_block()
 b += more_links(ALL[1:])
 b += faq_block(FAQ_COMMON[:3])
 write("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna: jak wygląda, objawy, zdjęcia | Prof. Dąbrowiecki",
-      "Jak wygląda przepuklina brzuszna? Zdjęcia, skutki odkładania operacji i kto jest zagrożony. Prof. Dąbrowiecki, konsultacje w Bydgoszczy, Poznaniu i Warszawie.", b)
+      "Jak wygląda przepuklina brzuszna? Zdjęcia, skutki odkładania operacji i kto jest zagrożony. Prof. Dąbrowiecki, konsultacje w Bydgoszczy i Poznaniu.", b)
 
 # ============ POOPERACYJNA ============
 b = hero("Przepuklina w bliźnie", "Przepuklina pooperacyjna: leczenie i operacja",
@@ -200,7 +204,7 @@ b += consult_block()
 b += more_links([ALL[0], ALL[2], ALL[3]])
 b += faq_block(FAQ_COMMON[::-1][:3][::-1] if False else [FAQ_COMMON[0], FAQ_COMMON[2], FAQ_COMMON[1]])
 write("/przepuklina-pooperacyjna/", "Przepuklina pooperacyjna: leczenie, operacja | Prof. Dąbrowiecki",
-      "Przepuklina pooperacyjna (w bliźnie): jak powstaje, jak ją operuję, także z plastyką brzucha. Konsultacje w Bydgoszczy, Poznaniu, Warszawie i online.", b)
+      "Przepuklina pooperacyjna (w bliźnie): jak powstaje, jak ją operuję, także z plastyką brzucha. Konsultacje w Bydgoszczy i Poznaniu oraz online.", b)
 
 # ============ METODY ============
 b = hero("Operacja przepukliny brzusznej", "Operacja przepukliny brzusznej: metody",

@@ -101,3 +101,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 .grid4 figure.ph img,.grid3 figure.ph img{aspect-ratio:3/4;object-fit:cover}
 .grid3 figure.ph img{aspect-ratio:4/3}
+.gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:8px 0 16px}
+.gal figure.ph img{aspect-ratio:1/1;object-fit:cover}
+.body h3{font-size:1.25rem;margin:22px 0 8px}.body h3:first-child{margin-top:0}
+@media (max-width:720px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
