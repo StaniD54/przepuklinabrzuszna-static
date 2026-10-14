@@ -134,6 +134,8 @@ def consult_block():
 <h3>Konsultacja online</h3>
 <p>Pacjenta z przepukliną brzuszną nie można zakwalifikować do leczenia po konsultacji online. Podczas rozmowy mogę przekazać tylko ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania. W trakcie takiej rozmowy dopytam dokładnie o stan zdrowia pacjenta i opiszę wymagane przygotowanie do zabiegu. Omówię również organizację leczenia, długość pobytu i związane z tym koszty. Jednak do ostatecznej kwalifikacji niezbędne jest osobiste badanie chorego. W przypadku przepukliny brzusznej badanie jest wymagane za każdym razem, a czasami także tomografia komputerowa lub inne badania dodatkowe.</p>
 <p>Rozmowy: Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o godzinie 20.00. Termin ustalamy telefonicznie lub SMS-em: <a href="tel:+48{TEL}">{TELF}</a>.</p>
+<h3>Kwalifikacja do leczenia</h3>
+<p>Każda zakwalifikowana osoba otrzymuje szczegółowe informacje na piśmie dotyczące przygotowania do zabiegu i zachowania po operacji, tak aby leczenie i okres rekonwalescencji trwały jak najkrócej.</p>
 <h3>Konsultacje osobiste</h3>
 <p>Konsultuję obecnie wyłącznie w Bydgoszczy i w Poznaniu.</p>
 <dl class="where">
@@ -202,7 +204,7 @@ home += sec("Dlaczego operować", f"""<div class="why"><div><p>Przepuklina to na
 <figure class="ph"><img src="/img/powieksza-sie.webp" width="{SIZES['powieksza-sie'][0]}" height="{SIZES['powieksza-sie'][1]}" alt="Przepuklina stopniowo się powiększa" loading="lazy"><figcaption>Przepuklina nie stoi w miejscu, powoli i stopniowo się powiększa.</figcaption></figure></div>
 <div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina ze zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>""", "dlaczego", "wide")
 home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i kresy białej") +
-            _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
+            _card(2) + _card(3) + '</ul>', "tematy", "wide")
 home += consult_short()
 home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>

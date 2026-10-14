@@ -21,6 +21,6 @@ Skrypt przeładowuje obrazy do WebP i zapisuje `site/`.
 - Fragmenty oznaczone „szkic do akceptacji” wymagają zatwierdzenia przez autora przed publikacją.
 
 ## Do zrobienia
-- Strony: przepuklina pępkowa i kresy białej, po operacji, plastyka brzucha jako osobna.
+- Strony: przepuklina pępkowa i kresy białej, plastyka brzucha jako osobna.
 - `/o-mnie/`, `/cookies/`, Google Tag Manager z banerem zgody.
 - Wdrożenie na Cloudflare Pages, przekierowania ze starych adresów, przełączenie domeny.
