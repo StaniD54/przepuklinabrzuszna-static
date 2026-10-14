@@ -169,10 +169,9 @@ home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepu
             _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
 home += consult_short()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
-home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
-<p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin.</p>
-<p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi. Czasami przy rozległej przepuklinie brzusznej jednoczasowo konieczne jest wykonanie zabiegu plastyki brzucha.</p>
-<p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
+home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
+<p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>
+<p><a href="/o-mnie/">Więcej o mnie</a></p></div></div>""", "o-mnie")
 home += faq_block([FAQ_COMMON[0], FAQ_COMMON[2], FAQ_COMMON[1]])
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
 open(f"{OUT}/index.html", "w", encoding="utf-8").write(page("/", "Przepuklina brzuszna: operacja, zdjęcia, koszty | Prof. Dąbrowiecki",
