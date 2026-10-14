@@ -166,7 +166,7 @@ home += hospital_block()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
 home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
 <p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin.</p>
-<p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi, otyłością oraz, przy dużych zniekształceniach, wykonuję plastyki brzucha.</p>
+<p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi. Czasami przy rozległej przepuklinie brzusznej jednoczasowo konieczne jest wykonanie zabiegu plastyki brzucha.</p>
 <p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
 home += faq_block(FAQ_COMMON)
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
@@ -251,11 +251,11 @@ write("/koszt-operacji-przepukliny-brzusznej/", "Koszt operacji przepukliny brzu
 
 # ============ O MNIE ============
 b = hero("O mnie", "Prof. Stanisław Dąbrowiecki, chirurg",
-         "Chirurg specjalizujący się w przepuklinach brzusznych i chirurgii otyłości. Profesor chirurgii od 2012 roku.")
+         "Chirurg specjalizujący się w przepuklinach brzusznych. Profesor chirurgii od 2012 roku.")
 b += sec("Kariera zawodowa", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p>Absolwent Wydziału Lekarskiego Akademii Medycznej w Gdańsku. Specjalista chirurgii ogólnej, doktor i doktor habilitowany nauk medycznych. Od 2012 roku profesor zwyczajny (nominacja z rąk Prezydenta RP).</p>
 <p>Od 2002 r. profesor nadzwyczajny Akademii Medycznej im. L. Rydygiera w Bydgoszczy, w latach 2002–2004 prorektor ds. klinicznych i kształcenia podyplomowego. Po połączeniu uczelni z Uniwersytetem Mikołaja Kopernika w Toruniu: profesor UMK i pełnomocnik Rektora UMK ds. klinicznych i kształcenia podyplomowego.</p>
-<p>W latach 2001–2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy. Za mojego kierownictwa powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin oraz jedyny w regionie ośrodek chirurgii otyłości.</p>
+<p>W latach 2001–2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy. Za mojego kierownictwa powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin.</p>
 <p>W latach 2009–2012 przewodniczący Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy. Od 2020 roku praktykuję wyłącznie prywatnie.</p></div></div>""")
 b += sec("Dlaczego prywatnie", f"""<p>Nie mam kontraktu z NFZ, więc konsultacje i operacje są płatne. Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach wykonuje się operacje przepuklin. Co przemawia za leczeniem u mnie?</p>
 <ol class="reasons"><li>indywidualna, troskliwa opieka,</li><li>pacjent wie, kto będzie go operować,</li><li>zabieg wykonany tak samo jak w najlepszych szpitalach świata,</li><li>nie operuje osoba, która się dopiero tego uczy,</li><li>pacjent zna i ufa osobie, która odpowiada za wynik leczenia,</li><li>dobre przygotowanie do zabiegu i pełna informacja o okresie przed- i pooperacyjnym,</li><li>jedna osoba zadba o dokumentację, recepty i zwolnienie oraz odpowie na pytania,</li><li>szpital z dobrym wyposażeniem, a pacjent nie jest anonimowy, układ finansowy jest jasny.</li></ol>""")
