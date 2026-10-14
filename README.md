@@ -5,8 +5,9 @@ Strona prof. Stanisława Dąbrowieckiego o przepuklinach brzusznych. Statyczny H
 ## Struktura strony (menu = kafelki na głównej, jedna lista `NAV_ITEMS` w `build/build_site.py`)
 - Start
 - Objawy i zdjęcia
-- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (gotowe), pępkowa, lędźwiowa, rzadkie, wewnętrzne (wkrótce)
-- Metody operacji ▾: przegląd metod (jest), klasyczne, laparoskopowe, hybrydowe (wkrótce)
+- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (zatwierdzone); pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozworu przełykowego (szkice)
+- Metody operacji ▾: przegląd metod, klasyczne, laparoskopowe, hybrydowe (szkice)
+- Wyniki i przygotowanie: rokowanie, co pogarsza wyniki, jak się przygotować (szkic)
 - Konsultacje i koszt: konsultacje online i osobiste (Bydgoszcz, Poznań), szpital Eskulap, O mnie, opinie, koszt
 - Polityka prywatności (tylko w stopce)
 
@@ -27,11 +28,16 @@ python3 build/build_site.py     # wymaga: pip install pillow
 - Każda zakwalifikowana osoba dostaje na piśmie zalecenia przed i po operacji (zamiast osobnej strony „po operacji”).
 - Strona główna lakonicznie; szczegóły konsultacji, szpitala, życiorysu, opinii i kosztu na ostatniej stronie.
 - Język prosty, dla zwykłych pacjentów.
+- Bez wzmianek o technice robotowej (autor jej nie stosuje). Bez przepukliny pachwinowej (osobne strony autora).
+- Próg: laparoskopia do 5–8 cm, operacja otwarta od ok. 8–10 cm, hybrydowa 5–10 cm; ubytek 1–2 cm zamykany szwami, większy siatką. Spójność tych zasad między stronami jest obowiązkowa.
+- Pytania i odpowiedzi dopasowane do tematu każdej podstrony (po 3), odpowiedzi szersze niż tekst strony.
+- Nagłówek H1: maks. 70% szerokości okna, dłuższy zawija się.
 - Fragmenty oznaczone „szkic do akceptacji” wymagają zatwierdzenia przed publikacją.
 
 ## Do ustalenia / zrobienia
 - Link do profilu na ZnanymLekarzu (obecny jest profil bariatry z Warszawą, do podmiany).
-- Strony: kresy białej, pępkowa, lędźwiowa, rzadkie, wewnętrzne, klasyczne, laparoskopowe, hybrydowe.
+- Zatwierdzenie szkiców: pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozwór przełykowy, klasyczne, laparoskopowe, hybrydowe, wyniki i przygotowanie, sekcje Objawy/Ciekawostka/Metoda według rodzaju (po zatwierdzeniu usunąć plakietki „szkic").
+- Ilustracje do nowych stron (kresa, pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozwór, metody) – dostarczy autor lub własne schematy.
 - Przekaz o przepuklinach bez objawów (obserwacja czy zawsze operacja) – decyzja autora.
 - Sprawdzić liczby w sekcjach medycznych (źródła).
 - Google Tag Manager z banerem zgody (obecnie brak cookies).
