@@ -149,7 +149,7 @@ def consult_block():
 </dl>
 <p class="note">Wyślij SMS o treści <b>BRZUCH</b> na nr {TELF}. Odeślę adresy i terminy konsultacji oraz podstawowe informacje o leczeniu przepuklin brzusznych.</p>""", "konsultacje")
 
-ZL = "https://www.znanylekarz.pl/stanislaw-dabrowiecki/chirurg-bariatra/warszawa"
+ZL = "https://www.znanylekarz.pl/profil/stanislaw-dabrowiecki"
 def opinions_block():
     return sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K.") +
                f'<p><a href="{ZL}" rel="noopener" target="_blank">Więcej opinii pacjentów w serwisie ZnanyLekarz</a></p>', "opinie")

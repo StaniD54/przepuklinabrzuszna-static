@@ -36,7 +36,6 @@ python3 build/build_site.py     # wymaga: pip install pillow
 - Fragmenty oznaczone „szkic do akceptacji” wymagają zatwierdzenia przed publikacją.
 
 ## Do ustalenia / zrobienia
-- Link do profilu na ZnanymLekarzu (obecny jest profil bariatry z Warszawą, do podmiany).
 - Zatwierdzenie szkiców: pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozwór przełykowy, klasyczne, laparoskopowe, hybrydowe, wyniki i przygotowanie, sekcje Objawy/Ciekawostka/Metoda według rodzaju (po zatwierdzeniu usunąć plakietki „szkic").
 - Ilustracje do nowych stron (kresa, pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozwór, metody) – dostarczy autor lub własne schematy.
 - Sprawdzić liczby w sekcjach medycznych (źródła).
