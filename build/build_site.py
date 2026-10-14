@@ -157,8 +157,10 @@ home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny b
 home += """<div class="facts"><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
 home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
-home += sec("Tematy", '<ul class="cards">' + "".join(f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>' for u, t, d in ALL) +
-            '<li class="soon"><b>Przepuklina pępkowa i białej kreski</b><span>w przygotowaniu</span></li><li class="soon"><b>Po operacji: zalecenia</b><span>w przygotowaniu</span></li></ul>', "tematy", "wide")
+def _card(i): u,t,d=ALL[i]; return f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>'
+_soon = lambda t: f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
+home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i białej kreski") +
+            _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
 home += consult_block()
 home += hospital_block()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
