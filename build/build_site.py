@@ -52,7 +52,7 @@ open(f"{OUT}/style.css", "w", encoding="utf-8").write(CSS)
 
 NAV = [("/", "Start"), ("/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
        ("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/operacja-przepukliny-brzusznej/", "Metody operacji"),
-       ("/koszt-operacji-przepukliny-brzusznej/", "Koszt")]
+       ("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt")]
 
 def page(path, title, desc, body, h1_schema=None):
     nav = "".join(f'<a href="{u}"{" aria-current=page" if u == path else ""}>{t}</a>' for u, t in NAV)
@@ -121,6 +121,10 @@ def consult_block():
 </dl>
 <p class="note">Wyślij SMS o treści <b>BRZUCH</b> na nr {TELF}. Odeślę adresy i terminy konsultacji oraz podstawowe informacje o leczeniu przepuklin brzusznych.</p>""", "konsultacje")
 
+def consult_short():
+    return sec("Konsultacje", f"""<p>Konsultuję w Bydgoszczy (ul. Mierosławskiego 9/3) i w Poznaniu (Dąbrowa k. Poznania) oraz online. Operuję w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.</p>
+<p>Termin ustalamy telefonicznie lub SMS-em: <a href="tel:+48{TEL}">{TELF}</a>. <a href="/koszt-operacji-przepukliny-brzusznej/">Konsultacje, szpital i koszt: szczegóły</a></p>""", "konsultacje")
+
 def hospital_block():
     return sec("Gdzie operuję", f"""
 <p>Operuję w szpitalu Eskulap w Osielsku koło Bydgoszczy. Jest to prywatny, luksusowo wyposażony szpital z własnym parkingiem przy wejściu.</p>
@@ -150,7 +154,7 @@ ALL = [
  ("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna: jak wygląda", "Zdjęcia i skutki odkładania operacji"),
  ("/przepuklina-pooperacyjna/", "Przepuklina pooperacyjna", "Przepuklina w bliźnie po operacji"),
  ("/operacja-przepukliny-brzusznej/", "Metody operacji", "Szwy, siatka, laparoskopia, plastyka brzucha"),
- ("/koszt-operacji-przepukliny-brzusznej/", "Koszt operacji", "Jak ustalam koszt, dolna granica 6000 zł"),
+ ("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt", "Gdzie przyjmuję i operuję, ile to kosztuje"),
 ]
 
 # ============ STRONA GŁÓWNA ============
@@ -163,14 +167,13 @@ def _card(i): u,t,d=ALL[i]; return f'<li><a href="{u}"><b>{t}</b><span>{d}</span
 _soon = lambda t: f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
 home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i kresy białej") +
             _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
-home += consult_block()
-home += hospital_block()
+home += consult_short()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
 home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
 <p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin.</p>
 <p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi. Czasami przy rozległej przepuklinie brzusznej jednoczasowo konieczne jest wykonanie zabiegu plastyki brzucha.</p>
 <p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
-home += faq_block(FAQ_COMMON)
+home += faq_block([FAQ_COMMON[0], FAQ_COMMON[2], FAQ_COMMON[1]])
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
 open(f"{OUT}/index.html", "w", encoding="utf-8").write(page("/", "Przepuklina brzuszna: operacja, zdjęcia, koszty | Prof. Dąbrowiecki",
     "Jak wygląda przepuklina brzuszna i pooperacyjna, kiedy operować, ile kosztuje. Prof. Dąbrowiecki, chirurg: konsultacje Bydgoszcz, Poznań, online.", home))
@@ -192,9 +195,8 @@ b += sec("Zdjęcia", f"""<p>Na zdjęciach skutki braku operacji. Przepukliny pow
 b += sec("To nie Pana wina", """<p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. Bywa, że pacjent jest obwiniany: „za szybko wstał Pan z łóżka po operacji”. To nie jest prawda i to nie jest przyczyna przepukliny. Nie dajcie sobie tego wmówić.</p>""")
 b += sec("Kto jest zagrożony", f"""<p>Niebezpieczeństwo wystąpienia przepukliny jest większe u osób z nadwagą lub otyłością oraz po pilnych operacjach. Również w takiej sytuacji można chorym pomóc. Gdy można przesunąć operację o kilka miesięcy, należy spróbować odchudzić pacjenta. U osoby otyłej należy jednocześnie wykonać plastykę brzucha: zlikwidować przepuklinę oraz usunąć nadmiar tłuszczu z brzucha.</p>
 <div class="duo">{img('przed1','Przepuklina brzuszna u osoby otyłej, przed operacją')}{img('przed2','Przepuklina brzuszna, widok z boku, przed operacją')}</div>""")
-b += consult_block()
 b += more_links(ALL[1:])
-b += faq_block(FAQ_COMMON[:3])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[2]])
 write("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna: jak wygląda, objawy, zdjęcia | Prof. Dąbrowiecki",
       "Jak wygląda przepuklina brzuszna? Zdjęcia, skutki odkładania operacji i kto jest zagrożony. Prof. Dąbrowiecki, konsultacje w Bydgoszczy i Poznaniu.", b)
 
@@ -208,9 +210,8 @@ b += sec("Otyłość", f"""<p>Przy otyłości, ale też u osób masywnie odchudz
 <div class="duo">{img('plast-przed','Przepuklina pooperacyjna u osoby otyłej, przed operacją','przed operacją')}{img('plast-po','Brzuch po operacji przepukliny z plastyką brzucha','po operacji')}</div>""")
 b += sec("Przepuklina nawrotowa", """<p>Przepuklina brzuszna nawrotowa to przepuklina, która ponownie wystąpiła po wcześniejszym leczeniu. Podobnie jak przepuklina bardzo duża i lędźwiowa wymaga starannej oceny przed operacją. Operacja może być klasyczna lub laparoskopowa, a koszt jest ustalany po zbadaniu pacjenta.</p>""")
 b += sec("Plan leczenia", """<p>W leczeniu przepuklin są ustalone schematy postępowania. Różnimy się jednak między sobą, dlatego u każdego chorego z przepukliną ustalam osobny plan leczenia oraz metodę operacyjną.</p>""")
-b += consult_block()
 b += more_links([ALL[0], ALL[2], ALL[3]])
-b += faq_block(FAQ_COMMON[::-1][:3][::-1] if False else [FAQ_COMMON[0], FAQ_COMMON[2], FAQ_COMMON[1]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[2]])
 write("/przepuklina-pooperacyjna/", "Przepuklina pooperacyjna: leczenie, operacja | Prof. Dąbrowiecki",
       "Przepuklina pooperacyjna (w bliźnie): jak powstaje, jak ją operuję, także z plastyką brzucha. Konsultacje w Bydgoszczy i Poznaniu oraz online.", b)
 
@@ -223,16 +224,17 @@ b += sec("Laparoskopia", f"""<p>Przepukliny o niewielkich i średnich rozmiarach
 <div class="grid3">{img('lapar','Laparoskopowa naprawa przepukliny powyżej pępka','laparoskopowa naprawa przepukliny powyżej pępka w linii pośrodkowej ciała')}{img('otwarta','Operacja na otwarto, wypreparowana ściana brzucha','wypreparowana ściana powłoki brzusznej, przygotowana do wszczepienia siatki')}{img('siatka','Siatka przygotowywana do wszczepienia','siatka przygotowywana do wszczepienia w ścianę brzucha')}</div>""", "metody", "wide")
 b += sec("Siatka", f"""<p>W zależności od metody operacyjnej siatka może być wprowadzona do różnych warstw ściany brzucha (na rysunku oznaczone numerami 1–5).</p>{img('warstwy','Warstwy ściany brzucha, w które można wprowadzić siatkę')}""")
 b += sec("Plastyka brzucha", """<p>Przy rozległej przepuklinie brzusznej, a także u osób masywnie odchudzonych, jednocześnie z likwidacją przepukliny wykonuje się plastykę brzucha. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry. Zdjęcia przed i po operacji są na stronie o <a href="/przepuklina-pooperacyjna/">przepuklinie pooperacyjnej</a>.</p>""")
-b += consult_block()
 b += more_links([ALL[0], ALL[1], ALL[3]])
-b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1], ("Czy można operować laparoskopowo?", "Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych zaleca się operację „na otwarto”. Metodę wybieram po zbadaniu chorego.")])
+b += faq_block([FAQ_COMMON[0], ("Czy można operować laparoskopowo?", "Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych zaleca się operację „na otwarto”. Metodę wybieram po zbadaniu chorego.")])
 write("/operacja-przepukliny-brzusznej/", "Operacja przepukliny brzusznej: metody, siatka, laparoskopia | Prof. Dąbrowiecki",
       "Na czym polega operacja przepukliny brzusznej: szwy, siatka, laparoskopia, plastyka brzucha. Prof. Dąbrowiecki, szpital Eskulap, Osielsko.", b)
 
 # ============ KOSZT ============
-b = hero("Koszt leczenia", "Ile kosztuje operacja przepukliny brzusznej",
-         "Koszt zostanie jednoznacznie określony po zbadaniu chorego. Dolna granica to 6000 zł.")
-b += sec("Zasada", f"""<p><b>Koszt leczenia zostanie jednoznacznie określony po zbadaniu chorego</b>, w trakcie konsultacji.</p>
+b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
+         "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
+b += consult_block()
+b += hospital_block()
+b += sec("Koszt operacji", f"""<p><b>Koszt leczenia zostanie jednoznacznie określony po zbadaniu chorego</b>, w trakcie konsultacji.</p>
 <div class="callout"><p><b>Dolna granica kosztów to 6000 zł.</b> Dotyczy prostej przepukliny brzusznej o średnicy wrót 1–2 cm, którą można zamknąć przez zeszycie szwami.</p></div>
 <p>Jest możliwość rozłożenia płatności na raty.</p>""")
 b += sec("Od czego zależy", """<p>Koszt zależy od stopnia skomplikowania operacji, utrudnień w zabiegu (nadwaga, otyłość, wielkość przepukliny; trudne do operacji są duże przepukliny) oraz planowanego pobytu w szpitalu.</p>
@@ -240,12 +242,11 @@ b += sec("Od czego zależy", """<p>Koszt zależy od stopnia skomplikowania opera
 b += sec("Dlaczego prywatnie", f"""<p>Operuję prywatnie i odpłatnie. Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach wykonuje się operacje przepuklin. Dla nich jest to fragment działalności. Dlaczego pacjenci wybierają leczenie u mnie? Główne powody:</p>
 <ol class="reasons"><li>zapewniam indywidualną, troskliwą opiekę,</li><li>pacjent wie, kto będzie go operować,</li><li>zabieg zostanie wykonany tak samo jak w najlepszych szpitalach świata,</li><li>nie będzie operować osoba, która się dopiero tego uczy,</li><li>pacjent zna i ufa osobie, która odpowiada za wynik leczenia.</li></ol>
 <p>Pacjent wie też, kto zadba o dokumentację, recepty i zwolnienie, kto odpowie na pytania dotyczące leczenia i że dostanie pełną informację dotyczącą okresu przed- i pooperacyjnego.</p>""")
-b += consult_block()
 b += more_links(ALL[:3])
 b += faq_block([FAQ_COMMON[1], FAQ_COMMON[3], ("Czy mogę zapłacić w ratach?", "Tak, jest możliwość rozłożenia płatności na raty."),
                 ("Ile potrwa pobyt w szpitalu?", "Czas pobytu w szpitalu zostanie ustalony po zbadaniu chorego, w trakcie konsultacji.")])
-write("/koszt-operacji-przepukliny-brzusznej/", "Koszt operacji przepukliny brzusznej | Prof. Dąbrowiecki",
-      "Ile kosztuje operacja przepukliny brzusznej? Koszt ustalam po zbadaniu chorego. Dolna granica 6000 zł dla prostej przepukliny, możliwe raty.", b)
+write("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt operacji przepukliny brzusznej | Prof. Dąbrowiecki",
+      "Konsultacje w Bydgoszczy, Poznaniu i online, szpital Eskulap w Osielsku. Koszt operacji przepukliny brzusznej ustalam po zbadaniu chorego, dolna granica 6000 zł, możliwe raty.", b)
 
 
 # ============ O MNIE ============
@@ -258,7 +259,6 @@ b += sec("Kariera zawodowa", f"""<div class="about">{img('prof','Prof. Stanisła
 <p>W latach 2009–2012 przewodniczący Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy. Od 2020 roku praktykuję wyłącznie prywatnie.</p></div></div>""")
 b += sec("Dlaczego prywatnie", f"""<p>Nie mam kontraktu z NFZ, więc konsultacje i operacje są płatne. Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach wykonuje się operacje przepuklin. Co przemawia za leczeniem u mnie?</p>
 <ol class="reasons"><li>indywidualna, troskliwa opieka,</li><li>pacjent wie, kto będzie go operować,</li><li>zabieg wykonany tak samo jak w najlepszych szpitalach świata,</li><li>nie operuje osoba, która się dopiero tego uczy,</li><li>pacjent zna i ufa osobie, która odpowiada za wynik leczenia,</li><li>dobre przygotowanie do zabiegu i pełna informacja o okresie przed- i pooperacyjnym,</li><li>jedna osoba zadba o dokumentację, recepty i zwolnienie oraz odpowie na pytania,</li><li>szpital z dobrym wyposażeniem, a pacjent nie jest anonimowy, układ finansowy jest jasny.</li></ol>""")
-b += consult_block()
 write("/o-mnie/", "O mnie: prof. Stanisław Dąbrowiecki, chirurg | Przepuklina brzuszna",
       "Prof. Stanisław Dąbrowiecki: profesor chirurgii od 2012 r., wieloletni kierownik Kliniki Chirurgii w Bydgoszczy, operacje przepuklin brzusznych.", b)
 
