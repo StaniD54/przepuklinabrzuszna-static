@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), (None, "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -314,6 +314,25 @@ b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/przepuklina-kresy-bialej/", "Przepuklina kresy białej (nadbrzuszna): objawy, leczenie | Prof. Dąbrowiecki",
       "Przepuklina kresy białej: czym jest, objawy, powikłania, różnica od rozejścia mięśni prostych i leczenie. Prof. Dąbrowiecki, Bydgoszcz.", b)
 
+# ============ PĘPKOWA ============
+b = hero("Przepuklina przy pępku", "Przepuklina pępkowa: objawy i leczenie",
+         "Wybrzuszenie w pępku lub tuż przy nim. Czym jest, kiedy jest groźna i jak ją leczę.")
+b += sec("Czym jest i jak częsta", f"""<p>{DRAFT}Przepuklina pępkowa to wypuklenie zawartości jamy brzusznej (tłuszczu lub jelita) przez osłabione miejsce w ścianie brzucha przy pępku, czyli w miejscu po pępowinie. Za przepuklinę pępkową uznaje się ubytek w linii środkowej brzucha od 3 cm powyżej do 3 cm poniżej pępka.</p>
+<p>Występuje u około 2–4% dorosłych i stanowi 6–14% wszystkich przepuklin ściany brzucha.</p>""")
+b += sec("U dzieci i u dorosłych", f"""<p>{DRAFT}U dzieci przepuklina pępkowa wynika z niepełnego zamknięcia pierścienia pępkowego i w około 90% przypadków zamyka się sama do wieku przedszkolnego.</p>
+<p>U dorosłych jest zwykle nabyta: powstaje przy wzroście ciśnienia w brzuchu i rzadko cofa się sama. Częściej wymaga operacji.</p>""")
+b += sec("Kto jest bardziej narażony", f"""<p>{DRAFT}U dorosłych przepuklina pępkowa powstaje częściej przy:</p>
+<ul class="check"><li>otyłości,</li><li>wielu ciążach i porodach (rozciągnięcie pierścienia pępkowego),</li><li>wodobrzuszu przy marskości wątroby,</li><li>przewlekłym kaszlu, zaparciach lub dużym guzie w brzuchu (stale podwyższone ciśnienie w brzuchu),</li><li>paleniu papierosów, chorobach tkanki łącznej i niedoczynności tarczycy. Częściej chorują mężczyźni w wieku 41–80 lat.</li></ul>""")
+b += sec("Objawy", f"""<p>{DRAFT}Przepuklina często nie boli. Widać lub wyczuwa się wybrzuszenie przy pępku, które jest większe przy kaszlu i parciu. Może pojawić się dyskomfort lub ból. Dla wielu osób problemem jest też wygląd, czyli „wystający pępek".</p>""")
+b += sec("Powikłania", f"""<p>{DRAFT}Najgroźniejsze jest <b>uwięźnięcie</b> i <b>zadzierzgnięcie</b>: jelito lub sieć zostają uwięzione w przepuklinie i tracą dopływ krwi. Wymaga to pilnej operacji.</p>
+<div class="callout"><p><b>Zgłoś się natychmiast do lekarza lub szpitala, gdy pojawi się:</b> twarde, bolesne wybrzuszenie, którego nie da się wsunąć, nudności lub wymioty, wzdęcie brzucha albo brak oddawania gazów i stolca.</p></div>""")
+b += sec("Leczenie", f"""<p>{DRAFT}Operację zaleca się przy przepuklinach, które dają dolegliwości, powiększają się, uległy uwięźnięciu albo bardzo przeszkadzają z powodów estetycznych. U kobiet zabieg zwykle odracza się do czasu zakończenia planów rodzicielskich, bo ciąża rozciąga pierścień pępkowy.</p>
+<p>Małe ubytki (1–2 cm) mogę zamknąć samymi szwami. Większe wzmacniam siatką, żeby przepuklina nie wróciła. Metodę wybieram po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/">Koszt i konsultacje</a></p>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/przepuklina-pepkowa/", "Przepuklina pępkowa: objawy, leczenie, operacja | Prof. Dąbrowiecki",
+      "Przepuklina pępkowa u dorosłych: przyczyny, objawy, powikłania i leczenie. Małe ubytki szwami, większe z siatką. Prof. Dąbrowiecki, Bydgoszcz.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -347,6 +366,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
