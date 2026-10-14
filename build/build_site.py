@@ -63,7 +63,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Rozworu przełykowego")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Przełykowa")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowe"), ("/operacja-hybrydowa-przepukliny-brzusznej/", "Hybrydowe")]),
  ("link", "/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie"),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),

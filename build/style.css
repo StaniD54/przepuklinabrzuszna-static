@@ -131,3 +131,4 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 .two{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;align-items:start}
 .two figure.gifx{margin:0}
 @media (max-width:720px){.two{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){#tematy .cards{grid-template-columns:1fr 1fr;gap:8px}#tematy .cards a,#tematy .cards li.soon{padding:12px 12px}#tematy .cards b{font-size:1rem}}
