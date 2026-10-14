@@ -128,3 +128,6 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 .body>ul.cards+ul.cards{margin-top:12px}
 .cards li b{margin-bottom:0}
 .gifx{margin-bottom:22px}
+.two{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;align-items:start}
+.two figure.gifx{margin:0}
+@media (max-width:720px){.two{grid-template-columns:minmax(0,1fr)}}
