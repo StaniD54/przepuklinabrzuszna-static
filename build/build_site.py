@@ -222,10 +222,7 @@ b += sec("Na czym polega", """<p>Operacja przepukliny brzusznej polega na przesu
 b += sec("Laparoskopia", f"""<p>Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych rozmiarach zaleca się operację „na otwarto”, poprzez cięcie ściany brzucha.</p>
 <div class="grid3">{img('lapar','Laparoskopowa naprawa przepukliny powyżej pępka','laparoskopowa naprawa przepukliny powyżej pępka w linii pośrodkowej ciała')}{img('otwarta','Operacja na otwarto, wypreparowana ściana brzucha','wypreparowana ściana powłoki brzusznej, przygotowana do wszczepienia siatki')}{img('siatka','Siatka przygotowywana do wszczepienia','siatka przygotowywana do wszczepienia w ścianę brzucha')}</div>""", "metody", "wide")
 b += sec("Siatka", f"""<p>W zależności od metody operacyjnej siatka może być wprowadzona do różnych warstw ściany brzucha (na rysunku oznaczone numerami 1–5).</p>{img('warstwy','Warstwy ściany brzucha, w które można wprowadzić siatkę')}""")
-b += sec("Plastyka brzucha", f"""<p>Przy otyłości, ale też u osób masywnie odchudzonych, wykonuje się jednocześnie likwidację przepukliny oraz plastykę brzucha. Najlepiej, gdy po operacji brzuch jest płaski. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry.</p>
-<div class="duo">{img('plast-przed','Przed operacją','przed operacją')}{img('plast-po','Po operacji','po operacji')}</div>""")
-b += sec("Wybór metody", """<p>W leczeniu przepuklin są ustalone schematy postępowania. Różnimy się jednak między sobą, dlatego u każdego chorego z przepukliną ustalam osobny plan leczenia oraz metodę operacyjną.</p>""")
-b += hospital_block()
+b += sec("Plastyka brzucha", """<p>Przy rozległej przepuklinie brzusznej, a także u osób masywnie odchudzonych, jednocześnie z likwidacją przepukliny wykonuje się plastykę brzucha. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry. Zdjęcia przed i po operacji są na stronie o <a href="/przepuklina-pooperacyjna/">przepuklinie pooperacyjnej</a>.</p>""")
 b += consult_block()
 b += more_links([ALL[0], ALL[1], ALL[3]])
 b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1], ("Czy można operować laparoskopowo?", "Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych zaleca się operację „na otwarto”. Metodę wybieram po zbadaniu chorego.")])
