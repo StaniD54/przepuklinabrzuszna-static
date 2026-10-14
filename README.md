@@ -5,7 +5,7 @@ Strona prof. Stanisława Dąbrowieckiego o przepuklinach brzusznych. Statyczny H
 ## Struktura strony (menu = kafelki na głównej, jedna lista `NAV_ITEMS` w `build/build_site.py`)
 - Start
 - Objawy i zdjęcia
-- Rodzaje przepuklin ▾: pooperacyjna (gotowa), kresy białej, pępkowa, lędźwiowa, wewnętrzne (wkrótce)
+- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (gotowe), pępkowa, lędźwiowa, wewnętrzne (wkrótce)
 - Metody operacji ▾: przegląd metod (jest), klasyczne, laparoskopowe, hybrydowe (wkrótce)
 - Konsultacje i koszt: konsultacje online i osobiste (Bydgoszcz, Poznań), szpital Eskulap, O mnie, opinie, koszt
 - Polityka prywatności (tylko w stopce)
