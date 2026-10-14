@@ -28,6 +28,7 @@ IMGS = {
  "warstwy": "warstwy-gdzie-siatka-e1654947350302.jpg", "lapar": "HV-laaproskopia-300x224.jpg",
  "esk1": "esk4-1024x575-1.jpg", "esk2": "Eskulap-szpital.jpg",
  "e-budynek": "eskulap-budynek.jpg", "e-pokoj": "eskulap-pokoj.jpg", "e-recepcja": "eskulap-recepcja.jpg", "e-lazienka": "eskulap-lazienka.jpg", "e-obraz": "eskulap-pracownia-obrazowa.jpg",
+ "e-zima": "eskulap-zima.jpg", "e-lato": "eskulap-lato.jpg", "e-sala": "eskulap-sala-angio.jpg", "e-tomo": "eskulap-tomograf.jpg", "e-recep2": "eskulap-recepcja2.jpg", "e-mapa": "eskulap-wejscia-mapa.png",
  "prof": "SD_n_1-scaled.jpg",
 }
 SIZES = {}
@@ -122,8 +123,11 @@ def hospital_block():
     return sec("Gdzie operuję", f"""
 <p>Operuję w szpitalu Eskulap w Osielsku koło Bydgoszczy. Jest to prywatny, luksusowo wyposażony szpital z własnym parkingiem przy wejściu.</p>
 <ul class="check"><li>jasne, klimatyzowane pokoje chorych, własne łazienki z prysznicem bez progu</li><li>dobrze wyposażona sala operacyjna, dostępna całą dobę, Intensywna Terapia przy sali operacyjnej</li><li>doświadczony zespół pielęgniarski, stale dostępny lekarz, również na dyżurze nocnym</li><li>pracownia RTG, nowoczesne obrazowanie Siemens na miejscu (w tym rezonans magnetyczny i pracownia angiografii cyfrowej) oraz laboratorium z możliwością wykonania nawet skomplikowanych badań</li></ul>
-<div class="gal">{img('e-budynek','Budynek szpitala Eskulap w Osielsku z parkingiem przy wejściu')}{img('e-pokoj','Jasny pokój chorych z regulowanym łóżkiem i klimatyzacją')}{img('e-recepcja','Recepcja i poczekalnia')}{img('e-lazienka','Łazienka z prysznicem bez progu i poręczami')}</div>
-<div class="duo">{img('e-obraz','Pracownia angiografii cyfrowej Siemens')}{img('esk1','Szpital Eskulap w Osielsku')}</div>""", "szpital")
+<div class="duo">{img('e-zima','Szpital Eskulap w Osielsku zimą')}{img('e-lato','Wejście główne do szpitala Eskulap')}</div>
+<div class="gal">{img('e-sala','Pracownia angiografii cyfrowej Siemens')}{img('e-tomo','Tomograf komputerowy Siemens SOMATOM')}{img('e-recep2','Recepcja i poczekalnia')}{img('e-pokoj','Jasny pokój chorych z regulowanym łóżkiem i klimatyzacją')}</div>
+<h3>Dojazd i wejścia do budynku</h3>
+<p>Na zabieg przyjeżdża się do szpitala po konsultacji w Bydgoszczy lub Poznaniu. Plan pokazuje wejścia do budynku: do izby przyjęć i na oddziały prowadzi wejście nr 1.</p>
+<div class="map">{img('e-mapa','Plan terenu szpitala Eskulap: wejścia, parkingi P1–P4, wjazd od ulicy Tymiankowej')}</div>""", "szpital")
 
 def faq_block(items):
     d = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in items)
