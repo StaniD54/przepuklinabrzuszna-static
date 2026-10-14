@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), (None, "Wewnętrzne")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -308,7 +308,6 @@ b += sec("Powikłania", f"""<p>Jak każda przepuklina, może się uwięznąć i 
 b += sec("Czym różni się od rozejścia mięśni prostych", f"""<p>Rozejście mięśni prostych to coś innego. Kresa biała jest wtedy rozciągnięta i cieńsza, a mięśnie są odsunięte od siebie, ale nie ma ubytku ani worka przepuklinowego. Najczęściej zdarza się po ciąży, przy otyłości i w starszym wieku. Daje wałeczkowate wybrzuszenie przy napięciu brzucha i nie grozi uwięźnięciem.</p>
 <ul class="check"><li><b>Przepuklina:</b> prawdziwy ubytek i worek, ryzyko uwięźnięcia, leczenie operacyjne.</li><li><b>Rozejście mięśni:</b> brak ubytku i worka, bez ryzyka uwięźnięcia, najpierw leczenie zachowawcze (ćwiczenia), czasem operacja.</li></ul>
 <p>Oba stany mogą występować jednocześnie, zwłaszcza przy małej przepuklinie. Rozpoznaję je po zbadaniu chorego, a w trudnych przypadkach po USG lub tomografii.</p>""")
-b += sec("Leczenie", f"""<p>Przepuklinę kresy białej leczy się operacyjnie. Małe ubytki (do około 1,5 cm, bez dodatkowych czynników ryzyka) można zamknąć samymi szwami. Większe wzmacnia się siatką, żeby przepuklina nie wróciła. Nawrót jest najważniejszym powikłaniem odległym. Rodzaj operacji wybieram po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/">Koszt i konsultacje</a></p>""")
 b += more_links([ALL[0], ALL[1], ALL[2]])
 b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/przepuklina-kresy-bialej/", "Przepuklina kresy białej (nadbrzuszna): objawy, leczenie | Prof. Dąbrowiecki",
@@ -326,12 +325,31 @@ b += sec("Kto jest bardziej narażony", f"""<p>{DRAFT}U dorosłych przepuklina p
 b += sec("Objawy", f"""<p>{DRAFT}Przepuklina często nie boli. Widać lub wyczuwa się wybrzuszenie przy pępku, które jest większe przy kaszlu i parciu. Może pojawić się dyskomfort lub ból. Dla wielu osób problemem jest też wygląd, czyli „wystający pępek".</p>""")
 b += sec("Powikłania", f"""<p>{DRAFT}Najgroźniejsze jest <b>uwięźnięcie</b> i <b>zadzierzgnięcie</b>: jelito lub sieć zostają uwięzione w przepuklinie i tracą dopływ krwi. Wymaga to pilnej operacji.</p>
 <div class="callout"><p><b>Zgłoś się natychmiast do lekarza lub szpitala, gdy pojawi się:</b> twarde, bolesne wybrzuszenie, którego nie da się wsunąć, nudności lub wymioty, wzdęcie brzucha albo brak oddawania gazów i stolca.</p></div>""")
-b += sec("Leczenie", f"""<p>{DRAFT}Operację zaleca się przy przepuklinach, które dają dolegliwości, powiększają się, uległy uwięźnięciu albo bardzo przeszkadzają z powodów estetycznych. U kobiet zabieg zwykle odracza się do czasu zakończenia planów rodzicielskich, bo ciąża rozciąga pierścień pępkowy.</p>
-<p>Małe ubytki (1–2 cm) mogę zamknąć samymi szwami. Większe wzmacniam siatką, żeby przepuklina nie wróciła. Metodę wybieram po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/">Koszt i konsultacje</a></p>""")
 b += more_links([ALL[0], ALL[1], ALL[2]])
 b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/przepuklina-pepkowa/", "Przepuklina pępkowa: objawy, leczenie, operacja | Prof. Dąbrowiecki",
       "Przepuklina pępkowa u dorosłych: przyczyny, objawy, powikłania i leczenie. Małe ubytki szwami, większe z siatką. Prof. Dąbrowiecki, Bydgoszcz.", b)
+
+# ============ LĘDŹWIOWA ============
+b = hero("Przepuklina w boku brzucha", "Przepuklina lędźwiowa: objawy i rozpoznanie",
+         "Wybrzuszenie w boku, w okolicy lędźwi, najczęściej po operacji nerki.")
+b += sec("Czym jest", f"""<p>{DRAFT}Przepuklina lędźwiowa to wypuklenie zawartości jamy brzusznej przez ubytek w tylnej i bocznej ścianie brzucha, w okolicy lędźwi: między ostatnim żebrem, kością biodrową i mięśniami przykręgosłupowymi. Najczęściej powstaje po operacji nerki wykonanej przez cięcie w boku.</p>
+<p>W worku przepuklinowym może znaleźć się jelito grube lub cienkie, tłuszcz, a rzadko nawet nerka, śledziona czy żołądek. Dlatego grozi uwięźnięciem i zadzierzgnięciem.</p>""")
+b += sec("Jak często po operacji nerki", f"""<p>{DRAFT}Po klasycznym, otwartym cięciu w boku przepuklina powstaje u około 20–30% chorych, a w niektórych badaniach nawet u 35%. Po planowym dostępie za otrzewną ryzyko spada do około 7%. Operacje małoinwazyjne ryzyko jeszcze zmniejszają: po laparoskopii około 11%, a po operacji z użyciem robota klinicznie istotna przepuklina zdarza się u około 1%.</p>""")
+b += sec("Dlaczego powstaje", f"""<p>{DRAFT}Cięcie w boku może uszkodzić nerwy, które pobudzają mięśnie ściany brzucha. Mięśnie wtedy stopniowo zanikają, ściana brzucha cieńsieje i słabnie. To sprzyja przepuklinie, a bok brzucha może się charakterystycznie wybrzuszać.</p>""")
+b += sec("Kto jest bardziej narażony", f"""<p>{DRAFT}Przepuklina lędźwiowa powstaje częściej przy:</p>
+<ul class="check"><li>otyłości (to najsilniejszy czynnik),</li><li>paleniu papierosów,</li><li>cukrzycy i nadciśnieniu,</li><li>przewlekłej chorobie płuc i chorobie wieńcowej,</li><li>ciężkiej niewydolności nerek,</li><li>dużym guzie nerki i rozległym cięciu.</li></ul>""")
+b += sec("Objawy", f"""<p>{DRAFT}Przepuklina często nie daje objawów. W boku widać miękkie wybrzuszenie, które da się wsunąć i które powiększa się przy kaszlu i parciu. Może boleć okolica lędźwi, czasem występują zmiany w oddawaniu moczu lub stolca. Objawy bywają różne i niecharakterystyczne, więc łatwo je przeoczyć.</p>""")
+b += sec("Przepuklina czy wybrzuszenie boku", f"""<p>{DRAFT}Po operacji w boku mogą wystąpić dwie różne rzeczy:</p>
+<ul class="check"><li><b>Prawdziwa przepuklina:</b> jest ubytek w ścianie brzucha i worek przepuklinowy. Grozi uwięźnięciem i zadzierzgnięciem.</li><li><b>Wybrzuszenie boku (pseudoprzepuklina):</b> mięśnie są wiotkie po uszkodzeniu nerwów, ale nie ma ubytku w ścianie. Nie grozi uwięźnięciem.</li></ul>
+<p>Obie te sytuacje bywają nie do odróżnienia samym badaniem, a czasem nawet badania obrazowe nie rozstrzygają. Dlatego ocena wymaga doświadczenia.</p>""")
+b += sec("Rozpoznanie", f"""<p>{DRAFT}Podstawą jest dokładne badanie chorego. Najlepszym badaniem dodatkowym jest tomografia komputerowa: pokazuje wielkość ubytku, zawartość worka i zanik mięśni oraz odróżnia przepuklinę od wybrzuszenia i od tłuszczaka. USG wykonane przez mało doświadczonego lekarza może pomylić przepuklinę z tłuszczakiem.</p>""")
+b += sec("Powikłania", f"""<p>{DRAFT}Przy przepuklinach bocznych uwięźnięcie opisuje się nawet w co czwartym przypadku, a zadzierzgnięcie u kilku do kilkunastu procent chorych.</p>
+<div class="callout"><p><b>Zgłoś się natychmiast do szpitala, gdy pojawi się:</b> twarde, bolesne wybrzuszenie, którego nie da się wsunąć, nudności lub wymioty, wzdęcie brzucha albo brak oddawania gazów i stolca.</p></div>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/przepuklina-ledzwiowa/", "Przepuklina lędźwiowa po operacji nerki: objawy, rozpoznanie | Prof. Dąbrowiecki",
+      "Przepuklina lędźwiowa: gdzie powstaje, jak często po operacji nerki, objawy, różnica od wybrzuszenia boku, rozpoznanie. Prof. Dąbrowiecki, Bydgoszcz.", b)
 
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
@@ -366,6 +384,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
