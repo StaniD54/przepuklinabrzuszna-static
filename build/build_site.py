@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Prototyp: przepuklinabrzuszna.pl w układzie i krojach pisma z angielskiej strony meshfreehernia
-import os, json, shutil, glob, html
+import re, os, json, shutil, glob, html
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -131,9 +131,18 @@ def hero(eyebrow, h1, lead):
         a, b_ = h1.split(": ", 1); h1 = f"<span>{a}:</span> <span>{b_}</span>"
     return f'<div class="hero"><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
 
+def teaser(t, n=2, maxlen=300):
+    t = t.replace("..........", " ").strip()
+    parts = re.split(r"(?<=[.!?])\s+", t)
+    out = " ".join(parts[:n])
+    if len(out) > maxlen:
+        out = out[:maxlen].rsplit(" ", 1)[0].rstrip(",;:")
+    out = re.sub(r"\s+", " ", out)
+    return out.rstrip(".") + " …" if (len(parts) > n or len(out) < len(t.strip())) else out
+
 def review(name):
     n, t = REV[name]
-    return f'<blockquote class="rev"><p>{html.escape(t.replace("..........", " … "))}</p><footer>{n}</footer></blockquote>'
+    return f'<blockquote class="rev"><p>{html.escape(teaser(t))}</p><footer>{n}</footer></blockquote>'
 
 def consult_block():
     return sec("Konsultacje", f"""
@@ -152,8 +161,8 @@ def consult_block():
 
 ZL = "https://www.znanylekarz.pl/profil/stanislaw-dabrowiecki"
 def opinions_block():
-    return sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K.") +
-               f'<p><a href="{ZL}" rel="noopener" target="_blank">Więcej opinii pacjentów w serwisie ZnanyLekarz</a></p>', "opinie")
+    return sec("Opinie", "".join(review(k) for k in REV) +
+               f'<p>Pełne opinie pacjentów: <a href="{ZL}" rel="noopener" target="_blank">profil w serwisie ZnanyLekarz</a></p>', "opinie")
 
 def about_block():
     return sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
