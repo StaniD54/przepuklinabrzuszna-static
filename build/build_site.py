@@ -109,7 +109,7 @@ def review(name):
 def consult_block():
     return sec("Konsultacje", f"""
 <h3>Konsultacja online</h3>
-<p>Pacjenta z przepukliną brzuszną kwalifikuję do leczenia po rozmowie online. Podczas rozmowy mogę przekazać tylko bardzo ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania.</p>
+<p>Pacjenta z przepukliną brzuszną nie można zakwalifikować do leczenia po konsultacji online. Podczas rozmowy mogę przekazać tylko ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania. W trakcie takiej rozmowy dopytam dokładnie o stan zdrowia pacjenta i opiszę wymagane przygotowanie do zabiegu. Omówię również organizację leczenia, długość pobytu i związane z tym koszty. Jednak do ostatecznej kwalifikacji niezbędne jest osobiste badanie chorego.</p>
 <p>Rozmowy: Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o godzinie 20.00. Termin ustalamy telefonicznie lub SMS-em: <a href="tel:+48{TEL}">{TELF}</a>.</p>
 <h3>Konsultacje osobiste</h3>
 <p>Konsultuję obecnie wyłącznie w Bydgoszczy i w Poznaniu.</p>
@@ -141,7 +141,7 @@ FAQ_COMMON = [
  ("Czy przepuklina brzuszna może sama zniknąć?", "Nie. Gdy przepuklina się pojawi, sama już nie zniknie. Jedyną metodą leczenia jest operacja."),
  ("Ile kosztuje operacja?", "Koszt zostanie jednoznacznie określony po zbadaniu chorego. Dolna granica to 6000 zł (prosta przepuklina o średnicy wrót 1–2 cm, którą można zamknąć przez zeszycie szwami). <a href='/koszt-operacji-przepukliny-brzusznej/'>Szczegóły</a>."),
  ("Czy pacjent jest winny powstania przepukliny pooperacyjnej?", "Nie. Operowany pacjent nigdy nie jest winny powstania przepukliny."),
- ("Czy można odbyć konsultację online?", "Tak. Pacjenta z przepukliną brzuszną kwalifikuję do leczenia po rozmowie online (Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o 20.00). Mogę przekazać tylko bardzo ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania."),
+ ("Czy można odbyć konsultację online?", "Tak (Skype, WhatsApp, Messenger lub Zoom, praktycznie codziennie o 20.00). "+"Pacjenta z przepukliną brzuszną nie można zakwalifikować do leczenia po konsultacji online. Podczas rozmowy mogę przekazać tylko ogólne informacje, ponieważ każdy przypadek jest inny i nie ma standardowego postępowania. W trakcie takiej rozmowy dopytam dokładnie o stan zdrowia pacjenta i opiszę wymagane przygotowanie do zabiegu. Omówię również organizację leczenia, długość pobytu i związane z tym koszty. Jednak do ostatecznej kwalifikacji niezbędne jest osobiste badanie chorego."),
 ]
 
 ALL = [
