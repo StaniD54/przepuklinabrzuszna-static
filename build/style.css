@@ -106,3 +106,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:
 .body h3{font-size:1.25rem;margin:22px 0 8px}.body h3:first-child{margin-top:0}
 @media (max-width:720px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .map{max-width:520px;margin:8px 0 16px}
+.hero{max-width:1000px}
+.hero p.lead{max-width:62ch}
+.hero h1 span{display:inline-block}
+@media (min-width:900px){.hero h1 span{display:block}.hero h1{text-wrap:nowrap}}

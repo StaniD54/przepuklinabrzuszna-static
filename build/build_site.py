@@ -152,7 +152,7 @@ ALL = [
 ]
 
 # ============ STRONA GŁÓWNA ============
-home = hero("Przepukliny brzuszne i pooperacyjne", "Operuję przepukliny brzuszne. To moja specjalizacja.",
+home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
 home += """<div class="facts"><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
 home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
