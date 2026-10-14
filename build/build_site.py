@@ -160,7 +160,7 @@ home += hospital_block()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
 home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
 <p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin. Wielu pacjentów z przepuklinami jest otyłych, a więc, chcąc skutecznie leczyć, musiałem zająć się też tym zagadnieniem.</p>
-<p>Od 10 lat konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi, otyłością oraz, przy dużych zniekształceniach, wykonuję plastyki brzucha.</p>
+<p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi, otyłością oraz, przy dużych zniekształceniach, wykonuję plastyki brzucha.</p>
 <p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
 home += faq_block(FAQ_COMMON)
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
@@ -242,8 +242,32 @@ b += faq_block([FAQ_COMMON[1], FAQ_COMMON[3], ("Czy mogę zapłacić w ratach?",
 write("/koszt-operacji-przepukliny-brzusznej/", "Koszt operacji przepukliny brzusznej | Prof. Dąbrowiecki",
       "Ile kosztuje operacja przepukliny brzusznej? Koszt ustalam po zbadaniu chorego. Dolna granica 6000 zł dla prostej przepukliny, możliwe raty.", b)
 
+
+# ============ O MNIE ============
+b = hero("O mnie", "Prof. Stanisław Dąbrowiecki, chirurg",
+         "Chirurg specjalizujący się w przepuklinach brzusznych i chirurgii otyłości. Profesor chirurgii od 2012 roku.")
+b += sec("Kariera zawodowa", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
+<p>Absolwent Wydziału Lekarskiego Akademii Medycznej w Gdańsku. Specjalista chirurgii ogólnej, doktor i doktor habilitowany nauk medycznych. Od 2012 roku profesor zwyczajny (nominacja z rąk Prezydenta RP).</p>
+<p>Od 2002 r. profesor nadzwyczajny Akademii Medycznej im. L. Rydygiera w Bydgoszczy, w latach 2002–2004 prorektor ds. klinicznych i kształcenia podyplomowego. Po połączeniu uczelni z Uniwersytetem Mikołaja Kopernika w Toruniu: profesor UMK i pełnomocnik Rektora UMK ds. klinicznych i kształcenia podyplomowego.</p>
+<p>W latach 2001–2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy. Za mojego kierownictwa powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin oraz jedyny w regionie ośrodek chirurgii otyłości.</p>
+<p>W latach 2009–2012 przewodniczący Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy. Od 2020 roku praktykuję wyłącznie prywatnie.</p></div></div>""")
+b += sec("Dlaczego prywatnie", f"""<p>Nie mam kontraktu z NFZ, więc konsultacje i operacje są płatne. Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach wykonuje się operacje przepuklin. Co przemawia za leczeniem u mnie?</p>
+<ol class="reasons"><li>indywidualna, troskliwa opieka,</li><li>pacjent wie, kto będzie go operować,</li><li>zabieg wykonany tak samo jak w najlepszych szpitalach świata,</li><li>nie operuje osoba, która się dopiero tego uczy,</li><li>pacjent zna i ufa osobie, która odpowiada za wynik leczenia,</li><li>dobre przygotowanie do zabiegu i pełna informacja o okresie przed- i pooperacyjnym,</li><li>jedna osoba zadba o dokumentację, recepty i zwolnienie oraz odpowie na pytania,</li><li>szpital z dobrym wyposażeniem, a pacjent nie jest anonimowy, układ finansowy jest jasny.</li></ol>""")
+b += consult_block()
+write("/o-mnie/", "O mnie: prof. Stanisław Dąbrowiecki, chirurg | Przepuklina brzuszna",
+      "Prof. Stanisław Dąbrowiecki: profesor chirurgii od 2012 r., wieloletni kierownik Kliniki Chirurgii w Bydgoszczy, operacje przepuklin brzusznych.", b)
+
+# ============ POLITYKA PRYWATNOŚCI ============
+b = hero("Prywatność", "Polityka prywatności", "Jakie dane zbiera ta strona i jak się ze mną skontaktować w sprawie danych.")
+b += sec("Zasady", f"""<p>Ta strona nie wymaga logowania i nie zawiera formularzy. <b>Nie ustawia plików cookies ani nie śledzi odwiedzających.</b> Strona jest udostępniana przez Cloudflare, który może w standardowy sposób przetwarzać adres IP odwiedzającego w celu dostarczenia i zabezpieczenia strony.</p>
+<p>Gdy dzwonisz, piszesz SMS, e-mail lub przez WhatsApp, podane przez Ciebie dane (numer telefonu, treść wiadomości) wykorzystuję wyłącznie do kontaktu w sprawie konsultacji i leczenia.</p>
+<p>Administrator danych: Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki, ul. Mierosławskiego 9/3, 85-654 Bydgoszcz. E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+<p>Zgodnie z RODO możesz żądać dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania oraz wnieść sprzeciw. Napisz na powyższy adres e-mail.</p>
+<p class="note">Jeśli w przyszłości na stronie pojawi się analityka lub inne cookies, ta polityka zostanie uzupełniona, a odwiedzający zostanie poproszony o zgodę.</p>""")
+write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka prywatności strony przepuklinabrzuszna.pl: brak cookies, kontakt w sprawie danych.", b)
+
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/o-mnie/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
