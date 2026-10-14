@@ -159,7 +159,7 @@ home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgi
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
 def _card(i): u,t,d=ALL[i]; return f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>'
 _soon = lambda t: f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
-home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i białej kreski") +
+home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i kresy białej") +
             _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
 home += consult_block()
 home += hospital_block()
