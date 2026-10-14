@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -368,6 +368,23 @@ b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/rzadkie-przepukliny-brzuszne/", "Rzadkie przepukliny brzucha: Spiegla, zasłonowa, kulszowa, kroczowa | Prof. Dąbrowiecki",
       "Rzadkie przepukliny ściany brzucha: przepuklina Spiegla, zasłonowa, kulszowa i kroczowa. Objawy, rozpoznanie w tomografii, ryzyko uwięźnięcia.", b)
 
+# ============ WEWNĘTRZNE ============
+b = hero("Przepukliny w środku brzucha", "Przepukliny wewnętrzne",
+         "Jelito wciśnięte w otwór wewnątrz brzucha. Nie widać ich na zewnątrz, a mogą być groźne.")
+b += sec("Czym są", f"""<p>{DRAFT}Przepuklina wewnętrzna to przemieszczenie jelita (najczęściej cienkiego) przez otwór wewnątrz jamy brzusznej, w błonie mocującej jelita (krezce), w otrzewnej lub w sieci. Nie widać jej na brzuchu, bo wszystko dzieje się w środku.</p>
+<p>Odpowiada za około 0,6–5,8% niedrożności jelita cienkiego. Gdy dojdzie do uwięźnięcia i zadzierzgnięcia, śmiertelność przekracza 50%.</p>""")
+b += sec("Skąd się biorą", f"""<p>{DRAFT}Otwór może być wrodzony (wada rozwojowa krezki lub otrzewnej) albo nabyty. Najczęściej nabyty powstaje po operacjach, zwłaszcza po obejściu żołądka (Roux-en-Y) i po usunięciu części jelita grubego, a także po urazach.</p>""")
+b += sec("Rodzaje", f"""<p>{DRAFT}Wyróżnia się je według miejsca:</p>
+<ul class="check"><li><b>Przy dwunastnicy i okrężnicy (przydwunastnicza):</b> najczęstsza. Lewostronna jest trzy razy częstsza niż prawostronna. Do połowy chorych ma niedrożność, śmiertelność przekracza 20%, dlatego zaleca się operację także bez objawów.</li><li><b>Przez otwór Winslowa</b> (do torby sieciowej).</li><li><b>Przez ubytek w krezce (przezkrezkowa):</b> częsta po operacjach, wysokie ryzyko skrętu jelita i niedokrwienia.</li><li><b>Przy kątnicy, w pobliżu esicy lub w więzadle szerokim macicy.</b></li></ul>""")
+b += sec("Po obejściu żołądka", f"""<p>{DRAFT}Szczególnie ważna po operacji otyłości z obejściem żołądka (Roux-en-Y). Występuje u około 3–14% operowanych. Powstaje w szczelinach, które zostają po operacji: w przestrzeni Petersena, przy połączeniu jelito-jelito (Brolina) i w krezce okrężnicy poprzecznej. Rutynowe zamykanie tych szczelin w czasie operacji zmniejsza ryzyko o około 70%.</p>""")
+b += sec("Objawy", f"""<p>{DRAFT}Często są to przewlekłe, nawracające bóle kolkowe brzucha po jedzeniu z nudnościami. Może też wystąpić nagła niedrożność lub niedokrwienie jelita, które wymagają pilnej operacji.</p>
+<div class="callout"><p><b>Zgłoś się natychmiast do szpitala, gdy pojawi się:</b> silny ból brzucha, wymioty, brak oddawania gazów i stolca.</p></div>""")
+b += sec("Rozpoznanie", f"""<p>{DRAFT}Samo badanie lekarskie zwykle nie wystarcza. Badaniem z wyboru jest tomografia komputerowa z kontrastem.</p>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/przepukliny-wewnetrzne/", "Przepukliny wewnętrzne: objawy, po obejściu żołądka, rozpoznanie | Prof. Dąbrowiecki",
+      "Przepukliny wewnętrzne: czym są, skąd się biorą, po operacji Roux-en-Y, objawy, tomografia z kontrastem. Prof. Dąbrowiecki, Bydgoszcz.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -401,6 +418,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
