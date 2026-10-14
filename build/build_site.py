@@ -63,7 +63,7 @@ SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótc
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
  ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Rozworu przełykowego")]),
- ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowe"), (None, "Hybrydowe")]),
+ ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowe"), ("/operacja-hybrydowa-przepukliny-brzusznej/", "Hybrydowe")]),
  ("link", "/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie"),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -314,7 +314,7 @@ b += sec("Laparoskopia", f"""<p>Przepukliny o niewielkich i średnich rozmiarach
 <div class="grid3">{img('lapar','Laparoskopowa naprawa przepukliny powyżej pępka','laparoskopowa naprawa przepukliny powyżej pępka w linii pośrodkowej ciała')}{img('otwarta','Operacja na otwarto, wypreparowana ściana brzucha','wypreparowana ściana powłoki brzusznej, przygotowana do wszczepienia siatki')}{img('siatka','Siatka przygotowywana do wszczepienia','siatka przygotowywana do wszczepienia w ścianę brzucha')}</div>""", "metody", "wide")
 b += sec("Siatka", f"""<p>W zależności od metody operacyjnej siatka może być wprowadzona do różnych warstw ściany brzucha (na rysunku oznaczone numerami 1–5).</p>{img('warstwy','Warstwy ściany brzucha, w które można wprowadzić siatkę')}""")
 b += sec("Plastyka brzucha", """<p>Przy rozległej przepuklinie brzusznej, a także u osób masywnie odchudzonych, jednocześnie z likwidacją przepukliny wykonuje się plastykę brzucha. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry. Zdjęcia przed i po operacji są na stronie o <a href="/przepuklina-pooperacyjna/">przepuklinie pooperacyjnej</a>.</p>""")
-b += more_links([("/operacja-klasyczna-przepukliny-brzusznej/", "Operacja klasyczna", "Kiedy wybieram operację „na otwarto”"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Operacja laparoskopowa", "Kiedy wybieram laparoskopię"), ALL[1], ("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie", "Rokowanie, co pogarsza wyniki, jak się przygotować"), ALL[3]])
+b += more_links([("/operacja-klasyczna-przepukliny-brzusznej/", "Operacja klasyczna", "Kiedy wybieram operację „na otwarto”"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Operacja laparoskopowa", "Kiedy wybieram laparoskopię"), ("/operacja-hybrydowa-przepukliny-brzusznej/", "Operacja hybrydowa", "Połączenie cięcia i laparoskopii"), ALL[1], ("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie", "Rokowanie, co pogarsza wyniki, jak się przygotować"), ALL[3]])
 b += faq_block([FAQ_COMMON[0], ("Czy można operować laparoskopowo?", "Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych zaleca się operację „na otwarto”. Metodę wybieram po zbadaniu chorego.")])
 write("/operacja-przepukliny-brzusznej/", "Operacja przepukliny brzusznej: metody, siatka, laparoskopia | Prof. Dąbrowiecki",
       "Na czym polega operacja przepukliny brzusznej: szwy, siatka, laparoskopia, plastyka brzucha. Prof. Dąbrowiecki, szpital Eskulap, Osielsko.", b)
@@ -477,6 +477,22 @@ b += faq_block([("Czy można operować laparoskopowo?", "Przepukliny o niewielki
 write("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowa operacja przepukliny brzusznej | Prof. Dąbrowiecki",
       "Kiedy wybiera się laparoskopową operację przepukliny brzusznej: wielkość ubytku, otyłość, przepuklina nawrotowa. Kiedy lepsza jest operacja otwarta.", b)
 
+# ============ HYBRYDOWE ============
+b = hero("Metody operacji", "Hybrydowa operacja przepukliny",
+         "Połączenie operacji „na otwarto” i laparoskopii. Metoda pośrednia dla przepuklin średnich i dużych.")
+b += sec("Na czym polega", f"""<p>{DRAFT}Operacja ma dwie części:</p>
+<ul class="check"><li><b>Część otwarta:</b> nacinam skórę bezpośrednio nad przepukliną, rozdzielam zrosty, wycinam worek przepuklinowy i zamykam ubytek w powięzi szwami.</li><li><b>Część laparoskopowa:</b> przez małe nacięcia wprowadzam kamerę, oceniam jamę brzuszną i szeroko rozkładam siatkę od środka, z odpowiednim zakładem na brzegi ubytku.</li></ul>
+<p>Chodzi o połączenie zalet obu metod. Otwarte zamknięcie ubytku i wycięcie worka zmniejszają ryzyko płynu pod skórą (seromu) i wybrzuszenia, a przy gęstych zrostach pozwalają je bezpiecznie rozdzielić. Laparoskopia zapewnia szerokie pokrycie siatką, mniej zakażeń rany i krótszy pobyt w szpitalu.</p>""", "na-czym")
+b += sec("Kiedy rozważam", f"""<p>{DRAFT}Technikę hybrydową rozważam, gdy:</p>
+<ul class="check"><li><b>Ubytek jest średni lub duży</b> (około 5–10 cm): za duży na wygodną operację wyłącznie laparoskopową, ale nie wymaga pełnej rekonstrukcji „na otwarto”.</li><li><b>Spodziewane są gęste zrosty</b> albo chory miał wiele operacji brzucha. Otwarte rozdzielenie zrostów zmniejsza ryzyko uszkodzenia jelita, które jest najczęstszym powikłaniem rozdzielania zrostów laparoskopowo. Jest też bezpieczniejsze przy odprowadzaniu uwięźniętej zawartości.</li><li><b>Trzeba wyciąć worek przepuklinowy, nadmiar skóry lub poprawić bliznę.</b></li><li><b>Chory jest otyły</b> i ma ubytek do około 6 cm: w badaniach metoda była bezpieczna i nie zwiększała powikłań ran.</li><li><b>Zrosty okażą się trudniejsze, niż sądzono.</b> Wczesne przejście na technikę łączoną jest lepsze niż późna, ratunkowa zmiana metody. W jednej serii dużych przepuklin skróciło to operację, w ogóle nie było uszkodzeń jelita (wobec 29%) i chorzy wcześniej wychodzili ze szpitala.</li></ul>""", "kiedy")
+b += sec("Co mówią badania", f"""<p>{DRAFT}W badaniu z losowaniem chorych metoda hybrydowa dawała w pierwszym miesiącu mniej i mniejszych seromów niż sama laparoskopia, a po roku liczba nawrotów była taka sama. Po 5–10 latach nawroty i jakość życia były podobne w obu grupach. Metaanalizy wskazują na tendencję do mniejszej liczby powikłań, ale bez pewności statystycznej.</p>
+<p>Czyli główna korzyść to <b>mniej płynu pod skórą i powikłań ran</b>, a nie trwalsza naprawa. Dowodów wysokiej jakości, że przepuklina rzadziej wraca, nie ma.</p>""", "badania")
+b += sec("Ograniczenia", f"""<p>{DRAFT}Część otwarta zmniejsza największą zaletę laparoskopii, czyli małą inwazyjność. Dlatego metodę hybrydową wybieram tylko wtedy, gdy sama laparoskopia byłaby trudna lub ryzykowna. Coraz częściej podobne zadania wykonuje się też techniką robotową, bez części otwartej.</p>""", "ograniczenia")
+b += more_links([ALL[0], ALL[2], ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Operacja laparoskopowa", "Kiedy wybieram laparoskopię"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Operacja klasyczna", "Kiedy wybieram operację „na otwarto”")])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/operacja-hybrydowa-przepukliny-brzusznej/", "Hybrydowa operacja przepukliny brzusznej | Prof. Dąbrowiecki",
+      "Hybrydowa operacja przepukliny: połączenie operacji otwartej i laparoskopii. Kiedy ją wybieram, co mówią badania, jakie są ograniczenia.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -510,6 +526,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/operacja-hybrydowa-przepukliny-brzusznej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
