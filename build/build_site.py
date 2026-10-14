@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Rozworu przełykowego")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -385,6 +385,27 @@ b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/przepukliny-wewnetrzne/", "Przepukliny wewnętrzne: objawy, po obejściu żołądka, rozpoznanie | Prof. Dąbrowiecki",
       "Przepukliny wewnętrzne: czym są, skąd się biorą, po operacji Roux-en-Y, objawy, tomografia z kontrastem. Prof. Dąbrowiecki, Bydgoszcz.", b)
 
+# ============ ROZWÓR PRZEŁYKOWY ============
+b = hero("Przepuklina żołądka", "Przepuklina rozworu przełykowego przepony",
+         "Gdy usłyszysz „przepuklina żołądka”, zwykle chodzi o to: żołądek przesuwa się przez otwór w przeponie do klatki piersiowej.")
+b += sec("Co to jest", f"""<p>{DRAFT}Pacjenci często przychodzą z rozpoznaniem „przepuklina żołądka”. W rzeczywistości jest to <b>przepuklina rozworu przełykowego przepony</b>. Przepona oddziela klatkę piersiową od brzucha, a przełyk przechodzi przez nią otworem, który nazywa się rozworem. Gdy ten otwór się poszerzy, a jego otoczenie osłabnie, przez otwór przesuwa się do klatki piersiowej żołądek (jego część lub cały), a czasem inne narządy jamy brzusznej.</p>
+<p>To nie jest przepuklina ściany brzucha, ale tak samo polega na wpuklaniu się narządów przez osłabione miejsce. Jest bardzo częsta: dotyczy około 10–50% dorosłych. Wielu chorych nie ma objawów, a przepuklinę znajduje się przypadkiem.</p>""")
+b += sec("Rodzaje", f"""<p>{DRAFT}Są cztery typy, a od typu zależy leczenie:</p>
+<ul class="check"><li><b>Typ I, wślizgowa:</b> najczęstsza (około 90–95%). Połączenie przełyku z żołądkiem przesuwa się nad przeponę. Daje głównie objawy refluksu.</li><li><b>Typ II, okołoprzełykowa:</b> połączenie przełyku z żołądkiem jest na swoim miejscu, ale dno żołądka przeciska się obok przełyku.</li><li><b>Typ III, mieszana:</b> nad przeponą jest i połączenie, i dno żołądka.</li><li><b>Typ IV:</b> oprócz żołądka przesuwa się inny narząd, najczęściej okrężnica, a czasem śledziona lub trzustka.</li></ul>
+<p>Typy II–IV to razem <b>przepukliny okołoprzełykowe</b>. Jest ich około 5%, ale to one grożą groźnymi powikłaniami.</p>""")
+b += sec("Objawy", f"""<p>{DRAFT}Przepuklina wślizgowa daje najczęściej zgagę i cofanie się treści do przełyku. Mogą też być objawy poza przełykiem: przewlekły kaszel, chrypka, ból w klatce piersiowej, który nie pochodzi z serca.</p>
+<p>Większe przepukliny mogą powodować trudności w połykaniu, ból w klatce piersiowej i szybkie uczucie sytości. Czasem w żołądku powstają nadżerki, które powoli krwawią i prowadzą do niedokrwistości z niedoboru żelaza. Długotrwały refluks może prowadzić do przełyku Barretta, a z niego do raka przełyku.</p>
+<div class="callout"><p><b>Wezwij pogotowie (112), gdy pojawi się:</b> nagły, silny ból w klatce piersiowej lub w nadbrzuszu, wymioty albo próby wymiotów bez efektu, niemożność połknięcia. To może być uwięźnięcie lub skręt żołądka. Wymaga natychmiastowej operacji, bo martwica żołądka kończy się śmiercią w co najmniej 30% przypadków.</p></div>""")
+b += sec("Rozpoznanie", f"""<p>{DRAFT}Przepuklinę zwykle znajduje się przy badaniach z powodu refluksu, trudności w połykaniu albo niedokrwistości. Podstawowe badania to <b>pasaż przełyku z kontrastem</b> i <b>gastroskopia</b>. Przed planową operacją wykonuje się też <b>manometrię przełyku</b> i czasem pH-metrię. Dużą przepuklinę okołoprzełykową widać czasem na zwykłym zdjęciu rentgenowskim klatki piersiowej jako zacienienie za sercem.</p>""")
+b += sec("Leczenie", f"""<p>{DRAFT}Leczenie zależy od typu przepukliny:</p>
+<ul class="check"><li><b>Wślizgowa z refluksem:</b> najpierw leki zmniejszające kwas w żołądku i zmiana stylu życia (zmniejszenie masy ciała, brak jedzenia przed snem, uniesione wezgłowie łóżka). Operacja, gdy objawy nie ustępują albo chory nie toleruje leków.</li><li><b>Okołoprzełykowa z objawami:</b> operacja. Przy typie IV operacja jest zawsze potrzebna.</li></ul>
+<p>Standardem jest operacja laparoskopowa, czasem z użyciem robota. Chirurg wprowadza żołądek z powrotem do brzucha, usuwa worek przepuklinowy, zbliża do siebie odnogi przepony i zwykle wykonuje <b>fundoplikację</b>, czyli owija dno żołądka wokół przełyku, żeby zapobiec refluksowi i nawrotowi. Operacja laparoskopowa daje mniejszą utratę krwi, krótszy pobyt w szpitalu i mniej powikłań niż operacja otwarta.</p>
+<p>Po fundoplikacji mogą wystąpić trudności w połykaniu oraz wzdęcia z trudnością w odbijaniu. Nawroty są częste: zależnie od wyjściowej wielkości przepukliny do około 50%.</p>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([("Czy „przepuklina żołądka” to to samo co przepuklina brzuszna?", "Nie. Przepuklina brzuszna powstaje w ścianie brzucha. „Przepuklina żołądka” to najczęściej przepuklina rozworu przełykowego przepony: żołądek przesuwa się przez otwór w przeponie do klatki piersiowej."), FAQ_COMMON[1]])
+write("/przepuklina-rozworu-przelykowego/", "Przepuklina żołądka (rozworu przełykowego przepony): objawy, leczenie | Prof. Dąbrowiecki",
+      "Przepuklina żołądka to przepuklina rozworu przełykowego przepony. Rodzaje, objawy (zgaga, trudności w połykaniu), objawy alarmowe, rozpoznanie i leczenie.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -418,6 +439,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
