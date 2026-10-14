@@ -138,7 +138,7 @@ def teaser(t, n=2, maxlen=300):
     if len(out) > maxlen:
         out = out[:maxlen].rsplit(" ", 1)[0].rstrip(",;:")
     out = re.sub(r"\s+", " ", out)
-    return out.rstrip(".") + " …" if (len(parts) > n or len(out) < len(t.strip())) else out
+    return out.rstrip(". ") + " …" if (len(parts) > n or len(out) < len(t.strip())) else out
 
 def review(name):
     n, t = REV[name]
