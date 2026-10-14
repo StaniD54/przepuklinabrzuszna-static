@@ -100,6 +100,8 @@ CTA = (f'<div class="cta-row"><a class="btn" href="tel:+48{TEL}">Zadzwoń: {TELF
        f'<a class="btn ghost" href="sms:+48{TEL}?&body=BRZUCH">Wyślij SMS: BRZUCH</a></div>')
 
 def hero(eyebrow, h1, lead):
+    if ": " in h1 and "<span>" not in h1:
+        a, b_ = h1.split(": ", 1); h1 = f"<span>{a}:</span> <span>{b_}</span>"
     return f'<div class="hero"><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
 
 def review(name):
@@ -204,7 +206,7 @@ b += sec("Jak powstaje", f"""<p>Gdy jama brzuszna jest otwierana cięciem chirur
 <p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. To, że „za szybko wstał z łóżka po operacji”, nie jest jej przyczyną.</p>""")
 b += sec("Otyłość", f"""<p>Przy otyłości, ale też u osób masywnie odchudzonych, wykonuje się jednocześnie likwidację przepukliny oraz plastykę brzucha. Polega to na usunięciu rozciągniętej ściany brzucha. Najlepiej, gdy po operacji brzuch jest płaski. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry.</p>
 <div class="duo">{img('plast-przed','Przepuklina pooperacyjna u osoby otyłej, przed operacją','przed operacją')}{img('plast-po','Brzuch po operacji przepukliny z plastyką brzucha','po operacji')}</div>""")
-b += sec("Nawroty", f"""<p>{DRAFT}Przepuklina nawrotowa (po wcześniejszych operacjach przepukliny), przepuklina bardzo duża oraz lędźwiowa wymagają indywidualnego planu leczenia. Operacja może być klasyczna lub laparoskopowa, a koszt jest ustalany po zbadaniu pacjenta.</p>""")
+b += sec("Przepuklina nawrotowa", """<p>Przepuklina brzuszna nawrotowa to przepuklina, która ponownie wystąpiła po wcześniejszym leczeniu. Podobnie jak przepuklina bardzo duża i lędźwiowa wymaga starannej oceny przed operacją. Operacja może być klasyczna lub laparoskopowa, a koszt jest ustalany po zbadaniu pacjenta.</p>""")
 b += sec("Plan leczenia", """<p>W leczeniu przepuklin są ustalone schematy postępowania. Różnimy się jednak między sobą, dlatego u każdego chorego z przepukliną ustalam osobny plan leczenia oraz metodę operacyjną.</p>""")
 b += consult_block()
 b += more_links([ALL[0], ALL[2], ALL[3]])
