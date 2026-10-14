@@ -36,6 +36,10 @@ from PIL import ImageSequence
 _g = Image.open(f"{UP}/powieksza-sie.gif"); _fr = [f.convert("RGB").copy() for f in ImageSequence.Iterator(_g)]
 _fr[0].save(f"{OUT}/img/powieksza-sie.webp", save_all=True, append_images=_fr[1:], duration=_g.info.get("duration", 120), loop=0, quality=65, method=6)
 SIZES["powieksza-sie"] = _fr[0].size
+_g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
+for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
+_f2[0].save(f"{OUT}/img/uwiezniecie.webp", save_all=True, append_images=_f2[1:], duration=_d2, loop=0, quality=80, method=6)
+SIZES["uwiezniecie"] = _f2[0].size
 for k, p in IMGS.items():
     im = Image.open(f"{UP}/{p}").convert("RGB")
     im.thumbnail((900, 1100))
@@ -263,6 +267,7 @@ b += sec("Objawy", f"""<p>{DRAFT}Pierwszym objawem jest zazwyczaj wybrzuszenie w
 b += sec("Jak zmienia się w czasie", f"""<p>{DRAFT}Przepuklina nie cofa się sama. Otwór w ścianie brzucha stopniowo się powiększa, a do worka przepuklinowego wchodzi coraz więcej jelit. Wybrzuszenie rośnie, ściana brzucha cieńsieje, a dolegliwości narastają. Skóra nad dużą przepukliną może się rozpaść i obumrzeć.</p>
 <p>Duże przepukliny są trudniejsze do operacji, wymagają rozleglejszego zabiegu i dłuższej rekonwalescencji. Dlatego nie warto czekać, aż przepuklina urośnie.</p>""")
 b += sec("Powikłania", f"""<p>{DRAFT}Najgroźniejsze powikłanie to <b>uwięźnięcie</b>: jelito zostaje uwięzione w przepuklinie i nie można go wsunąć z powrotem do brzucha. Może dojść do <b>zadzierzgnięcia</b>, czyli odcięcia dopływu krwi do jelita. Jelito obumiera i przestaje przepuszczać treść. Objawia się to silnym bólem, twardym i bolesnym wybrzuszeniem, wymiotami oraz brakiem wypróżnień i gazów. To stan zagrożenia życia, który wymaga <b>pilnej operacji w szpitalu</b>.</p>
+<figure class="ph gifx"><img src="/img/uwiezniecie.webp" width="{SIZES['uwiezniecie'][0]}" height="{SIZES['uwiezniecie'][1]}" alt="Uwięźnięcie jelita w przepuklinie: jelito zostaje uwięzione w worku przepuklinowym i traci dopływ krwi" loading="lazy"><figcaption>Uwięźnięcie jelita w przepuklinie.</figcaption></figure>
 <p>Operacja pilna jest obarczona większym ryzykiem powikłań niż zabieg planowy. Inne powikłania nieleczonej przepukliny to przewlekły ból, rozpad i obumieranie skóry oraz ograniczenie codziennej aktywności.</p>""")
 b += sec("Plastyka brzucha", f"""<p>Przy rozległej przepuklinie, otyłości, ale też u osób masywnie odchudzonych, wykonuje się jednocześnie likwidację przepukliny oraz plastykę brzucha. Polega to na usunięciu rozciągniętej ściany brzucha. Najlepiej, gdy po operacji brzuch jest płaski. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry.</p>
 <div class="duo">{img('plast-przed','Przepuklina pooperacyjna u osoby otyłej, przed operacją','przed operacją')}{img('plast-po','Brzuch po operacji przepukliny z plastyką brzucha','po operacji')}</div>""")
