@@ -198,13 +198,22 @@ home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny b
 home += """<div class="facts"><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
 home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
-def _card(i): u,t,d=ALL[i]; return f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>'
-_soon = lambda t: f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
-home += sec("Dlaczego operować", f"""<div class="why"><div><p>Przepuklina to na początku defekt kosmetyczny, ale gdy się powiększa, zaczyna stopniowo coraz bardziej utrudniać życie. Nieleczona może doprowadzić do tego, że do worka przepuklinowego przemieszczą się wszystkie jelita. Może dojść do ich uwięźnięcia i zadzierzgnięcia, co jest ostrym problemem i wymaga pilnego leczenia szpitalnego. Nie lekceważ więc przepukliny.</p></div>
-<figure class="ph"><img src="/img/powieksza-sie.webp" width="{SIZES['powieksza-sie'][0]}" height="{SIZES['powieksza-sie'][1]}" alt="Przepuklina stopniowo się powiększa" loading="lazy"><figcaption>Przepuklina nie stoi w miejscu, powoli i stopniowo się powiększa.</figcaption></figure></div>
-<div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina ze zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>""", "dlaczego", "wide")
-home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i kresy białej") +
-            _card(2) + _card(3) + '</ul>', "tematy", "wide")
+DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
+        "/przepuklina-pooperacyjna/": "Przepuklina w bliźnie po operacji",
+        "/operacja-przepukliny-brzusznej/": "Szwy, siatka, laparoskopia, plastyka brzucha",
+        "/koszt-operacji-przepukliny-brzusznej/": "Gdzie przyjmuję i operuję, ile to kosztuje"}
+def _tile(u, t):
+    if u: return f'<li><a href="{u}"><b>{t}</b><span>{DESC.get(u, "")}</span></a></li>'
+    return f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
+def _tiles_from_menu():
+    out = ""
+    for it in NAV_ITEMS[1:]:
+        if it[0] == "link":
+            out += f'<ul class="cards">{_tile(it[1], it[2])}</ul>'
+        else:
+            out += f'<h3 class="grp">{it[1]}</h3><ul class="cards">' + "".join(_tile(u, t) for u, t in it[2]) + '</ul>'
+    return out
+home += sec("Tematy", _tiles_from_menu(), "tematy", "wide")
 home += consult_short()
 home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>
