@@ -221,12 +221,15 @@ def _tile(u, t):
     if u: return f'<li><a href="{u}"><b>{t}</b></a></li>'
     return f'<li class="soon" title="w przygotowaniu"><b>{t}</b></li>'
 def _tiles_from_menu():
-    out = ""
+    out = ""; seen_group = False; tail = ""
     for it in NAV_ITEMS[1:]:
         if it[0] == "link":
-            out += f'<ul class="cards">{_tile(it[1], it[2])}</ul>'
+            if seen_group: tail += _tile(it[1], it[2])
+            else: out += f'<ul class="cards">{_tile(it[1], it[2])}</ul>'
         else:
+            seen_group = True
             out += f'<h3 class="grp">{it[1]}</h3><ul class="cards">' + "".join(_tile(u, t) for u, t in it[2]) + '</ul>'
+    if tail: out += f'<h3 class="grp">Przygotowanie i konsultacje</h3><ul class="cards">{tail}</ul>'
     return out
 home += sec("Tematy", _tiles_from_menu(), "tematy", "wide")
 home += consult_short()
