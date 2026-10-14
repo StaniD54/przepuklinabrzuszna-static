@@ -53,13 +53,29 @@ REV = {n.split(" (")[0]: (n, t) for n, t in REV}
 # ---- CSS ----
 CSS = open(f"{ROOT}/build/style.css", encoding="utf-8").read()
 open(f"{OUT}/style.css", "w", encoding="utf-8").write(CSS)
+shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 
-NAV = [("/", "Start"), ("/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
-       ("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/operacja-przepukliny-brzusznej/", "Metody operacji"),
-       ("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt")]
+SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
+NAV_ITEMS = [
+ ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), (None, "Kresy białej"), (None, "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
+ ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
+ ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
+]
+
+def build_nav(path):
+    out = []
+    for it in NAV_ITEMS:
+        if it[0] == "link":
+            out.append(f'<a href="{it[1]}"{" aria-current=page" if it[1] == path else ""}>{it[2]}</a>')
+        else:
+            cur = any(u == path for u, _ in it[2])
+            subs = "".join(f'<a href="{u}"{" aria-current=page" if u == path else ""}>{t}</a>' if u else SOON(t) for u, t in it[2])
+            out.append(f'<div class="dd{" cur" if cur else ""}"><button type="button" aria-expanded="false">{it[1]}</button><div class="sub">{subs}</div></div>')
+    return "".join(out)
 
 def page(path, title, desc, body, h1_schema=None):
-    nav = "".join(f'<a href="{u}"{" aria-current=page" if u == path else ""}>{t}</a>' for u, t in NAV)
+    nav = build_nav(path)
     canon = BASE + path
     return f"""<!doctype html>
 <html lang="pl">
@@ -86,12 +102,13 @@ def page(path, title, desc, body, h1_schema=None):
 <footer>
   <p><strong>Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki</strong><br>
   Tel. <a href="tel:+48{TEL}">{TELF}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a> · WhatsApp <a href="https://wa.me/48{TEL}">{TELF}</a></p>
-  <p>Informacje na stronie mają charakter ogólny i nie zastępują badania lekarskiego. Leczenie i jego koszt ustala lekarz po zbadaniu chorego. <a href="/o-mnie/">O mnie</a> · <a href="/cookies/">Polityka prywatności</a></p>
+  <p>Informacje na stronie mają charakter ogólny i nie zastępują badania lekarskiego. Leczenie i jego koszt ustala lekarz po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/#o-mnie">O mnie</a> · <a href="/cookies/">Polityka prywatności</a></p>
 </footer>
 </div>
 <div class="bar" role="navigation" aria-label="Szybki kontakt">
   <a class="btn" href="tel:+48{TEL}">Zadzwoń</a><a class="btn ghost" href="sms:+48{TEL}?&body=BRZUCH">SMS: BRZUCH</a>
 </div>
+<script src="/menu.js" defer></script>
 </body>
 </html>"""
 
@@ -129,6 +146,13 @@ ZL = "https://www.znanylekarz.pl/stanislaw-dabrowiecki/chirurg-bariatra/warszawa
 def opinions_block():
     return sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K.") +
                f'<p><a href="{ZL}" rel="noopener" target="_blank">Więcej opinii pacjentów w serwisie ZnanyLekarz</a></p>', "opinie")
+
+def about_block():
+    return sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
+    <p>Absolwent Wydziału Lekarskiego Akademii Medycznej w Gdańsku. Specjalista chirurgii ogólnej, doktor i doktor habilitowany nauk medycznych. Od 2012 roku profesor zwyczajny (nominacja z rąk Prezydenta RP).</p>
+    <p>Od 2002 r. profesor nadzwyczajny Akademii Medycznej im. L. Rydygiera w Bydgoszczy, w latach 2002–2004 prorektor ds. klinicznych i kształcenia podyplomowego. Po połączeniu uczelni z Uniwersytetem Mikołaja Kopernika w Toruniu: profesor UMK i pełnomocnik Rektora UMK ds. klinicznych i kształcenia podyplomowego.</p>
+    <p>W latach 2001–2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy. Za mojego kierownictwa powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin.</p>
+    <p>W latach 2009–2012 przewodniczący Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy. Od 2020 roku praktykuję wyłącznie prywatnie.</p></div></div>""", "o-mnie")
 
 def consult_short():
     return sec("Konsultacje", f"""<p>Konsultuję w Bydgoszczy (ul. Mierosławskiego 9/3) i w Poznaniu (Dąbrowa k. Poznania) oraz online. Operuję w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.</p>
@@ -182,7 +206,7 @@ home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepu
 home += consult_short()
 home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>
-<p><a href="/o-mnie/">Więcej o mnie</a></p></div></div>""", "o-mnie")
+<p><a href="/koszt-operacji-przepukliny-brzusznej/#o-mnie">Więcej o mnie</a></p></div></div>""", "o-mnie")
 home += opinions_block()
 home += faq_block([FAQ_COMMON[0], FAQ_COMMON[2], FAQ_COMMON[1]])
 home += sec("Kontakt", f'<p>Telefon i WhatsApp: <a href="tel:+48{TEL}">{TELF}</a><br>E-mail: <a href="mailto:{EMAIL}">{EMAIL}</a></p>{CTA}', "kontakt")
@@ -245,6 +269,7 @@ b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepuklin
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
 b += consult_block()
 b += hospital_block()
+b += about_block()
 b += opinions_block()
 b += sec("Koszt operacji", f"""<p><b>Koszt leczenia zostanie jednoznacznie określony po zbadaniu chorego</b>, w trakcie konsultacji.</p>
 <div class="callout"><p><b>Dolna granica kosztów to 6000 zł.</b> Dotyczy prostej przepukliny brzusznej o średnicy wrót 1–2 cm, którą można zamknąć przez zeszycie szwami.</p></div>
@@ -261,19 +286,6 @@ write("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt operacji pr
       "Konsultacje w Bydgoszczy, Poznaniu i online, szpital Eskulap w Osielsku. Koszt operacji przepukliny brzusznej ustalam po zbadaniu chorego, dolna granica 6000 zł, możliwe raty.", b)
 
 
-# ============ O MNIE ============
-b = hero("O mnie", "Prof. Stanisław Dąbrowiecki, chirurg",
-         "Chirurg specjalizujący się w przepuklinach brzusznych. Profesor chirurgii od 2012 roku.")
-b += sec("Kariera zawodowa", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
-<p>Absolwent Wydziału Lekarskiego Akademii Medycznej w Gdańsku. Specjalista chirurgii ogólnej, doktor i doktor habilitowany nauk medycznych. Od 2012 roku profesor zwyczajny (nominacja z rąk Prezydenta RP).</p>
-<p>Od 2002 r. profesor nadzwyczajny Akademii Medycznej im. L. Rydygiera w Bydgoszczy, w latach 2002–2004 prorektor ds. klinicznych i kształcenia podyplomowego. Po połączeniu uczelni z Uniwersytetem Mikołaja Kopernika w Toruniu: profesor UMK i pełnomocnik Rektora UMK ds. klinicznych i kształcenia podyplomowego.</p>
-<p>W latach 2001–2012 kierownik Katedry i Kliniki Chirurgii Ogólnej i Endokrynologicznej Collegium Medicum UMK w Bydgoszczy. Za mojego kierownictwa powstał w niej wiodący w kraju ośrodek leczenia trudnych przypadków przepuklin.</p>
-<p>W latach 2009–2012 przewodniczący Rady Ordynatorów Szpitala Uniwersyteckiego w Bydgoszczy. Od 2020 roku praktykuję wyłącznie prywatnie.</p></div></div>""")
-b += sec("Dlaczego prywatnie", f"""<p>Nie mam kontraktu z NFZ, więc konsultacje i operacje są płatne. Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach wykonuje się operacje przepuklin. Co przemawia za leczeniem u mnie?</p>
-<ol class="reasons"><li>indywidualna, troskliwa opieka,</li><li>pacjent wie, kto będzie go operować,</li><li>zabieg wykonany tak samo jak w najlepszych szpitalach świata,</li><li>nie operuje osoba, która się dopiero tego uczy,</li><li>pacjent zna i ufa osobie, która odpowiada za wynik leczenia,</li><li>dobre przygotowanie do zabiegu i pełna informacja o okresie przed- i pooperacyjnym,</li><li>jedna osoba zadba o dokumentację, recepty i zwolnienie oraz odpowie na pytania,</li><li>szpital z dobrym wyposażeniem, a pacjent nie jest anonimowy, układ finansowy jest jasny.</li></ol>""")
-write("/o-mnie/", "O mnie: prof. Stanisław Dąbrowiecki, chirurg | Przepuklina brzuszna",
-      "Prof. Stanisław Dąbrowiecki: profesor chirurgii od 2012 r., wieloletni kierownik Kliniki Chirurgii w Bydgoszczy, operacje przepuklin brzusznych.", b)
-
 # ============ POLITYKA PRYWATNOŚCI ============
 b = hero("Prywatność", "Polityka prywatności", "Jakie dane zbiera ta strona i jak się ze mną skontaktować w sprawie danych.")
 b += sec("Zasady", f"""<p>Ta strona nie wymaga logowania i nie zawiera formularzy. <b>Nie ustawia plików cookies ani nie śledzi odwiedzających.</b> Strona jest udostępniana przez Cloudflare, który może w standardowy sposób przetwarzać adres IP odwiedzającego w celu dostarczenia i zabezpieczenia strony.</p>
@@ -285,6 +297,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/o-mnie/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")

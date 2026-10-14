@@ -114,3 +114,13 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:
 .gifx{max-width:320px;margin:8px 0 16px}
 .why{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin-bottom:8px}
 @media (max-width:720px){.why{grid-template-columns:minmax(0,1fr)}}
+.nav .dd{position:relative}
+.nav .dd>button{font:inherit;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:4px 0;cursor:pointer}
+.nav .dd>button::after{content:" ▾";font-size:.8em}
+.nav .dd:hover>button,.nav .dd.open>button,.nav .dd.cur>button{color:var(--ink);border-bottom-color:var(--accent)}
+.nav .sub{display:none;position:absolute;left:-12px;top:100%;z-index:60;min-width:210px;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:6px 0}
+.nav .dd:hover .sub,.nav .dd.open .sub,.nav .dd:focus-within .sub{display:block}
+.nav .sub a,.nav .sub .soon{display:block;padding:8px 16px;border:0;white-space:nowrap}
+.nav .sub a:hover{background:var(--tint)}
+.nav .sub .soon{color:var(--muted);opacity:.6;cursor:default}.nav .sub .soon small{font-size:.75em;margin-left:6px}
+@media (max-width:720px){.nav{overflow:visible;flex-wrap:wrap;white-space:normal;margin-inline:0;padding-inline:0}.nav .sub{position:static;box-shadow:none;margin-top:4px}}
