@@ -32,6 +32,10 @@ IMGS = {
  "prof": "SD_n_1-scaled.jpg",
 }
 SIZES = {}
+from PIL import ImageSequence
+_g = Image.open(f"{UP}/powieksza-sie.gif"); _fr = [f.convert("RGB").copy() for f in ImageSequence.Iterator(_g)]
+_fr[0].save(f"{OUT}/img/powieksza-sie.webp", save_all=True, append_images=_fr[1:], duration=_g.info.get("duration", 120), loop=0, quality=65, method=6)
+SIZES["powieksza-sie"] = _fr[0].size
 for k, p in IMGS.items():
     im = Image.open(f"{UP}/{p}").convert("RGB")
     im.thumbnail((900, 1100))
@@ -121,6 +125,11 @@ def consult_block():
 </dl>
 <p class="note">Wyślij SMS o treści <b>BRZUCH</b> na nr {TELF}. Odeślę adresy i terminy konsultacji oraz podstawowe informacje o leczeniu przepuklin brzusznych.</p>""", "konsultacje")
 
+ZL = "https://www.znanylekarz.pl/stanislaw-dabrowiecki/chirurg-bariatra/warszawa"
+def opinions_block():
+    return sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K.") +
+               f'<p><a href="{ZL}" rel="noopener" target="_blank">Więcej opinii pacjentów w serwisie ZnanyLekarz</a></p>', "opinie")
+
 def consult_short():
     return sec("Konsultacje", f"""<p>Konsultuję w Bydgoszczy (ul. Mierosławskiego 9/3) i w Poznaniu (Dąbrowa k. Poznania) oraz online. Operuję w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.</p>
 <p>Termin ustalamy telefonicznie lub SMS-em: <a href="tel:+48{TEL}">{TELF}</a>. <a href="/koszt-operacji-przepukliny-brzusznej/">Konsultacje, szpital i koszt: szczegóły</a></p>""", "konsultacje")
@@ -165,10 +174,13 @@ home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgi
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
 def _card(i): u,t,d=ALL[i]; return f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>'
 _soon = lambda t: f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
+home += sec("Dlaczego operować", f"""<div class="why"><div><p>Przepuklina to defekt kosmetyczny, a powiększająca się przepuklina utrudnia życie. Nieleczona może doprowadzić do tego, że do worka przepuklinowego przemieszczą się wszystkie jelita. Może dojść do ich uwięźnięcia i zadzierzgnięcia, co jest ostrym problemem i wymaga pilnego leczenia szpitalnego. Nie lekceważ więc przepukliny.</p></div>
+<figure class="ph"><img src="/img/powieksza-sie.webp" width="{SIZES['powieksza-sie'][0]}" height="{SIZES['powieksza-sie'][1]}" alt="Przepuklina stopniowo się powiększa" loading="lazy"><figcaption>Przepuklina nie stoi w miejscu, powoli i stopniowo się powiększa.</figcaption></figure></div>
+<div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina ze zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>""", "dlaczego", "wide")
 home += sec("Tematy", '<ul class="cards">' + _card(0) + _card(1) + _soon("Przepuklina pępkowa i kresy białej") +
             _card(2) + _soon("Po operacji: zalecenia") + _card(3) + '</ul>', "tematy", "wide")
 home += consult_short()
-home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
+home += opinions_block()
 home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>
 <p><a href="/o-mnie/">Więcej o mnie</a></p></div></div>""", "o-mnie")
@@ -233,6 +245,7 @@ b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepuklin
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
 b += consult_block()
 b += hospital_block()
+b += opinions_block()
 b += sec("Koszt operacji", f"""<p><b>Koszt leczenia zostanie jednoznacznie określony po zbadaniu chorego</b>, w trakcie konsultacji.</p>
 <div class="callout"><p><b>Dolna granica kosztów to 6000 zł.</b> Dotyczy prostej przepukliny brzusznej o średnicy wrót 1–2 cm, którą można zamknąć przez zeszycie szwami.</p></div>
 <p>Jest możliwość rozłożenia płatności na raty.</p>""")
