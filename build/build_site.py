@@ -63,7 +63,7 @@ SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótc
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
  ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Rozworu przełykowego")]),
- ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
+ ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie"),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -314,7 +314,7 @@ b += sec("Laparoskopia", f"""<p>Przepukliny o niewielkich i średnich rozmiarach
 <div class="grid3">{img('lapar','Laparoskopowa naprawa przepukliny powyżej pępka','laparoskopowa naprawa przepukliny powyżej pępka w linii pośrodkowej ciała')}{img('otwarta','Operacja na otwarto, wypreparowana ściana brzucha','wypreparowana ściana powłoki brzusznej, przygotowana do wszczepienia siatki')}{img('siatka','Siatka przygotowywana do wszczepienia','siatka przygotowywana do wszczepienia w ścianę brzucha')}</div>""", "metody", "wide")
 b += sec("Siatka", f"""<p>W zależności od metody operacyjnej siatka może być wprowadzona do różnych warstw ściany brzucha (na rysunku oznaczone numerami 1–5).</p>{img('warstwy','Warstwy ściany brzucha, w które można wprowadzić siatkę')}""")
 b += sec("Plastyka brzucha", """<p>Przy rozległej przepuklinie brzusznej, a także u osób masywnie odchudzonych, jednocześnie z likwidacją przepukliny wykonuje się plastykę brzucha. Operacja jest bardziej rozległa, ale efekt leczenia jest bardzo dobry. Zdjęcia przed i po operacji są na stronie o <a href="/przepuklina-pooperacyjna/">przepuklinie pooperacyjnej</a>.</p>""")
-b += more_links([ALL[0], ALL[1], ("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie", "Rokowanie, co pogarsza wyniki, jak się przygotować"), ALL[3]])
+b += more_links([("/operacja-klasyczna-przepukliny-brzusznej/", "Operacja klasyczna", "Kiedy wybieram operację „na otwarto”"), ALL[1], ("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie", "Rokowanie, co pogarsza wyniki, jak się przygotować"), ALL[3]])
 b += faq_block([FAQ_COMMON[0], ("Czy można operować laparoskopowo?", "Przepukliny o niewielkich i średnich rozmiarach (do 5–8 cm) można operować laparoskopowo. Przy większych zaleca się operację „na otwarto”. Metodę wybieram po zbadaniu chorego.")])
 write("/operacja-przepukliny-brzusznej/", "Operacja przepukliny brzusznej: metody, siatka, laparoskopia | Prof. Dąbrowiecki",
       "Na czym polega operacja przepukliny brzusznej: szwy, siatka, laparoskopia, plastyka brzucha. Prof. Dąbrowiecki, szpital Eskulap, Osielsko.", b)
@@ -445,6 +445,23 @@ b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki leczenia przepukliny brzusznej i przygotowanie do operacji | Prof. Dąbrowiecki",
       "Ile przepuklin wraca po operacji, co pogarsza wyniki (otyłość, palenie, cukrzyca) i jak się przygotować do operacji przepukliny brzusznej.", b)
 
+# ============ KLASYCZNE ============
+b = hero("Metody operacji", "Klasyczna operacja przepukliny („na otwarto”)",
+         "Cięcie przez ścianę brzucha. Wybieram ją, gdy przepuklina jest duża lub trudna, albo gdy jest bardzo mała.")
+b += sec("Kiedy wybieram", f"""<p>{DRAFT}Dla większości przepuklin brzusznych operacja laparoskopowa lub robotowa daje mniej zakażeń rany i krótszy pobyt w szpitalu, przy podobnej trwałości. Dlatego klasyczną operację wybieram w sytuacjach, w których jest lepsza:</p>
+<ul class="check"><li><b>Duża lub złożona przepuklina</b> (ubytek powyżej około 10 cm), zwłaszcza gdy część jelit leży na stałe poza jamą brzuszną.</li><li><b>Szczupły chory z dużym ubytkiem.</b> W badaniach operacja otwarta dawała u takich chorych mniej powikłań i lepszą jakość życia. Laparoskopię częściej wybiera się u osób otyłych i przy przepuklinach nawrotowych, bo grozi wtedy mniej zakażeń.</li><li><b>Pole skażone lub zakażone</b> (np. przetoka jelitowo-skórna). Używa się wtedy mniej siatki syntetycznej, a czasem siatki wchłanialnej.</li><li><b>Operacja pilna</b> (uwięźnięcie, zadzierzgnięcie). Im cięższy stan chorego, tym prostsza powinna być naprawa. Dobrze odżywiony, stabilny chory bez zakażenia może mieć od razu wykonaną pełną rekonstrukcję.</li><li><b>Rozejście mięśni prostych z nadmiarem skóry</b> albo kilka ubytków naraz. Wykonuje się wtedy operację otwartą z zeszyciem rozejścia, a czasem z plastyką brzucha.</li><li><b>Bardzo mały ubytek</b> (np. przepuklina nadbrzusza o średnicy 1 cm), który zamykam szwami bez siatki.</li></ul>""", "kiedy")
+b += sec("Duże przepukliny: uwolnienie mięśni", f"""<p>{DRAFT}W dużej przepuklinie trzeba zbliżyć do siebie mięśnie proste i zamknąć powięź bez napięcia, a następnie wzmocnić ją siatką. Do tego służy <b>separacja komponentów</b>, czyli uwolnienie mięśni bocznych brzucha, żeby dały się przesunąć do środka.</p>
+<ul class="check"><li><b>Separacja tylna</b> (z uwolnieniem mięśnia poprzecznego brzucha, TAR) jest dziś preferowana w wielu złożonych przepuklinach. Siatka leży za mięśniami, w dobrze ukrwionym miejscu, a powikłań ran i zakażeń jest mniej.</li><li><b>Separacja przednia</b> wymaga szerokiego odwarstwienia skóry i tkanki podskórnej, co zwiększa liczbę powikłań ran. Są jednak metody, które to ograniczają (m.in. endoskopowe).</li></ul>
+<p>Tylna separacja jest szczególnie przydatna przy ubytkach z boku brzucha i wtedy, gdy siatka musi sięgać daleko poza brzegi ubytku.</p>""", "separacja")
+b += sec("Co pomaga przy dużych przepuklinach", f"""<p>{DRAFT}Przed operacją i w jej trakcie stosuje się pomocnicze metody:</p>
+<ul class="check"><li><b>Toksyna botulinowa</b> wstrzyknięta w mięśnie boczne brzucha około 4 tygodnie przed operacją. Rozluźnia je i wydłuża, więc łatwiej zamknąć powięź bez napięcia.</li><li><b>Stopniowe wytwarzanie odmy w jamie brzusznej.</b> Pomaga przy dużej utracie miejsca w jamie brzusznej, ale ma więcej powikłań i jest kosztowna, więc stosuje się ją ostrożnie.</li><li><b>Nacięcie tylnej blaszki pochewki mięśnia prostego.</b> Zmniejsza napięcie powięzi. W małych i średnich przepuklinach może pozwolić na trwałą naprawę bez siatki.</li><li><b>Szew z małymi kęsami</b> (small bite), który poprawia trwałość zamknięcia linii środkowej.</li><li><b>Zamknięcie warstwowe</b> przy współistniejącym rozejściu mięśni, w małych przepuklinach nadbrzusza i pępka.</li></ul>""", "pomoce")
+b += sec("Siatka czy szew", f"""<p>{DRAFT}Siatka zmniejsza liczbę nawrotów przy wszystkich ubytkach poza najmniejszymi. Ma jednak własne ryzyko, np. zakażenie lub przewlekły ból, dlatego przy najmniejszych ubytkach wystarczy zeszycie szwami. Decyzję podejmuję po zbadaniu chorego, ważąc ryzyko nawrotu i ryzyko związane z siatką.</p>
+<p>Wyniki i czynniki, które je pogarszają, opisuję na stronie <a href="/wyniki-leczenia-przepukliny-brzusznej/">Wyniki i przygotowanie</a>.</p>""", "siatka-szew")
+b += more_links([ALL[0], ALL[2], ("/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie", "Rokowanie, co pogarsza wyniki, jak się przygotować")])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczna (otwarta) operacja przepukliny brzusznej | Prof. Dąbrowiecki",
+      "Kiedy wybiera się klasyczną operację przepukliny „na otwarto”: duże przepukliny, separacja komponentów, toksyna botulinowa, siatka lub szew.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -478,6 +495,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/wyniki-leczenia-przepukliny-brzusznej/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
