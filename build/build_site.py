@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), (None, "Kresy białej"), (None, "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), (None, "Pępkowa"), (None, "Lędźwiowa"), (None, "Wewnętrzne")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -298,6 +298,22 @@ b += faq_block([FAQ_COMMON[0], ("Czy można operować laparoskopowo?", "Przepukl
 write("/operacja-przepukliny-brzusznej/", "Operacja przepukliny brzusznej: metody, siatka, laparoskopia | Prof. Dąbrowiecki",
       "Na czym polega operacja przepukliny brzusznej: szwy, siatka, laparoskopia, plastyka brzucha. Prof. Dąbrowiecki, szpital Eskulap, Osielsko.", b)
 
+# ============ KRESA BIAŁA ============
+b = hero("Przepuklina w linii pośrodkowej", "Przepuklina kresy białej: objawy i leczenie",
+         "Wybrzuszenie w środku brzucha, nad pępkiem lub w jego okolicy, bez wcześniejszej operacji.")
+b += sec("Czym jest", f"""<p>{DRAFT}Kresa biała to pas mocnej tkanki w środku brzucha, łączący z obu stron mięśnie proste. Przepuklina kresy białej powstaje samoistnie, bez związku z wcześniejszą operacją. W tkance powstaje ubytek, a przez niego wypycha się zawartość jamy brzusznej: tłuszcz lub fragment jelita.</p>
+<p>Najczęściej występuje nad pępkiem (przepuklina nadbrzuszna) albo w okolicy pępka. Tworzy się prawdziwy worek przepuklinowy, a ciągłość kresy białej jest przerwana.</p>""")
+b += sec("Objawy", f"""<p>{DRAFT}Przepuklina bywa bez objawów. Zwykle widać lub wyczuwa się guzek w linii środkowej brzucha. Może on być większy przy kaszlu, parciu i wysiłku. Czasem pojawia się dyskomfort lub ból.</p>""")
+b += sec("Powikłania", f"""<p>{DRAFT}Jak każda przepuklina, może się uwięznąć i zadzierzgnąć, czyli jelito lub tłuszcz zostaną uwięzione w otworze i stracą dopływ krwi. To wymaga pilnej operacji. Zgłoś się natychmiast do szpitala przy nagłym bólu, twardym i bolesnym guzku, którego nie da się wsunąć, wymiotach lub braku oddawania gazów i stolca.</p>""")
+b += sec("Czym różni się od rozejścia mięśni prostych", f"""<p>{DRAFT}Rozejście mięśni prostych to coś innego. Kresa biała jest wtedy rozciągnięta i cieńsza, a mięśnie są odsunięte od siebie, ale nie ma ubytku ani worka przepuklinowego. Najczęściej zdarza się po ciąży, przy otyłości i w starszym wieku. Daje wałeczkowate wybrzuszenie przy napięciu brzucha i nie grozi uwięźnięciem.</p>
+<ul class="check"><li><b>Przepuklina:</b> prawdziwy ubytek i worek, ryzyko uwięźnięcia, leczenie operacyjne.</li><li><b>Rozejście mięśni:</b> brak ubytku i worka, bez ryzyka uwięźnięcia, najpierw leczenie zachowawcze (ćwiczenia), czasem operacja.</li></ul>
+<p>Oba stany mogą występować jednocześnie, zwłaszcza przy małej przepuklinie. Rozpoznaję je po zbadaniu chorego, a w trudnych przypadkach po USG lub tomografii.</p>""")
+b += sec("Leczenie", f"""<p>{DRAFT}Przepuklinę kresy białej leczy się operacyjnie. Małe ubytki (do około 1,5 cm, bez dodatkowych czynników ryzyka) można zamknąć samymi szwami. Większe wzmacnia się siatką, żeby przepuklina nie wróciła. Nawrót jest najważniejszym powikłaniem odległym. Rodzaj operacji wybieram po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/">Koszt i konsultacje</a></p>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/przepuklina-kresy-bialej/", "Przepuklina kresy białej (nadbrzuszna): objawy, leczenie | Prof. Dąbrowiecki",
+      "Przepuklina kresy białej: czym jest, objawy, powikłania, różnica od rozejścia mięśni prostych i leczenie. Prof. Dąbrowiecki, Bydgoszcz.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -331,6 +347,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
