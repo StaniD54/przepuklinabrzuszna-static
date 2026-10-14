@@ -165,7 +165,7 @@ home += consult_block()
 home += hospital_block()
 home += sec("Opinie", review("Robert Graczyk") + review("Adam") + review("Małgorzata K."), "opinie")
 home += sec("O mnie", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki','prof. Stanisław Dąbrowiecki')}<div>
-<p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin. Wielu pacjentów z przepuklinami jest otyłych, a więc, chcąc skutecznie leczyć, musiałem zająć się też tym zagadnieniem.</p>
+<p>Od 2012 roku jestem profesorem chirurgii. Przez 12 lat kierowałem dużą Kliniką uniwersytecką w Bydgoszczy. Od początku pracy zawodowej specjalizowałem się w chirurgii przepuklin.</p>
 <p>Od 2020 roku konsultuję i operuję jedynie prywatnie; mam więcej czasu dla swoich pacjentów. Operuję chorych z przepuklinami brzusznymi, otyłością oraz, przy dużych zniekształceniach, wykonuję plastyki brzucha.</p>
 <p><a href="/o-mnie/">Pełny życiorys</a></p></div></div>""", "o-mnie")
 home += faq_block(FAQ_COMMON)
