@@ -126,3 +126,4 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:
 @media (max-width:720px){.nav{overflow:visible;flex-wrap:wrap;white-space:normal;margin-inline:0;padding-inline:0}.nav .sub{position:static;box-shadow:none;margin-top:4px}}
 h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
 .body>ul.cards+ul.cards{margin-top:12px}
+.cards li b{margin-bottom:0}

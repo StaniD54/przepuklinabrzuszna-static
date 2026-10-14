@@ -203,8 +203,8 @@ DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia
         "/operacja-przepukliny-brzusznej/": "Szwy, siatka, laparoskopia, plastyka brzucha",
         "/koszt-operacji-przepukliny-brzusznej/": "Gdzie przyjmuję i operuję, ile to kosztuje"}
 def _tile(u, t):
-    if u: return f'<li><a href="{u}"><b>{t}</b><span>{DESC.get(u, "")}</span></a></li>'
-    return f'<li class="soon"><b>{t}</b><span>w przygotowaniu</span></li>'
+    if u: return f'<li><a href="{u}"><b>{t}</b></a></li>'
+    return f'<li class="soon" title="w przygotowaniu"><b>{t}</b></li>'
 def _tiles_from_menu():
     out = ""
     for it in NAV_ITEMS[1:]:
