@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), (None, "Wewnętrzne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), (None, "Klasyczne"), (None, "Laparoskopowe"), (None, "Hybrydowe")]),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
 ]
@@ -351,6 +351,23 @@ b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
 write("/przepuklina-ledzwiowa/", "Przepuklina lędźwiowa po operacji nerki: objawy, rozpoznanie | Prof. Dąbrowiecki",
       "Przepuklina lędźwiowa: gdzie powstaje, jak często po operacji nerki, objawy, różnica od wybrzuszenia boku, rozpoznanie. Prof. Dąbrowiecki, Bydgoszcz.", b)
 
+# ============ RZADKIE ============
+b = hero("Rzadkie przepukliny", "Rzadkie przepukliny ściany brzucha",
+         "Przepukliny w nietypowych miejscach: trudne do zbadania i łatwo je przeoczyć. Najlepiej pokazuje je tomografia.")
+b += sec("Dlaczego są trudne", f"""<p>{DRAFT}Rzadkie przepukliny występują w nietypowych miejscach, dają niewyraźne objawy i często nie da się ich wyczuć w badaniu. Rozpoznanie samym badaniem bywa niepewne, a nawet niemożliwe. Badaniem z wyboru jest <b>tomografia komputerowa</b>.</p>
+<p>Opisuję tu przepukliny Spiegla, zasłonową, kulszową i kroczową. <a href="/przepuklina-ledzwiowa/">Przepuklina lędźwiowa</a> ma osobną stronę.</p>""")
+b += sec("Przepuklina Spiegla", f"""<p>{DRAFT}Powstaje z boku od mięśnia prostego brzucha, zwykle poniżej pępka. To tylko 0,12–2,12% wszystkich przepuklin ściany brzucha. Często leży w głębi ściany, pod mięśniami, więc bywa niewyczuwalna i rozpoznaje się ją w tomografii lub USG.</p>
+<p>Ma wąską szyję, więc ryzyko uwięźnięcia i zadzierzgnięcia jest wysokie (15–24%). Dlatego zaleca się operację u każdego chorego, u którego ją rozpoznano.</p>""")
+b += sec("Przepuklina zasłonowa", f"""<p>{DRAFT}Rzadka (0,07–1% przepuklin), ale groźna. Zawartość brzucha przechodzi przez kanał w kości miednicy. Dotyczy najczęściej szczupłych, wyniszczonych, starszych kobiet, które rodziły.</p>
+<p>Zwykle objawia się niedrożnością jelita cienkiego. Charakterystyczny, ale obecny tylko u 25–50% chorych, jest ból po wewnętrznej stronie uda przy ruchu biodrem. Rozpoznanie jest trudne, a w nawet połowie przypadków stawia się je dopiero w czasie operacji. Śmiertelność jest wysoka (11–50%). Tomografia miednicy ma ponad 95% czułości. Konieczna jest pilna operacja.</p>""")
+b += sec("Przepuklina kulszowa", f"""<p>{DRAFT}Jedna z najrzadszych przepuklin. U większości chorych (81%) nie wyczuwa się guza w pośladku, co opóźnia rozpoznanie. Może uciskać moczowód. Rozpoznaje się ją w tomografii. Leczenie jest operacyjne, a u chorych wysokiego ryzyka można założyć stent do moczowodu.</p>""")
+b += sec("Przepuklina kroczowa", f"""<p>{DRAFT}To przepuklina dna miednicy, przez ubytek między mięśniami przy odbycie. Pierwotna jest rzadka. Częściej jest wtórna, czyli powstaje w bliźnie po rozległych operacjach nowotworów miednicy (usunięcie odbytnicy, wytrzewienie miednicy, usunięcie pęcherza). Po usunięciu odbytnicy zdarza się u 1–27% operowanych.</p>""")
+b += sec("Kiedy pilnie do lekarza", f"""<div class="callout"><p>{DRAFT}<b>Zgłoś się natychmiast do szpitala, gdy pojawi się:</b> silny ból brzucha lub miednicy, wymioty, wzdęcie brzucha, brak oddawania gazów i stolca, ból promieniujący do uda albo twarde i bolesne wybrzuszenie.</p></div>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([FAQ_COMMON[0], FAQ_COMMON[1]])
+write("/rzadkie-przepukliny-brzuszne/", "Rzadkie przepukliny brzucha: Spiegla, zasłonowa, kulszowa, kroczowa | Prof. Dąbrowiecki",
+      "Rzadkie przepukliny ściany brzucha: przepuklina Spiegla, zasłonowa, kulszowa i kroczowa. Objawy, rozpoznanie w tomografii, ryzyko uwięźnięcia.", b)
+
 # ============ KOSZT ============
 b = hero("Konsultacje, szpital, koszt", "Konsultacje i koszt operacji przepukliny brzusznej",
          "Gdzie przyjmuję, gdzie operuję i od czego zależy koszt. Koszt zostanie jednoznacznie określony po zbadaniu chorego.")
@@ -384,6 +401,6 @@ write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka pry
 
 # robots, sitemap
 open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/cookies/"]
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")

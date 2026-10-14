@@ -5,7 +5,7 @@ Strona prof. Stanisława Dąbrowieckiego o przepuklinach brzusznych. Statyczny H
 ## Struktura strony (menu = kafelki na głównej, jedna lista `NAV_ITEMS` w `build/build_site.py`)
 - Start
 - Objawy i zdjęcia
-- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (gotowe), pępkowa, lędźwiowa, wewnętrzne (wkrótce)
+- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (gotowe), pępkowa, lędźwiowa, rzadkie (wkrótce)
 - Metody operacji ▾: przegląd metod (jest), klasyczne, laparoskopowe, hybrydowe (wkrótce)
 - Konsultacje i koszt: konsultacje online i osobiste (Bydgoszcz, Poznań), szpital Eskulap, O mnie, opinie, koszt
 - Polityka prywatności (tylko w stopce)
@@ -31,7 +31,7 @@ python3 build/build_site.py     # wymaga: pip install pillow
 
 ## Do ustalenia / zrobienia
 - Link do profilu na ZnanymLekarzu (obecny jest profil bariatry z Warszawą, do podmiany).
-- Strony: kresy białej, pępkowa, lędźwiowa, wewnętrzne, klasyczne, laparoskopowe, hybrydowe.
+- Strony: kresy białej, pępkowa, lędźwiowa, rzadkie, klasyczne, laparoskopowe, hybrydowe.
 - Przekaz o przepuklinach bez objawów (obserwacja czy zawsze operacja) – decyzja autora.
 - Sprawdzić liczby w sekcjach medycznych (źródła).
 - Google Tag Manager z banerem zgody (obecnie brak cookies).
