@@ -30,6 +30,7 @@ IMGS = {
  "e-budynek": "eskulap-budynek.jpg", "e-pokoj": "eskulap-pokoj.jpg", "e-recepcja": "eskulap-recepcja.jpg", "e-lazienka": "eskulap-lazienka.jpg", "e-obraz": "eskulap-pracownia-obrazowa.jpg",
  "e-zima": "eskulap-front.jpg", "e-lato": "eskulap-wejscie.jpg", "e-sala": "eskulap-sala-angio.jpg", "e-tomo": "eskulap-tomograf.jpg", "e-recep2": "eskulap-recepcja2.jpg", "e-mapa": "eskulap-wejscia-mapa.png",
  "prof": "SD_n_1-scaled.jpg",
+ "pep1": "pepkowa-1.jpg", "pep2": "pepkowa-2.jpg", "pep3": "pepkowa-3.jpg",
 }
 SIZES = {}
 from PIL import ImageSequence
@@ -341,6 +342,9 @@ b += sec("Czym jest i jak częsta", f"""<p>{DRAFT}Przepuklina pępkowa to wypukl
 <p>Występuje u około 2–4% dorosłych i stanowi 6–14% wszystkich przepuklin ściany brzucha.</p>""")
 b += sec("U dzieci i u dorosłych", f"""<p>{DRAFT}U dzieci przepuklina pępkowa wynika z niepełnego zamknięcia pierścienia pępkowego i w około 90% przypadków zamyka się sama do wieku przedszkolnego.</p>
 <p>U dorosłych jest zwykle nabyta: powstaje przy wzroście ciśnienia w brzuchu i rzadko cofa się sama. Częściej wymaga operacji.</p>""")
+b += sec("Jak wygląda", f"""<p>{DRAFT}Przepuklina pępkowa u dorosłych może wyglądać bardzo różnie, od niewielkiego wybrzuszenia w pępku po dużą przepuklinę wysuwającą się ponad skórę.</p>
+<div class="grid3">{img('pep2','Mała przepuklina pępkowa u kobiety','mała przepuklina pępkowa: wybrzuszenie w pępku')}{img('pep3','Duża przepuklina pępkowa u mężczyzny','duża przepuklina pępkowa u osoby z otyłością')}{img('pep1','Duża przepuklina pępkowa z przebarwieniem skóry','duża przepuklina z przebarwieniem skóry nad nią')}</div>
+<p class="note">Na ostatnim zdjęciu skóra nad przepukliną jest przebarwiona. Zmiany skóry nad przepukliną (zaczerwienienie, sine lub ciemne zabarwienie) to sygnał, że jest zagrożony dopływ krwi. Z takim objawem trzeba pilnie zgłosić się do lekarza.</p>""", "zdjecia", "wide")
 b += sec("Kto jest bardziej narażony", f"""<p>{DRAFT}U dorosłych przepuklina pępkowa powstaje częściej przy:</p>
 <ul class="check"><li>otyłości,</li><li>wielu ciążach i porodach (rozciągnięcie pierścienia pępkowego),</li><li>wodobrzuszu przy marskości wątroby,</li><li>przewlekłym kaszlu, zaparciach lub dużym guzie w brzuchu (stale podwyższone ciśnienie w brzuchu),</li><li>paleniu papierosów, chorobach tkanki łącznej i niedoczynności tarczycy. Częściej chorują mężczyźni w wieku 41–80 lat.</li></ul>""")
 b += sec("Objawy", f"""<p>{DRAFT}Przepuklina często nie boli. Widać lub wyczuwa się wybrzuszenie przy pępku, które jest większe przy kaszlu i parciu. Może pojawić się dyskomfort lub ból. Dla wielu osób problemem jest też wygląd, czyli „wystający pępek".</p>""")
