@@ -279,7 +279,7 @@ b += sec("Zdjęcia", f"""<p>Na zdjęciach skutki braku operacji. Przepukliny pow
 <p class="note">Na zdjęciach z prawej skóra nad przepukliną nie wytrzymuje napięcia i stopniowo ulega martwicy. Z czasem dojdzie do pęknięcia i wydostania się jelit na zewnątrz. To będzie już dramat: pęknięta przepuklina na brzuchu.</p>
 <div class="duo">{img('martwica','Martwica skóry nad przepukliną')}</div>
 <p><b>Nigdy nie można dopuszczać do tak zaawansowanego stanu choroby.</b> Pacjent staje się inwalidą.</p>""", "zdjecia", "wide")
-b += sec("To nie Pana wina", """<p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. Bywa, że pacjent jest obwiniany: „za szybko wstał Pan z łóżka po operacji”. To nie jest prawda i to nie jest przyczyna przepukliny. Nie dajcie sobie tego wmówić.</p>""")
+b += sec("Pacjent nie jest winny", """<p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. Bywa, że pacjent jest obwiniany: „za szybko wstał Pan z łóżka po operacji”. To nie jest prawda i to nie jest przyczyna przepukliny. Nie dajcie sobie tego wmówić.</p>""")
 b += sec("Kto jest zagrożony", f"""<p>Niebezpieczeństwo wystąpienia przepukliny jest większe u osób z nadwagą lub otyłością oraz po pilnych operacjach. Również w takiej sytuacji można chorym pomóc. Gdy można przesunąć operację o kilka miesięcy, należy spróbować odchudzić pacjenta. U osoby otyłej należy jednocześnie wykonać plastykę brzucha: zlikwidować przepuklinę oraz usunąć nadmiar tłuszczu z brzucha.</p>
 <div class="duo">{img('przed1','Przepuklina brzuszna u osoby otyłej, przed operacją')}{img('przed2','Przepuklina brzuszna, widok z boku, przed operacją')}</div>""")
 b += more_links(ALL[1:])
