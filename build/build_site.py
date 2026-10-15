@@ -554,7 +554,13 @@ b += sec("Zasady", f"""<p>Ta strona nie wymaga logowania i nie zawiera formularz
 write("/cookies/", "Polityka prywatności | Przepuklina brzuszna", "Polityka prywatności strony przepuklinabrzuszna.pl: brak cookies, kontakt w sprawie danych.", b)
 
 # robots, sitemap
-open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
+# WERSJA ROBOCZA: zablokuj indeksowanie. W dniu przełączenia domeny ustaw STAGING = False.
+STAGING = True
+if STAGING:
+    open(f"{OUT}/robots.txt", "w").write("User-agent: *\nDisallow: /\n")
+    open(f"{OUT}/_headers", "w").write("/*\n  X-Robots-Tag: noindex, nofollow\n")
+else:
+    open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
 urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/rzadkie-przepukliny-brzuszne/", "/przepukliny-wewnetrzne/", "/przepuklina-rozworu-przelykowego/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/operacja-hybrydowa-przepukliny-brzusznej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
