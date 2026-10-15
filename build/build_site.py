@@ -210,9 +210,9 @@ ALL = [
 # ============ STRONA GŁÓWNA ============
 home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
-home += """<div class="facts"><div><b>12 lat</b><span>kierowania Kliniką Chirurgii w Bydgoszczy</span></div><div><b>2012</b><span>od tego roku profesor chirurgii</span></div><div><b>od 6000 zł</b><span>dolna granica kosztu, ustalanego po badaniu</span></div></div>"""
-home += sec("Leczenie", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
-<p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "leczenie")
+home += """<div class="facts"><div><b>12 lat</b><span>kierowałem Kliniką Chirurgii w Bydgoszczy</span></div><div><b>od 2012</b><span>profesor chirurgii</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
+home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
+<p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "problem")
 DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
         "/przepuklina-pooperacyjna/": "Przepuklina w bliźnie po operacji",
         "/operacja-przepukliny-brzusznej/": "Szwy, siatka, laparoskopia, plastyka brzucha",
