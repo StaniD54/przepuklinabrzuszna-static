@@ -80,7 +80,9 @@ blockquote.rev footer{font-size:15px;color:var(--muted);border:0;padding:0;margi
 
 .draft{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:#fff3c4;color:#6a5200;border:1px solid #e6cf7a;border-radius:4px;padding:1px 7px;margin-right:8px;vertical-align:1px}
 
-footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:var(--muted);max-width:90ch}
+footer{border-top:1px solid var(--line);padding-top:24px;font-size:14.5px;color:var(--muted)}
+footer>p{margin:0 0 12px}
+@media(min-width:901px){footer{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}footer>p:first-child{grid-row:span 2}}
 
 .bar{display:none}
 @media (max-width:720px){
