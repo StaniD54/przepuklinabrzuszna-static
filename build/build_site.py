@@ -130,7 +130,7 @@ CTA = (f'<div class="cta-row"><a class="btn" href="tel:+48{TEL}">Zadzwoń: {TELF
 def hero(eyebrow, h1, lead):
     if ": " in h1 and "<span>" not in h1:
         a, b_ = h1.split(": ", 1); h1 = f"<span>{a}:</span> <span>{b_}</span>"
-    return f'<div class="hero"><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
+    return f'<div class="hero">{f'<p class="eyebrow">{eyebrow}</p>' if eyebrow else ''}<h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
 
 def teaser(t, n=2, maxlen=300):
     t = t.replace("..........", " ").strip()
@@ -209,7 +209,7 @@ ALL = [
 ]
 
 # ============ STRONA GŁÓWNA ============
-home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
+home = hero("", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
 home += """<div class="facts"><div><b>12 lat</b><span>kierownik uniwersyteckiej kliniki chirurgii w Bydgoszczy</span></div><div><b>od 2012</b><span>profesor chirurgii</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
 home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
