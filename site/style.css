@@ -135,3 +135,4 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 
 @media (max-width:900px){.facts{grid-template-columns:1fr;gap:12px}.facts div{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.facts b{font-size:1.5rem;min-width:7.5rem}.facts span{flex:1;min-width:10rem}
 .bar{transform:translateY(110%);transition:transform .2s}.bar.show{transform:none}}
+@media(min-width:901px){.nav{justify-content:flex-end}}
