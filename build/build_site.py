@@ -92,8 +92,8 @@ def pager(path):
     if path not in urls: return ""
     i = urls.index(path)
     nu, nt = flat[i + 1] if i + 1 < len(flat) else flat[0]
-    lab = f"Następna strona: {nt}" if i + 1 < len(flat) else "Wróć na stronę główną"
-    return f'<div class="pager"><a class="up" href="#top">↑ Na górę</a><a class="next" href="{nu}">{lab} →</a></div>'
+    lab = nt
+    return f'<div class="pager"><a class="up" href="#top" aria-label="Na górę strony" title="Na górę">↑</a><a class="next" href="{nu}">{lab} →</a></div>'
 
 def page(path, title, desc, body, h1_schema=None):
     nav = build_nav(path)
