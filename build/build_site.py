@@ -108,7 +108,8 @@ def page(path, title, desc, body, h1_schema=None):
 <footer>
   <p><strong>Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki</strong><br>
   Tel. <a href="tel:+48{TEL}">{TELF}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a> · WhatsApp <a href="https://wa.me/48{TEL}">{TELF}</a></p>
-  <p>Informacje na stronie mają charakter ogólny i nie zastępują badania lekarskiego. Leczenie i jego koszt ustala lekarz po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/#o-mnie">O mnie</a> · <a href="/cookies/">Polityka prywatności</a></p>
+  <p>Konsultacje i zabiegi odbywają się w ramach Indywidualnej Specjalistycznej Praktyki Lekarskiej. Prof. Dąbrowiecki nie ma umowy z NFZ; konsultacje i zabiegi są płatne.</p>
+  <p>Informacje na stronie mają charakter ogólny i nie zastępują badania lekarskiego. Leczenie i jego koszt ustala lekarz po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/#o-mnie">O mnie</a> · <a href="/cookies/">Polityka prywatności</a><br>Zaktualizowano: 15.10.2026</p>
 </footer>
 </div>
 <div class="bar" role="navigation" aria-label="Szybki kontakt">
@@ -210,7 +211,7 @@ ALL = [
 # ============ STRONA GŁÓWNA ============
 home = hero("Przepukliny brzuszne i pooperacyjne", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
-home += """<div class="facts"><div><b>12 lat</b><span>kierowałem Kliniką Chirurgii w Bydgoszczy</span></div><div><b>od 2012</b><span>profesor chirurgii</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
+home += """<div class="facts"><div><b>12 lat</b><span>kierownik uniwersyteckiej kliniki chirurgii w Bydgoszczy</span></div><div><b>od 2012</b><span>profesor chirurgii</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
 home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "problem")
 DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
@@ -243,8 +244,6 @@ home += sec("Jak operuję", """<p>Zasada jest prosta: naprawa <b>bez napięcia</
 <p><a href="/operacja-przepukliny-brzusznej/">Przegląd metod →</a></p>""", "metody")
 home += sec("Wyniki i przygotowanie", """<p>Po jednej operacji z siatką trwałe wyleczenie uzyskuje się według danych światowych u większości chorych, zwykle u 85–98%. Najtrudniejsze są duże przepukliny pooperacyjne. Ryzyko nawrotu zwiększają otyłość, palenie papierosów i cukrzyca. Przed operacją warto przestać palić co najmniej 4 tygodnie, a przy otyłości zmniejszyć masę ciała. Każdy zakwalifikowany pacjent dostaje ode mnie szczegółowe zalecenia na piśmie, przed i po operacji.</p>
 <p><a href="/wyniki-leczenia-przepukliny-brzusznej/">Wyniki leczenia i jak się przygotować →</a></p>""", "wyniki")
-home += sec("NFZ czy prywatnie", """<p>Wiem, że można się leczyć na koszt NFZ, w wielu publicznych szpitalach operuje się przepukliny. Pacjenci wybierają leczenie u mnie, bo dostają indywidualną, troskliwą opiekę, wiedzą, kto będzie ich operował, i znają osobę, która odpowiada za wynik leczenia. Koszt zostanie jednoznacznie określony po zbadaniu chorego (od 6000 zł), możliwe są raty.</p>
-<p><a href="/koszt-operacji-przepukliny-brzusznej/">Konsultacje, szpital i koszt →</a></p>""", "nfz")
 home += consult_short()
 home += sec("Lekarz", f"""<div class="about">{img('prof','Prof. Stanisław Dąbrowiecki')}<div>
 <p class="sig"><b>Profesor Stanisław Dąbrowiecki</b><br>chirurg</p>
