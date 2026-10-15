@@ -100,7 +100,7 @@ def page(path, title, desc, body, h1_schema=None):
 <body>
 <div class="wrap">
 <header class="top">
-  <a class="brand" href="/"><strong>Przepuklina brzuszna</strong><span>prof. Stanisław Dąbrowiecki, chirurg</span></a>
+  <a class="brand" href="/"><strong>Prof. Stanisław Dąbrowiecki</strong><span>chirurg</span></a>
   <a class="toptel" href="tel:+48{TEL}">Tel. {TELF}</a>
 </header>
 <nav class="nav" aria-label="Główne">{nav}</nav>
