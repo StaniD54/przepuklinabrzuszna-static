@@ -108,7 +108,7 @@ def page(path, title, desc, body, h1_schema=None):
 <footer>
   <p><strong>Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki</strong><br>
   Tel. <a href="tel:+48{TEL}">{TELF}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a> · WhatsApp <a href="https://wa.me/48{TEL}">{TELF}</a></p>
-  <p>Konsultacje i zabiegi odbywają się w ramach Indywidualnej Specjalistycznej Praktyki Lekarskiej. Prof. Dąbrowiecki nie ma umowy z NFZ; konsultacje i zabiegi są płatne.</p>
+  <p><strong>Konsultacje i zabiegi odbywają się w ramach Indywidualnej Specjalistycznej Praktyki Lekarskiej. Prof. Dąbrowiecki nie ma umowy z NFZ; konsultacje i zabiegi są płatne.</strong></p>
   <p>Informacje na stronie mają charakter ogólny i nie zastępują badania lekarskiego. Leczenie i jego koszt ustala lekarz po zbadaniu chorego. <a href="/koszt-operacji-przepukliny-brzusznej/#o-mnie">O mnie</a> · <a href="/cookies/">Polityka prywatności</a><br>Zaktualizowano: 15.10.2026</p>
 </footer>
 </div>
