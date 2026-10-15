@@ -80,6 +80,21 @@ def build_nav(path):
             out.append(f'<div class="dd{" cur" if cur else ""}"><button type="button" aria-expanded="false">{it[1]}</button><div class="sub">{subs}</div></div>')
     return "".join(out)
 
+def _flat_nav():
+    out = []
+    for it in NAV_ITEMS:
+        if it[0] == "link": out.append((it[1], it[2]))
+        else: out.extend(it[2])
+    return out
+
+def pager(path):
+    flat = _flat_nav(); urls = [u for u, _ in flat]
+    if path not in urls: return ""
+    i = urls.index(path)
+    nu, nt = flat[i + 1] if i + 1 < len(flat) else flat[0]
+    lab = f"Następna strona: {nt}" if i + 1 < len(flat) else "Wróć na stronę główną"
+    return f'<div class="pager"><a class="up" href="#top">↑ Na górę</a><a class="next" href="{nu}">{lab} →</a></div>'
+
 def page(path, title, desc, body, h1_schema=None):
     nav = build_nav(path)
     canon = BASE + path
@@ -98,13 +113,14 @@ def page(path, title, desc, body, h1_schema=None):
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="top">
 <header class="top">
   <a class="brand" href="/"><strong>Prof. Stanisław Dąbrowiecki</strong></a>
   <a class="toptel" href="tel:+48{TEL}">Tel. {TELF}</a>
 </header>
 <nav class="nav" aria-label="Główne">{nav}</nav>
 {body}
+{pager(path)}
 <footer>
   <p><strong>Indywidualna Specjalistyczna Praktyka Lekarska Prof. Stanisław Dąbrowiecki</strong><br>
   Tel. <a href="tel:+48{TEL}">{TELF}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a> · WhatsApp <a href="https://wa.me/48{TEL}">{TELF}</a></p>
