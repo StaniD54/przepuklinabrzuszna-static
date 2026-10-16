@@ -5,7 +5,7 @@ Strona prof. Stanisława Dąbrowieckiego o przepuklinach brzusznych. Statyczny H
 ## Struktura strony (menu = kafelki na głównej, jedna lista `NAV_ITEMS` w `build/build_site.py`)
 - Start
 - Objawy i zdjęcia
-- Rodzaje przepuklin ▾: pooperacyjna i kresy białej (zatwierdzone); pępkowa (szkic); **Inne** (jedna strona, trzy części: rzadkie przepukliny ściany brzucha – Spiegla, zasłonowa, kulszowa, kroczowa; przepukliny wewnętrzne wraz z rozworem przełykowym, informacyjnie; przepuklina lędźwiowa) – szkic
+- Rodzaje przepuklin ▾: pooperacyjna, kresy białej (zatwierdzone); pępkowa, lędźwiowa (po lumbotomii; szkice); **Inne** (rzadkie przepukliny ściany brzucha, przepukliny wewnętrzne, przepuklina żołądka/rozworu przełykowego – informacyjnie; szkic). Na głównej reklamujemy tylko przepukliny widoczne na zewnątrz.
 - Metody operacji ▾: przegląd metod, klasyczne, laparoskopowe, hybrydowe (szkice)
 - Wyniki i przygotowanie: rokowanie, co pogarsza wyniki, jak się przygotować (szkic)
 - Konsultacje i koszt: konsultacje online i osobiste (Bydgoszcz, Poznań), szpital Eskulap, O mnie, opinie, koszt
@@ -36,7 +36,7 @@ python3 build/build_site.py     # wymaga: pip install pillow
 - Fragmenty oznaczone „szkic do akceptacji” wymagają zatwierdzenia przed publikacją.
 
 ## Do ustalenia / zrobienia
-- Zatwierdzenie szkiców: pępkowa, Inne (rzadkie, wewnętrzne, rozwór przełykowy, lędźwiowa), klasyczne, laparoskopowe, hybrydowe, wyniki i przygotowanie, sekcje Objawy/Ciekawostka/Metoda według rodzaju (po zatwierdzeniu usunąć plakietki „szkic").
+- Zatwierdzenie szkiców: pępkowa, lędźwiowa, Inne (rzadkie, wewnętrzne, przepuklina żołądka), klasyczne, laparoskopowe, hybrydowe, wyniki i przygotowanie, sekcje Objawy/Ciekawostka/Metoda według rodzaju (po zatwierdzeniu usunąć plakietki „szkic").
 - Ilustracje do nowych stron (kresa, pępkowa, lędźwiowa, rzadkie, wewnętrzne, rozwór, metody) – dostarczy autor lub własne schematy.
 - Sprawdzić liczby w sekcjach medycznych (źródła).
 - Google Tag Manager z banerem zgody (obecnie brak cookies).

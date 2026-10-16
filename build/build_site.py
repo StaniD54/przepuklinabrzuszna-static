@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
  ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Wygląd, objawy"),
- ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/inne-przepukliny-brzuszne/", "Inne")]),
+ ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/inne-przepukliny-brzuszne/", "Inne")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowe"), ("/operacja-hybrydowa-przepukliny-brzusznej/", "Hybrydowe")]),
  ("link", "/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie"),
  ("link", "/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt"),
@@ -252,8 +252,8 @@ home += sec("Dlaczego operować", f"""<div class="why"><div><p>Przepuklina to na
 <figure class="ph"><img src="/img/powieksza-sie.webp" width="{SIZES['powieksza-sie'][0]}" height="{SIZES['powieksza-sie'][1]}" alt="Przepuklina stopniowo się powiększa" loading="lazy"><figcaption>Przepuklina nie stoi w miejscu, powoli i stopniowo się powiększa.</figcaption></figure></div>
 <div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina ze zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>""", "dlaczego", "wide")
 home += sec("Jakie przepukliny operuję", """<p>Zajmuję się przepuklinami ściany brzucha. Każda wymaga indywidualnego planu leczenia, ustalanego po zbadaniu chorego.</p>
-<ul class="check"><li><a href="/przepuklina-pooperacyjna/"><b>Przepuklina pooperacyjna.</b></a> Powstaje w bliźnie po operacji jamy brzusznej, nawet po latach. Jest najczęstsza i najtrudniejsza w leczeniu, zwłaszcza gdy wraca po wcześniejszej naprawie.</li><li><a href="/przepuklina-kresy-bialej/"><b>Przepuklina kresy białej.</b></a> Wybrzuszenie w środku brzucha, nad pępkiem, bez wcześniejszej operacji.</li><li><a href="/przepuklina-pepkowa/"><b>Przepuklina pępkowa.</b></a> U dzieci często zamyka się sama, u dorosłych zwykle trzeba ją operować.</li><li><a href="/inne-przepukliny-brzuszne/"><b>Inne przepukliny:</b></a> lędźwiowa (w boku, najczęściej po operacji nerki), rzadkie przepukliny ściany brzucha (Spiegla, zasłonowa, kulszowa, kroczowa) i przepukliny wewnętrzne. Trudne do rozpoznania, najlepiej widać je w tomografii.</li></ul>
-<p class="note">Przepukliny rozworu przełykowego („przepukliny żołądka”) nie operuję. <a href="/inne-przepukliny-brzuszne/#rozwor">Informacje o nich</a> podaję tylko jako wyjaśnienie.</p>""", "rodzaje")
+<ul class="check"><li><a href="/przepuklina-pooperacyjna/"><b>Przepuklina pooperacyjna.</b></a> Powstaje w bliźnie po operacji jamy brzusznej, nawet po latach. Jest najczęstsza i najtrudniejsza w leczeniu, zwłaszcza gdy wraca po wcześniejszej naprawie.</li><li><a href="/przepuklina-kresy-bialej/"><b>Przepuklina kresy białej.</b></a> Wybrzuszenie w środku brzucha, nad pępkiem, bez wcześniejszej operacji.</li><li><a href="/przepuklina-pepkowa/"><b>Przepuklina pępkowa.</b></a> U dzieci często zamyka się sama, u dorosłych zwykle trzeba ją operować.</li><li><a href="/przepuklina-ledzwiowa/"><b>Przepuklina lędźwiowa.</b></a> W boku, najczęściej po operacji nerki.</li></ul>
+<p class="note">Przepukliny rozworu przełykowego („przepukliny żołądka”) nie operuję. <a href="/inne-przepukliny-brzuszne/#zoladek">Informacje o nich</a> podaję tylko jako wyjaśnienie.</p>""", "rodzaje")
 home += sec("Jak operuję", """<p>Zasada jest prosta: naprawa <b>bez napięcia</b>, a jeśli się da, metodą małoinwazyjną. Niewielki ubytek (1–2 cm) zamykam samymi szwami. Większe przepukliny wzmacniam siatką, bo zmniejsza ona liczbę nawrotów.</p>
 <ul class="check"><li><a href="/operacja-laparoskopowa-przepukliny-brzusznej/"><b>Laparoskopia</b></a> przy przepuklinach małych i średnich (do 5–8 cm): mniej zakażeń rany, krótszy pobyt.</li><li><a href="/operacja-hybrydowa-przepukliny-brzusznej/"><b>Metoda hybrydowa</b></a> przy średnich i dużych (5–10 cm) oraz przy gęstych zrostach.</li><li><a href="/operacja-klasyczna-przepukliny-brzusznej/"><b>Operacja „na otwarto”</b></a> przy dużych i złożonych przepuklinach. Gdy przepuklina jest rozległa, jednocześnie można wykonać plastykę brzucha.</li></ul>
 <p><a href="/operacja-przepukliny-brzusznej/">Przegląd metod →</a></p>""", "metody")
@@ -401,11 +401,38 @@ b += faq_block([('Czy przepuklina pępkowa u dziecka zniknie sama?', 'U dzieci p
 write("/przepuklina-pepkowa/", "Przepuklina pępkowa: objawy, leczenie, operacja | Prof. Dąbrowiecki",
       "Przepuklina pępkowa u dorosłych: przyczyny, objawy, powikłania i leczenie. Małe ubytki szwami, większe z siatką. Prof. Dąbrowiecki, Bydgoszcz.", b)
 
+# ============ LĘDŹWIOWA ============
+b = hero("Przepuklina w boku brzucha", "Przepuklina lędźwiowa: objawy i rozpoznanie",
+         "Wybrzuszenie w boku, w okolicy lędźwi, najczęściej po operacji nerki.")
+b += sec("Zdjęcia", f"""<div class="grid4 g3 sq">{img('led1','Przepuklina lędźwiowa: wybrzuszenie w boku brzucha','')}{img('led2','Duża przepuklina lędźwiowa w boku brzucha, widok z boku, z blizną po operacji')}{img('led3','Przepuklina lędźwiowa: wybrzuszenie boku brzucha, widok z przodu')}</div>""")
+b += sec("Czym jest", f"""<p>Przepuklina lędźwiowa to wypuklenie zawartości jamy brzusznej przez ubytek w tylnej i bocznej ścianie brzucha, w okolicy lędźwi: między ostatnim żebrem, kością biodrową i mięśniami przykręgosłupowymi. Najczęściej powstaje po operacji nerki wykonanej przez cięcie w boku.</p>
+<p>W worku przepuklinowym może znaleźć się jelito grube lub cienkie, tłuszcz, a rzadko nawet nerka, śledziona czy żołądek. Dlatego grozi uwięźnięciem i zadzierzgnięciem.</p>""")
+b += sec("Nazwy medyczne", """<p>Przepuklina powstająca w miejscu cięcia po operacji nerki nazywa się w medycynie <b>wtórną (nabytą) przepukliną lędźwiową</b>, a także przepukliną pooperacyjną w bliźnie po lumbotomii (po angielsku <i>flank incisional hernia</i>). Lumbotomia to klasyczne cięcie z boku tułowia, pod żebrami, którym dociera się do nerki i nadnercza.</p>
+<p>Odróżnia się ją od <b>pierwotnych</b> przepuklin lędźwiowych, które są wrodzone albo wynikają z osłabienia trójkątów lędźwiowych. Przepuklina wtórna jest skutkiem uszkodzenia ściany brzucha podczas wcześniejszej operacji.</p>""")
+b += sec("Jak często po operacji nerki", f"""<p>Po klasycznym, otwartym cięciu w boku przepuklina powstaje u około 20–30% chorych, a w niektórych badaniach nawet u 35%. Po planowym dostępie za otrzewną ryzyko spada do około 7%. Operacje małoinwazyjne ryzyko jeszcze zmniejszają: po laparoskopii około 11%.</p>""")
+b += sec("Dlaczego powstaje", f"""<p>Dostęp do nerki wymaga rozcięcia lub rozsunięcia kilku warstw silnych mięśni boku brzucha i grzbietu. Do powstania przepukliny przyczyniają się:</p>
+<ul class="check"><li><b>Uszkodzenie nerwów i zanik mięśni.</b> Cięcie może uszkodzić nerwy zasilające mięśnie boku brzucha (nerwy międzyżebrowe i podżebrowe). Mięśnie wtedy słabną i stopniowo zanikają, a ściana brzucha cieńsieje. Bok brzucha może się charakterystycznie wybrzuszać.</li><li><b>Ciśnienie w brzuchu.</b> Stale napiera ono na bliznę w miejscu przeciętych mięśni i powięzi i może ją rozchylić.</li><li><b>Trudne gojenie rany.</b> Powikłania po operacji, takie jak zakażenie czy krwiak, znacznie osłabiają wytrzymałość blizny.</li></ul>""")
+b += sec("Kto jest bardziej narażony", f"""<p>Przepuklina lędźwiowa powstaje częściej przy:</p>
+<ul class="check"><li>otyłości (to najsilniejszy czynnik),</li><li>paleniu papierosów,</li><li>cukrzycy i nadciśnieniu,</li><li>przewlekłej chorobie płuc i chorobie wieńcowej,</li><li>ciężkiej niewydolności nerek,</li><li>dużym guzie nerki i rozległym cięciu.</li></ul>""")
+b += sec("Objawy", f"""<p>Przepuklina często nie daje objawów. Może się pojawić:</p>
+<ul class="check"><li><b>widoczne uwypuklenie:</b> miękki guz w boku tułowia lub w dolnej części pleców, najlepiej widoczny w staniu, przy kaszlu i napinaniu brzucha; zwykle da się go wsunąć,</li><li><b>wrażenie asymetrii:</b> pacjenci opisują „wybrzuszenie” lub „wiszący bok” po jednej stronie tułowia,</li><li><b>ból lub dyskomfort:</b> tępy ból pleców lub boku, który nasila się pod koniec dnia lub po wysiłku,</li><li>czasem zmiany w oddawaniu moczu lub stolca.</li></ul>
+<p>Objawy bywają różne i niecharakterystyczne, więc łatwo je przeoczyć.</p>""")
+b += sec("Przepuklina czy wybrzuszenie boku", f"""<p>Po operacji w boku mogą wystąpić dwie różne rzeczy:</p>
+<ul class="check"><li><b>Prawdziwa przepuklina:</b> jest ubytek w ścianie brzucha i worek przepuklinowy. Grozi uwięźnięciem i zadzierzgnięciem.</li><li><b>Wybrzuszenie boku (pseudoprzepuklina):</b> mięśnie są wiotkie po uszkodzeniu nerwów, ale nie ma ubytku w ścianie. Nie grozi uwięźnięciem.</li></ul>
+<p>Obie te sytuacje bywają nie do odróżnienia samym badaniem, a czasem nawet badania obrazowe nie rozstrzygają. Dlatego ocena wymaga doświadczenia.</p>""")
+b += sec("Rozpoznanie", f"""<p>Podstawą jest dokładne badanie chorego. Najlepszym badaniem dodatkowym jest tomografia komputerowa: pokazuje wielkość ubytku, zawartość worka i zanik mięśni oraz odróżnia przepuklinę od wybrzuszenia i od tłuszczaka. USG wykonane przez mało doświadczonego lekarza może pomylić przepuklinę z tłuszczakiem.</p>""")
+b += sec("Powikłania", f"""<p>Przy przepuklinach bocznych uwięźnięcie opisuje się nawet w co czwartym przypadku, a zadzierzgnięcie u kilku do kilkunastu procent chorych.</p>
+<div class="callout"><p><b>Zgłoś się natychmiast do szpitala, gdy pojawi się:</b> twarde, bolesne wybrzuszenie, którego nie da się wsunąć, nudności lub wymioty, wzdęcie brzucha albo brak oddawania gazów i stolca.</p></div>""")
+b += more_links([ALL[0], ALL[1], ALL[2]])
+b += faq_block([('Dlaczego po operacji nerki może powstać przepuklina w boku?', 'Rozległe cięcie w boku i uszkodzenie nerwów zasilających mięśnie osłabiają ścianę brzucha. Ryzyko zwiększają otyłość, palenie, cukrzyca, duży guz nerki i choroby płuc. Operowany pacjent nigdy nie jest winny przepukliny.'), ('Jak odróżnić przepuklinę od wybrzuszenia boku?', 'Przy prawdziwej przepuklinie jest ubytek w ścianie i worek, więc grozi uwięźnięciem. Przy wybrzuszeniu boku (pseudoprzepuklinie) mięśnie są wiotkie po uszkodzeniu nerwów, ale ubytku nie ma i nie ma ryzyka uwięźnięcia. Samo badanie nie zawsze to rozstrzyga, dlatego pomaga tomografia komputerowa.'), ('Czy do rozpoznania przepukliny lędźwiowej potrzebna jest tomografia?', 'Najlepszym badaniem dodatkowym jest tomografia: pokazuje wielkość ubytku, zawartość worka i zanik mięśni oraz odróżnia przepuklinę od tłuszczaka. USG wykonane przez mało doświadczonego lekarza może pomylić przepuklinę z tłuszczakiem. O badaniach decyduję po zbadaniu chorego.')])
+write("/przepuklina-ledzwiowa/", "Przepuklina lędźwiowa po operacji nerki: objawy, rozpoznanie | Prof. Dąbrowiecki",
+      "Przepuklina lędźwiowa: gdzie powstaje, jak często po operacji nerki, objawy, różnica od wybrzuszenia boku, rozpoznanie. Prof. Dąbrowiecki, Bydgoszcz.", b)
+
 # ============ INNE (rzadkie, wewnętrzne, lędźwiowa) ============
 b = hero("Inne przepukliny", "Inne przepukliny brzuszne",
-         "Przepukliny w nietypowych miejscach: rzadkie przepukliny ściany brzucha, przepukliny wewnętrzne i przepuklina lędźwiowa.")
-b += sec("Na tej stronie", """<p>Zajmuję się przepuklinami ściany brzucha. Te opisane poniżej zdarzają się rzadziej, bywają trudne do rozpoznania i często nie widać ich na zewnątrz. Strona ma trzy części:</p>
-<ul class="check"><li><a href="#rzadkie"><b>Rzadkie przepukliny ściany brzucha:</b></a> Spiegla, zasłonowa, kulszowa i kroczowa.</li><li><a href="#wewnetrzne"><b>Przepukliny wewnętrzne,</b></a> a w nich krótka informacja o przepuklinie rozworu przełykowego („przepuklinie żołądka”), której nie operuję.</li><li><a href="#ledzwiowa"><b>Przepuklina lędźwiowa:</b></a> w boku brzucha, najczęściej po operacji nerki.</li></ul>""")
+         "Rzadkie przepukliny ściany brzucha, przepukliny wewnętrzne i przepuklina żołądka. Informacje dla pacjentów, którzy trafili tu z takim rozpoznaniem.")
+b += sec("Na tej stronie", """<p>Przepukliny opisane poniżej zdarzają się rzadziej, bywają trudne do rozpoznania, a niektórych nie widać na zewnątrz. Podaję je informacyjnie. Strona ma trzy części:</p>
+<ul class="check"><li><a href="#rzadkie"><b>Rzadkie przepukliny ściany brzucha:</b></a> Spiegla, zasłonowa, kulszowa i kroczowa.</li><li><a href="#wewnetrzne"><b>Przepukliny wewnętrzne:</b></a> w środku brzucha, nie widać ich na zewnątrz.</li><li><a href="#zoladek"><b>Przepuklina żołądka</b></a> (przepuklina rozworu przełykowego): tych przepuklin nie operuję.</li></ul>""")
 
 b += sec("Rzadkie przepukliny ściany brzucha", f"""<p>Rzadkie przepukliny występują w nietypowych miejscach, dają niewyraźne objawy i często nie da się ich wyczuć w badaniu. Rozpoznanie samym badaniem bywa niepewne, a nawet niemożliwe. Badaniem z wyboru jest <b>tomografia komputerowa</b>.</p>
 <h3>Przepuklina Spiegla</h3>
@@ -431,50 +458,34 @@ b += sec("Przepukliny wewnętrzne", f"""<h3>Czym są i skąd się biorą</h3>
 <h3>Objawy i rozpoznanie</h3>
 <p>Często są to przewlekłe, nawracające bóle kolkowe brzucha po jedzeniu z nudnościami. Może też wystąpić nagła niedrożność lub niedokrwienie jelita, które wymagają pilnej operacji.</p>
 <p>Samo badanie lekarskie zwykle nie wystarcza. Badaniem z wyboru jest tomografia komputerowa z kontrastem.</p>
-<h3 id="rozwor">Przepuklina rozworu przełykowego („przepuklina żołądka”)</h3>
-<div class="callout"><p><b>Nie operuję przepuklin rozworu przełykowego.</b> Informacje podaję wyłącznie w celach informacyjnych, ponieważ pacjenci często przychodzą z rozpoznaniem „przepuklina żołądka”. Leczenie takiej przepukliny wymaga konsultacji u chirurga, który się tym zajmuje.</p></div>
-<h4>Co to jest</h4>
+""", "wewnetrzne")
+
+
+b += sec("Przepuklina żołądka (przepuklina rozworu przełykowego)", f"""<div class="callout"><p><b>Nie operuję przepuklin rozworu przełykowego.</b> Informacje podaję wyłącznie w celach informacyjnych, ponieważ pacjenci często przychodzą z rozpoznaniem „przepuklina żołądka”. Leczenie takiej przepukliny wymaga konsultacji u chirurga, który się tym zajmuje.</p></div>
+<h3>Co to jest</h3>
 <p>To też rodzaj przepukliny wewnętrznej: narządy jamy brzusznej przesuwają się do klatki piersiowej przez otwór w przeponie. Przepona oddziela klatkę piersiową od brzucha, a przełyk przechodzi przez nią otworem, który nazywa się rozworem. Gdy ten otwór się poszerzy, a jego otoczenie osłabnie, przez otwór przesuwa się do klatki piersiowej żołądek (jego część lub cały), a czasem inne narządy jamy brzusznej.</p>
 <p>To nie jest przepuklina ściany brzucha, ale tak samo polega na wpuklaniu się narządów przez osłabione miejsce. Jest bardzo częsta: dotyczy około 10–50% dorosłych. Wielu chorych nie ma objawów, a przepuklinę znajduje się przypadkiem.</p>
-<h4>Rodzaje</h4>
+<h3>Rodzaje</h3>
 <p>Są cztery typy, a od typu zależy leczenie:</p>
 <ul class="check"><li><b>Typ I, wślizgowa:</b> najczęstsza (około 90–95%). Połączenie przełyku z żołądkiem przesuwa się nad przeponę. Daje głównie objawy refluksu.</li><li><b>Typ II, okołoprzełykowa:</b> połączenie przełyku z żołądkiem jest na swoim miejscu, ale dno żołądka przeciska się obok przełyku.</li><li><b>Typ III, mieszana:</b> nad przeponą jest i połączenie, i dno żołądka.</li><li><b>Typ IV:</b> oprócz żołądka przesuwa się inny narząd, najczęściej okrężnica, a czasem śledziona lub trzustka.</li></ul>
 <p>Typy II–IV to razem <b>przepukliny okołoprzełykowe</b>. Jest ich około 5%, ale to one grożą groźnymi powikłaniami.</p>
-<h4>Objawy</h4>
+<h3>Objawy</h3>
 <p>Przepuklina wślizgowa daje najczęściej zgagę i cofanie się treści do przełyku. Mogą też być objawy poza przełykiem: przewlekły kaszel, chrypka, ból w klatce piersiowej, który nie pochodzi z serca.</p>
 <p>Większe przepukliny mogą powodować trudności w połykaniu, ból w klatce piersiowej i szybkie uczucie sytości. Czasem w żołądku powstają nadżerki, które powoli krwawią i prowadzą do niedokrwistości z niedoboru żelaza. Długotrwały refluks może prowadzić do przełyku Barretta, a z niego do raka przełyku.</p>
 <div class="callout"><p><b>Wezwij pogotowie (112), gdy pojawi się:</b> nagły, silny ból w klatce piersiowej lub w nadbrzuszu, wymioty albo próby wymiotów bez efektu, niemożność połknięcia. To może być uwięźnięcie lub skręt żołądka. Wymaga natychmiastowej operacji, bo martwica żołądka kończy się śmiercią w co najmniej 30% przypadków.</p></div>
-<h4>Rozpoznanie</h4>
+<h3>Rozpoznanie</h3>
 <p>Przepuklinę zwykle znajduje się przy badaniach z powodu refluksu, trudności w połykaniu albo niedokrwistości. Podstawowe badania to <b>pasaż przełyku z kontrastem</b> i <b>gastroskopia</b>. Przed planową operacją wykonuje się też <b>manometrię przełyku</b> i czasem pH-metrię. Dużą przepuklinę okołoprzełykową widać czasem na zwykłym zdjęciu rentgenowskim klatki piersiowej jako zacienienie za sercem.</p>
-<h4>Leczenie</h4>
+<h3>Leczenie</h3>
 <p>Leczenie zależy od typu przepukliny:</p>
 <ul class="check"><li><b>Wślizgowa z refluksem:</b> najpierw leki zmniejszające kwas w żołądku i zmiana stylu życia (zmniejszenie masy ciała, brak jedzenia przed snem, uniesione wezgłowie łóżka). Operacja, gdy objawy nie ustępują albo chory nie toleruje leków.</li><li><b>Okołoprzełykowa z objawami:</b> operacja. Przy typie IV operacja jest zawsze potrzebna.</li></ul>
 <p>Standardem jest operacja laparoskopowa. Chirurg wprowadza żołądek z powrotem do brzucha, usuwa worek przepuklinowy, zbliża do siebie odnogi przepony i zwykle wykonuje <b>fundoplikację</b>, czyli owija dno żołądka wokół przełyku, żeby zapobiec refluksowi i nawrotowi. Operacja laparoskopowa daje mniejszą utratę krwi, krótszy pobyt w szpitalu i mniej powikłań niż operacja otwarta.</p>
-<p>Po fundoplikacji mogą wystąpić trudności w połykaniu oraz wzdęcia z trudnością w odbijaniu. Nawroty są częste: zależnie od wyjściowej wielkości przepukliny do około 50%.</p>""", "wewnetrzne")
-
-b += sec("Przepuklina lędźwiowa", f"""<div class="grid4 g3 sq">{img('led1','Przepuklina lędźwiowa: wybrzuszenie w boku brzucha','')}{img('led2','Duża przepuklina lędźwiowa w boku brzucha, widok z boku, z blizną po operacji')}{img('led3','Przepuklina lędźwiowa: wybrzuszenie boku brzucha, widok z przodu')}</div>
-<h3>Czym jest i jak często</h3>
-<p>Przepuklina lędźwiowa to wypuklenie zawartości jamy brzusznej przez ubytek w tylnej i bocznej ścianie brzucha, w okolicy lędźwi: między ostatnim żebrem, kością biodrową i mięśniami przykręgosłupowymi. Najczęściej powstaje po operacji nerki wykonanej przez cięcie w boku.</p>
-<p>W worku przepuklinowym może znaleźć się jelito grube lub cienkie, tłuszcz, a rzadko nawet nerka, śledziona czy żołądek. Dlatego grozi uwięźnięciem i zadzierzgnięciem.</p>
-<p>Po klasycznym, otwartym cięciu w boku przepuklina powstaje u około 20–30% chorych, a w niektórych badaniach nawet u 35%. Po planowym dostępie za otrzewną ryzyko spada do około 7%. Operacje małoinwazyjne ryzyko jeszcze zmniejszają: po laparoskopii około 11%.</p>
-<h3>Dlaczego powstaje i kto jest narażony</h3>
-<p>Cięcie w boku może uszkodzić nerwy, które pobudzają mięśnie ściany brzucha. Mięśnie wtedy stopniowo zanikają, ściana brzucha cieńsieje i słabnie. To sprzyja przepuklinie, a bok brzucha może się charakterystycznie wybrzuszać.</p>
-<p>Przepuklina lędźwiowa powstaje częściej przy:</p>
-<ul class="check"><li>otyłości (to najsilniejszy czynnik),</li><li>paleniu papierosów,</li><li>cukrzycy i nadciśnieniu,</li><li>przewlekłej chorobie płuc i chorobie wieńcowej,</li><li>ciężkiej niewydolności nerek,</li><li>dużym guzie nerki i rozległym cięciu.</li></ul>
-<h3>Przepuklina czy wybrzuszenie boku</h3>
-<p>Po operacji w boku mogą wystąpić dwie różne rzeczy:</p>
-<ul class="check"><li><b>Prawdziwa przepuklina:</b> jest ubytek w ścianie brzucha i worek przepuklinowy. Grozi uwięźnięciem i zadzierzgnięciem.</li><li><b>Wybrzuszenie boku (pseudoprzepuklina):</b> mięśnie są wiotkie po uszkodzeniu nerwów, ale nie ma ubytku w ścianie. Nie grozi uwięźnięciem.</li></ul>
-<p>Obie te sytuacje bywają nie do odróżnienia samym badaniem, a czasem nawet badania obrazowe nie rozstrzygają. Dlatego ocena wymaga doświadczenia.</p>
-<h3>Objawy i rozpoznanie</h3>
-<p>Przepuklina często nie daje objawów. W boku widać miękkie wybrzuszenie, które da się wsunąć i które powiększa się przy kaszlu i parciu. Może boleć okolica lędźwi, czasem występują zmiany w oddawaniu moczu lub stolca. Objawy bywają różne i niecharakterystyczne, więc łatwo je przeoczyć.</p>
-<p>Podstawą rozpoznania jest dokładne badanie chorego. Najlepszym badaniem dodatkowym jest tomografia komputerowa: pokazuje wielkość ubytku, zawartość worka i zanik mięśni oraz odróżnia przepuklinę od wybrzuszenia i od tłuszczaka. USG wykonane przez mało doświadczonego lekarza może pomylić przepuklinę z tłuszczakiem.</p>
-<p>Przy przepuklinach bocznych uwięźnięcie opisuje się nawet w co czwartym przypadku, a zadzierzgnięcie u kilku do kilkunastu procent chorych.</p>""", "ledzwiowa")
+<p>Po fundoplikacji mogą wystąpić trudności w połykaniu oraz wzdęcia z trudnością w odbijaniu. Nawroty są częste: zależnie od wyjściowej wielkości przepukliny do około 50%.</p>""", "zoladek")
 
 b += sec("Kiedy pilnie do lekarza", f"""<div class="callout"><p><b>Zgłoś się natychmiast do szpitala, gdy pojawi się:</b> silny ból brzucha lub miednicy, twarde i bolesne wybrzuszenie, którego nie da się wsunąć, nudności lub wymioty, wzdęcie brzucha, brak oddawania gazów i stolca albo ból promieniujący do uda. To objawy uwięźnięcia lub zadzierzgnięcia jelita.</p></div>""")
 b += more_links([ALL[0], ALL[1], ALL[2]])
-b += faq_block([('Dlaczego rzadkie przepukliny tak trudno rozpoznać?', 'Występują w nietypowych miejscach, dają niewyraźne objawy i często nie da się ich wyczuć w badaniu. Czasem są pod mięśniami, a niektóre ujawniają się dopiero jako niedrożność jelit. Badaniem z wyboru jest tomografia komputerowa.'), ('Czy przepuklinę wewnętrzną można zauważyć na brzuchu?', 'Nie. Wszystko dzieje się w środku, więc nie widać żadnego wybrzuszenia. Objawy to najczęściej nawracające kolkowe bóle brzucha po jedzeniu z nudnościami, a czasem nagła niedrożność jelita. Rozpoznanie zwykle wymaga tomografii z kontrastem.'), ('Jak odróżnić przepuklinę lędźwiową od wybrzuszenia boku?', 'Przy prawdziwej przepuklinie jest ubytek w ścianie i worek, więc grozi uwięźnięciem. Przy wybrzuszeniu boku (pseudoprzepuklinie) mięśnie są wiotkie po uszkodzeniu nerwów, ale ubytku nie ma i nie ma ryzyka uwięźnięcia. Samo badanie nie zawsze to rozstrzyga, dlatego pomaga tomografia komputerowa.')])
-write("/inne-przepukliny-brzuszne/", "Inne przepukliny brzuszne: rzadkie, wewnętrzne, lędźwiowa | Prof. Dąbrowiecki",
-      "Rzadkie przepukliny ściany brzucha (Spiegla, zasłonowa, kulszowa, kroczowa), przepukliny wewnętrzne, przepuklina rozworu przełykowego i przepuklina lędźwiowa. Objawy i rozpoznanie.", b)
+b += faq_block([('Dlaczego rzadkie przepukliny tak trudno rozpoznać?', 'Występują w nietypowych miejscach, dają niewyraźne objawy i często nie da się ich wyczuć w badaniu. Czasem są pod mięśniami, a niektóre ujawniają się dopiero jako niedrożność jelit. Badaniem z wyboru jest tomografia komputerowa.'), ('Czy przepuklinę wewnętrzną można zauważyć na brzuchu?', 'Nie. Wszystko dzieje się w środku, więc nie widać żadnego wybrzuszenia. Objawy to najczęściej nawracające kolkowe bóle brzucha po jedzeniu z nudnościami, a czasem nagła niedrożność jelita. Rozpoznanie zwykle wymaga tomografii z kontrastem.'), ('Czy operuje Pan przepukliny żołądka (rozworu przełykowego)?', 'Nie. Podaję te informacje wyłącznie w celach informacyjnych, bo pacjenci często przychodzą z takim rozpoznaniem. Leczenie wymaga konsultacji u chirurga, który zajmuje się tymi przepuklinami. Ja zajmuję się przepuklinami ściany brzucha.')])
+write("/inne-przepukliny-brzuszne/", "Inne przepukliny brzuszne: rzadkie, wewnętrzne, przepuklina żołądka | Prof. Dąbrowiecki",
+      "Rzadkie przepukliny ściany brzucha (Spiegla, zasłonowa, kulszowa, kroczowa), przepukliny wewnętrzne i przepuklina żołądka (rozworu przełykowego). Objawy i rozpoznanie.", b)
 
 # ============ WYNIKI I PRZYGOTOWANIE ============
 b = hero("Wyniki i przygotowanie", "Wyniki leczenia przepukliny i przygotowanie do operacji",
@@ -581,7 +592,7 @@ if STAGING:
     open(f"{OUT}/_headers", "w").write("/*\n  X-Robots-Tag: noindex, nofollow\n")
 else:
     open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-open(f"{OUT}/_redirects", "w").write("/przepuklina-ledzwiowa/ /inne-przepukliny-brzuszne/#ledzwiowa 301\n/rzadkie-przepukliny-brzuszne/ /inne-przepukliny-brzuszne/#rzadkie 301\n/przepukliny-wewnetrzne/ /inne-przepukliny-brzuszne/#wewnetrzne 301\n/przepuklina-rozworu-przelykowego/ /inne-przepukliny-brzuszne/#rozwor 301\n")
-urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/inne-przepukliny-brzuszne/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/operacja-hybrydowa-przepukliny-brzusznej/", "/cookies/"]
+open(f"{OUT}/_redirects", "w").write("/rzadkie-przepukliny-brzuszne/ /inne-przepukliny-brzuszne/#rzadkie 301\n/przepukliny-wewnetrzne/ /inne-przepukliny-brzuszne/#wewnetrzne 301\n/przepuklina-rozworu-przelykowego/ /inne-przepukliny-brzuszne/#zoladek 301\n")
+urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/inne-przepukliny-brzuszne/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/operacja-hybrydowa-przepukliny-brzusznej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
 print("OK", len(urls), "stron")
