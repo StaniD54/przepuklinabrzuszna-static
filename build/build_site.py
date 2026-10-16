@@ -19,7 +19,7 @@ for f in os.listdir(f"{ROOT}/build/fonts"):
 
 # ---- obrazy: zmniejszone, WebP ----
 IMGS = {
- "zan1": "HV_1.jpg", "zan2": "HV_2.jpg", "zan3": "HV_3.jpg", "zan4": "HV_4.jpg",
+ "zan1": "HV_1.jpg", "zan2": "HV_2.jpg", "zan3": "HV_3.jpg", "zan4": "HV_4.jpg", "powikl1": "HV_powiklana_1.jpg",
  "martwica": "HV-martwica-skory-e1654946972342.jpg",
  "przed1": "HV-przed-operacja.jpg", "przed2": "HV-przed-operacja2.jpg",
  "otylosc": "otylosc-i-przepuklina.jpg",
@@ -291,8 +291,11 @@ b += sec("To tylko na SOR", f"""<p><b>Czy badania krwi pokażą, że jelito obum
 <ul class="check"><li>objawy niedrożności jelit i długi czas od początku dolegliwości do operacji (np. powyżej 16–26 godzin),</li><li>podwyższone wskaźniki zapalenia: liczba białych krwinek, stosunek neutrofili do limfocytów (NLR), CRP,</li><li>wyższy mleczan, mocznik i bilirubina oraz niski sód.</li></ul>
 <p>Żaden z tych wyników nie wyklucza martwicy, gdy jest prawidłowy. Dlatego decyzję podejmuje się na podstawie objawów, badania chorego i tomografii z kontrastem, a nie samych badań krwi.</p>""", "ciekawostka", "wide")
 b += sec("Zdjęcia", f"""<p>Na zdjęciach skutki braku operacji. Przepukliny powiększały się przez lata. Lekceważono objawy, a operacja była stale odkładana na później; czasami przez pacjenta, bywa że przez lekarza.</p>
-<div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina z zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>
-<p class="note">Na zdjęciach z prawej skóra nad przepukliną nie wytrzymuje napięcia i stopniowo ulega martwicy. Z czasem dojdzie do pęknięcia i wydostania się jelit na zewnątrz. To będzie już dramat: pęknięta przepuklina na brzuchu.</p>
+<div class="grid4 g3">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>
+<h3>Przepuklina powikłana</h3>
+<p>Worek przepuklinowy uciska skórę, która go pokrywa. Na skórze powstają zmiany wynikające z tego ucisku. Powodują one zmiany niedokrwienne, czyli skóra jest coraz gorzej ukrwiona. Gdy zmiany się nasilą, może dojść do pęknięcia skóry na worku przepuklinowym.</p>
+<div class="duo">{img('zan3','Przepuklina powikłana zmianami niedokrwiennymi skóry')}{img('powikl1','Przepuklina powikłana zmianami niedokrwiennymi skóry, widok z przodu')}</div>
+<p class="note">Na zdjęciach wyżej skóra nad przepukliną nie wytrzymuje napięcia i stopniowo ulega martwicy. Z czasem dojdzie do pęknięcia i wydostania się jelit na zewnątrz. To będzie już dramat: pęknięta przepuklina na brzuchu.</p>
 <div class="duo">{img('martwica','Martwica skóry nad przepukliną')}</div>
 <p><b>Nigdy nie można dopuszczać do tak zaawansowanego stanu choroby.</b> Pacjent staje się inwalidą.</p>""", "zdjecia", "wide")
 b += sec("Pacjent nie jest winny", """<p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. Bywa, że pacjent jest obwiniany: „za szybko wstał Pan z łóżka po operacji”. To nie jest prawda i to nie jest przyczyna przepukliny. Nie dajcie sobie tego wmówić.</p>""")
