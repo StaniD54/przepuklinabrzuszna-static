@@ -92,7 +92,7 @@ def pager(path):
     i = urls.index(path)
     nu, nt = flat[i + 1] if i + 1 < len(flat) else flat[0]
     lab = nt
-    return f'<div class="pager"><a class="up" href="#top" aria-label="Na górę strony" title="Na górę">↑</a><a class="next" href="{nu}">{lab} →</a></div>'
+    return f'<div class="pager"><a class="up" href="#top" aria-label="Do góry" data-tip="do góry"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V4M4 12l8-8 8 8"/></svg></a><a class="next" href="{nu}">{lab} →</a></div>'
 
 def page(path, title, desc, body, h1_schema=None):
     nav = build_nav(path)
