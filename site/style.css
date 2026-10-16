@@ -158,3 +158,5 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 @media (max-width:720px){.mix{grid-template-columns:minmax(0,1fr);max-width:420px}}
 
 .grid4.sq figure.ph.top img{object-position:50% 35%}
+
+.body h4{font-size:1.05rem;margin:18px 0 6px}
