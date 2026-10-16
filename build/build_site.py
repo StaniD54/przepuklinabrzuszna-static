@@ -275,7 +275,7 @@ def write(path, title, desc, body):
     open(f"{d}index.html", "w", encoding="utf-8").write(page(path, title, desc, body))
 
 # ============ OBJAWY I ZDJĘCIA ============
-b = hero("Przepuklina brzuszna", "Przepuklina brzuszna: jak wygląda, objawy, zdjęcia",
+b = hero("Przepuklina brzuszna", "Przepuklina brzuszna. Wygląd, objawy",
          "Zdjęcia przepuklin zaniedbanych oraz informacje, dlaczego nie wolno odkładać operacji.")
 b += sec("Co to jest", f"""<p>Przepuklina brzuszna to wypuklenie zawartości jamy brzusznej przez osłabione miejsce w ścianie brzucha. Najczęściej powstaje w bliźnie po wcześniejszej operacji (przepuklina pooperacyjna), ale bywa też, że powstaje samoistnie.</p>
 <p>Rozpoznanie ustalam podczas badania. Mogą być wymagane dodatkowe badania (USG, tomografia, rezonans magnetyczny).</p>""")
@@ -300,7 +300,7 @@ b += sec("Kto jest zagrożony", f"""<p>Niebezpieczeństwo wystąpienia przepukli
 <div class="duo">{img('przed1','Przepuklina brzuszna u osoby otyłej, przed operacją')}{img('przed2','Przepuklina brzuszna, widok z boku, przed operacją')}</div>""")
 b += more_links(ALL[1:])
 b += faq_block([('Jak rozpoznać, że mam przepuklinę brzuszną?', 'Najczęściej jest to wybrzuszenie pod skórą, które powiększa się przy kaszlu, staniu lub wysiłku, a po położeniu się znika albo da się je wsunąć. Może towarzyszyć uczucie ciężkości lub ciągnięcia i ból, który narasta pod koniec dnia. Ostateczne rozpoznanie stawia lekarz po zbadaniu chorego, a w trudnych przypadkach pomaga USG lub tomografia.'), ('Kiedy przepuklina brzuszna wymaga pilnej pomocy?', 'Gdy wybrzuszenie przestaje się wsuwać, pojawia się silny ból, wymioty, wzdęcie brzucha albo brak oddawania gazów i stolca. To może być uwięźnięcie jelita, a potem jego zadzierzgnięcie, czyli obumarcie. Nie należy wtedy czekać do rana, tylko jechać do szpitala. Groźniejsze są przepukliny o małym otworze.'), ('Czy przepuklina, która nie boli, musi być operowana?', 'Brak bólu nie oznacza, że można czekać. Przepuklina sama nie zniknie, z czasem się powiększa, a duże przepukliny są trudniejsze do operacji i wymagają dłuższej rekonwalescencji. Jedyną metodą leczenia jest operacja, a im wcześniej, tym zwykle jest prostsza.')])
-write("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna: jak wygląda, objawy, zdjęcia | Prof. Dąbrowiecki",
+write("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna. Wygląd, objawy | Prof. Dąbrowiecki",
       "Jak wygląda przepuklina brzuszna? Zdjęcia, skutki odkładania operacji i kto jest zagrożony. Prof. Dąbrowiecki, konsultacje w Bydgoszczy i Poznaniu.", b)
 
 # ============ POOPERACYJNA ============
