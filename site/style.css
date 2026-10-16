@@ -156,3 +156,5 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 
 .mix{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:12px;align-items:start;margin:8px 0 16px}
 @media (max-width:720px){.mix{grid-template-columns:minmax(0,1fr);max-width:420px}}
+
+.grid4.sq figure.ph.top img{object-position:50% 35%}

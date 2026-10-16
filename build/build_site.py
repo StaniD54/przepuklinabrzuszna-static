@@ -20,7 +20,7 @@ for f in os.listdir(f"{ROOT}/build/fonts"):
 # ---- obrazy: zmniejszone, WebP ----
 IMGS = {
  "zan1": "HV_1.jpg", "zan2": "HV_2.jpg", "zan3": "HV_3.jpg", "zan4": "HV_4.jpg", "powikl1": "HV_powiklana_1.jpg", "powikl2": "HV-martwica-skory-e1654946972342.jpg",
- "led1": "HV_ledzwiowa_1.jpg", "kb1": "HV_kresa_1.jpg", "roz1": "HV_rozejscie_1.jpg", "roz2": "HV_rozejscie_2.jpg", "po1": "HV_pooper_1.jpg", "po2": "HV_pooper_2.jpg", "po3": "HV_pooper_3.jpg", "przed1": "HV-przed-operacja.jpg", "przed2": "HV-przed-operacja2.jpg",
+ "led1": "HV_ledzwiowa_1_kadr.jpg", "led2": "HV_ledzwiowa_2.jpg", "led3": "HV_ledzwiowa_3.jpg", "kb1": "HV_kresa_1.jpg", "roz1": "HV_rozejscie_1.jpg", "roz2": "HV_rozejscie_2.jpg", "po1": "HV_pooper_1.jpg", "po2": "HV_pooper_2.jpg", "po3": "HV_pooper_3.jpg", "przed1": "HV-przed-operacja.jpg", "przed2": "HV-przed-operacja2.jpg",
  "otylosc": "otylosc-i-przepuklina.jpg",
  "plast-przed": "otylosc-i-HV-229x300.jpg", "plast-po": "otylosc-i-HV-pooper-230x300.jpg",
  "otwarta": "otwary-brzuch-300x199.jpg", "siatka": "siatka-do-wszczepienia-300x191.jpg",
@@ -404,8 +404,9 @@ write("/przepuklina-pepkowa/", "Przepuklina pępkowa: objawy, leczenie, operacja
 # ============ LĘDŹWIOWA ============
 b = hero("Przepuklina w boku brzucha", "Przepuklina lędźwiowa: objawy i rozpoznanie",
          "Wybrzuszenie w boku, w okolicy lędźwi, najczęściej po operacji nerki.")
-b += sec("Czym jest", f"""<div class="two">{img('led1','Przepuklina lędźwiowa: wybrzuszenie w boku brzucha','Przepuklina lędźwiowa: wybrzuszenie w boku brzucha','gifx')}<div><p>Przepuklina lędźwiowa to wypuklenie zawartości jamy brzusznej przez ubytek w tylnej i bocznej ścianie brzucha, w okolicy lędźwi: między ostatnim żebrem, kością biodrową i mięśniami przykręgosłupowymi. Najczęściej powstaje po operacji nerki wykonanej przez cięcie w boku.</p>
-<p>W worku przepuklinowym może znaleźć się jelito grube lub cienkie, tłuszcz, a rzadko nawet nerka, śledziona czy żołądek. Dlatego grozi uwięźnięciem i zadzierzgnięciem.</p></div></div>""")
+b += sec("Zdjęcia", f"""<div class="grid4 g3 sq">{img('led1','Przepuklina lędźwiowa: wybrzuszenie w boku brzucha','')}{img('led2','Duża przepuklina lędźwiowa w boku brzucha, widok z boku, z blizną po operacji')}{img('led3','Przepuklina lędźwiowa: wybrzuszenie boku brzucha, widok z przodu')}</div>""")
+b += sec("Czym jest", f"""<p>Przepuklina lędźwiowa to wypuklenie zawartości jamy brzusznej przez ubytek w tylnej i bocznej ścianie brzucha, w okolicy lędźwi: między ostatnim żebrem, kością biodrową i mięśniami przykręgosłupowymi. Najczęściej powstaje po operacji nerki wykonanej przez cięcie w boku.</p>
+<p>W worku przepuklinowym może znaleźć się jelito grube lub cienkie, tłuszcz, a rzadko nawet nerka, śledziona czy żołądek. Dlatego grozi uwięźnięciem i zadzierzgnięciem.</p>""")
 b += sec("Jak często po operacji nerki", f"""<p>Po klasycznym, otwartym cięciu w boku przepuklina powstaje u około 20–30% chorych, a w niektórych badaniach nawet u 35%. Po planowym dostępie za otrzewną ryzyko spada do około 7%. Operacje małoinwazyjne ryzyko jeszcze zmniejszają: po laparoskopii około 11%.</p>""")
 b += sec("Dlaczego powstaje", f"""<p>Cięcie w boku może uszkodzić nerwy, które pobudzają mięśnie ściany brzucha. Mięśnie wtedy stopniowo zanikają, ściana brzucha cieńsieje i słabnie. To sprzyja przepuklinie, a bok brzucha może się charakterystycznie wybrzuszać.</p>""")
 b += sec("Kto jest bardziej narażony", f"""<p>Przepuklina lędźwiowa powstaje częściej przy:</p>
