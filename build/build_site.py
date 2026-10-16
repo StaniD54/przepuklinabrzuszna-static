@@ -308,11 +308,11 @@ write("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna. Wygląd, o
 # ============ POOPERACYJNA ============
 b = hero("Przepuklina w bliźnie", "Przepuklina pooperacyjna: leczenie i operacja",
          "Przepuklina w bliźnie po operacji jamy brzusznej. Jak powstaje i jak ją leczę.")
+b += sec("Zdjęcia", f"""<div class="grid4 g3">{img('po1','Duża przepuklina pooperacyjna w bliźnie pośrodku brzucha')}{img('po2','Przepuklina pooperacyjna w bliźnie pośrodku brzucha, widok z przodu')}{img('po3','Przepuklina pooperacyjna z bliznami po wielu operacjach, widok z przodu')}</div>
+<p>Zaawansowane, duże przepukliny brzuszne, które powstały w bliźnie pooperacyjnej w wyniku nieprawidłowego gojenia rany operacyjnej.</p>""")
 b += sec("Czym jest i jak często", f"""<p>Przepuklina w bliźnie to wypuklenie zawartości jamy brzusznej przez osłabione miejsce w ścianie brzucha, najczęściej tam, gdzie wcześniej była cięta skóra i mięśnie. Gdy się pojawi, sama już nie zniknie.</p>
 <p>Po cięciu pośrodku brzucha przepuklina powstaje u około 10–20% chorych. U osób z grupy podwyższonego ryzyka nawet u 30–44%. Po operacjach laparoskopowych zdarza się rzadziej (około 1–3%), ale ryzyko rośnie u osób obciążonych chorobami.</p>
 <p>Operowany pacjent <b>nigdy</b> nie jest winny powstania przepukliny. To, że „za szybko wstał z łóżka po operacji", nie jest jej przyczyną.</p>""")
-b += sec("Zdjęcia", f"""<div class="grid4 g3">{img('po1','Duża przepuklina pooperacyjna w bliźnie pośrodku brzucha')}{img('po2','Przepuklina pooperacyjna w bliźnie pośrodku brzucha, widok z przodu')}{img('po3','Przepuklina pooperacyjna z bliznami po wielu operacjach, widok z przodu')}</div>
-<p>Zaawansowane, duże przepukliny brzuszne, które powstały w bliźnie pooperacyjnej w wyniku nieprawidłowego gojenia rany operacyjnej.</p>""")
 b += sec("Po jakich operacjach", f"""<p>Przepuklina może powstać po każdym zabiegu, w którym otwierano jamę brzuszną. Najczęściej są to:</p>
 <ul class="check"><li>operacje jelit, żołądka, trzustki, wątroby i pęcherzyka żółciowego,</li><li>operacje ginekologiczne i cięcie cesarskie,</li><li>operacje dużych naczyń w brzuchu (np. poszerzenia aorty),</li><li>operacje otyłości, jeżeli były wykonywane „na otwarto",</li><li>zamykanie sztucznego odbytu i miejsce, w którym go wyłoniono.</li></ul>
 <p>Przepuklina może też powstać po operacjach laparoskopowych, najczęściej w miejscu, przez które wprowadzano grubsze narzędzia, zwykle przy pępku.</p>""")
