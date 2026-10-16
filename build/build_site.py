@@ -20,7 +20,7 @@ for f in os.listdir(f"{ROOT}/build/fonts"):
 # ---- obrazy: zmniejszone, WebP ----
 IMGS = {
  "zan1": "HV_1.jpg", "zan2": "HV_2.jpg", "zan3": "HV_3.jpg", "zan4": "HV_4.jpg", "powikl1": "HV_powiklana_1.jpg", "powikl2": "HV-martwica-skory-e1654946972342.jpg",
- "po1": "HV_pooper_1.jpg", "po2": "HV_pooper_2.jpg", "po3": "HV_pooper_3.jpg", "przed1": "HV-przed-operacja.jpg", "przed2": "HV-przed-operacja2.jpg",
+ "kb1": "HV_kresa_1.jpg", "roz1": "HV_rozejscie_1.jpg", "roz2": "HV_rozejscie_2.jpg", "po1": "HV_pooper_1.jpg", "po2": "HV_pooper_2.jpg", "po3": "HV_pooper_3.jpg", "przed1": "HV-przed-operacja.jpg", "przed2": "HV-przed-operacja2.jpg",
  "otylosc": "otylosc-i-przepuklina.jpg",
  "plast-przed": "otylosc-i-HV-229x300.jpg", "plast-po": "otylosc-i-HV-pooper-230x300.jpg",
  "otwarta": "otwary-brzuch-300x199.jpg", "siatka": "siatka-do-wszczepienia-300x191.jpg",
@@ -369,6 +369,8 @@ b = hero("Przepuklina w linii pośrodkowej", "Przepuklina kresy białej: objawy 
          "Wybrzuszenie w środku brzucha, nad pępkiem lub w jego okolicy, bez wcześniejszej operacji.")
 b += sec("Czym jest", f"""<p>Kresa biała to pas mocnej tkanki w środku brzucha, łączący z obu stron mięśnie proste. Przepuklina kresy białej powstaje samoistnie, bez związku z wcześniejszą operacją. W tkance powstaje ubytek, a przez niego wypycha się zawartość jamy brzusznej: tłuszcz lub fragment jelita.</p>
 <p>Najczęściej występuje nad pępkiem (przepuklina nadbrzuszna) albo w okolicy pępka. Tworzy się prawdziwy worek przepuklinowy, a ciągłość kresy białej jest przerwana.</p>""")
+b += sec("Zdjęcia", f"""<div class="mix">{img('kb1','Przepuklina kresy białej ponad pępkiem','Przepuklina kresy białej ponad pępkiem')}{img('roz1','Duże poporodowe rozejście mięśni prostych brzucha, widok z przodu i z boku','Duże poporodowe rozejście mięśni prostych brzucha')}{img('roz2','Rozejście mięśni prostych brzucha, widok z przodu','Rozejście mięśni prostych brzucha')}</div>
+<p>W obrębie rozejścia, oprócz odsunięcia się mięśni prostych brzucha i poszerzenia kresy białej, mogą występować przepukliny. To faktyczne otwory w kresie białej, przez które pętle jelitowe lub tkanka tłuszczowa mogą wydostawać się do worka przepuklinowego pod skórę.</p>""")
 b += sec("Objawy", f"""<p>Przepuklina bywa bez objawów. Zwykle widać lub wyczuwa się guzek w linii środkowej brzucha. Może on być większy przy kaszlu, parciu i wysiłku. Czasem pojawia się dyskomfort lub ból.</p>""")
 b += sec("Powikłania", f"""<p>Jak każda przepuklina, może się uwięznąć i zadzierzgnąć, czyli jelito lub tłuszcz zostaną uwięzione w otworze i stracą dopływ krwi. To wymaga pilnej operacji. Zgłoś się natychmiast do szpitala przy nagłym bólu, twardym i bolesnym guzku, którego nie da się wsunąć, wymiotach lub braku oddawania gazów i stolca.</p>""")
 b += sec("Czym różni się od rozejścia mięśni prostych", f"""<p>Rozejście mięśni prostych to coś innego. Kresa biała jest wtedy rozciągnięta i cieńsza, a mięśnie są odsunięte od siebie, ale nie ma ubytku ani worka przepuklinowego. Najczęściej zdarza się po ciąży, przy otyłości i w starszym wieku. Daje wałeczkowate wybrzuszenie przy napięciu brzucha i nie grozi uwięźnięciem.</p>
