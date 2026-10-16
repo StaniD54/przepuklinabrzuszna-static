@@ -62,7 +62,7 @@ shutil.copy(f"{ROOT}/build/menu.js", f"{OUT}/menu.js")
 
 SOON = lambda t: f'<span class="soon" title="w przygotowaniu">{t} <small>wkrótce</small></span>'
 NAV_ITEMS = [
- ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Objawy i zdjęcia"),
+ ("link", "/", "Start"), ("link", "/przepuklina-brzuszna-objawy-zdjecia/", "Wygląd, objawy"),
  ("dd", "Rodzaje przepuklin", [("/przepuklina-pooperacyjna/", "Pooperacyjna"), ("/przepuklina-kresy-bialej/", "Kresy białej"), ("/przepuklina-pepkowa/", "Pępkowa"), ("/przepuklina-ledzwiowa/", "Lędźwiowa"), ("/rzadkie-przepukliny-brzuszne/", "Rzadkie"), ("/przepukliny-wewnetrzne/", "Wewnętrzne"), ("/przepuklina-rozworu-przelykowego/", "Przełykowa")]),
  ("dd", "Metody operacji", [("/operacja-przepukliny-brzusznej/", "Przegląd metod"), ("/operacja-klasyczna-przepukliny-brzusznej/", "Klasyczne"), ("/operacja-laparoskopowa-przepukliny-brzusznej/", "Laparoskopowe"), ("/operacja-hybrydowa-przepukliny-brzusznej/", "Hybrydowe")]),
  ("link", "/wyniki-leczenia-przepukliny-brzusznej/", "Wyniki i przygotowanie"),
@@ -218,7 +218,7 @@ FAQ_COMMON = [
 ]
 
 ALL = [
- ("/przepuklina-brzuszna-objawy-zdjecia/", "Przepuklina brzuszna: jak wygląda", "Zdjęcia i skutki odkładania operacji"),
+ ("/przepuklina-brzuszna-objawy-zdjecia/", "Wygląd, objawy", "Zdjęcia i skutki odkładania operacji"),
  ("/przepuklina-pooperacyjna/", "Przepuklina pooperacyjna", "Przepuklina w bliźnie po operacji"),
  ("/operacja-przepukliny-brzusznej/", "Metody operacji", "Szwy, siatka, laparoskopia, plastyka brzucha"),
  ("/koszt-operacji-przepukliny-brzusznej/", "Konsultacje i koszt", "Gdzie przyjmuję i operuję, ile to kosztuje"),
