@@ -171,7 +171,7 @@ CTA = (f'<div class="cta-row"><a class="btn" href="tel:+48{TEL}">Zadzwoń: {TELF
 def hero(eyebrow, h1, lead):
     if ": " in h1 and "<span>" not in h1:
         a, b_ = h1.split(": ", 1); h1 = f"<span>{a}:</span> <span>{b_}</span>"
-    return f'<div class="hero">{f'<p class="eyebrow">{eyebrow}</p>' if eyebrow else ''}<h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
+    return f'<div class="hero"><h1>{h1}</h1><p class="lead">{lead}</p>{CTA}</div>'
 
 def teaser(t, n=2, maxlen=300):
     t = t.replace("..........", " ").strip()
