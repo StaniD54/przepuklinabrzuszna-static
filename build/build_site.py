@@ -415,7 +415,7 @@ write("/przepuklina-kresy-bialej/", "Przepuklina kresy białej (nadbrzuszna): ob
 # ============ PĘPKOWA ============
 b = hero("Przepuklina przy pępku", "Przepuklina pępkowa: objawy i leczenie",
          "Wybrzuszenie w pępku lub tuż przy nim. Czym jest, kiedy jest groźna i jak ją leczę.")
-b += sec("Czym jest i jak częsta", f"""<p>Przepuklina pępkowa to wypuklenie zawartości jamy brzusznej (tłuszczu lub jelita) przez osłabione miejsce w ścianie brzucha przy pępku, czyli w miejscu po pępowinie. Za przepuklinę pępkową uznaje się ubytek w linii środkowej brzucha od 3 cm powyżej do 3 cm poniżej pępka.</p>
+b += sec("Czym jest i jak częsta", f"""<p>Przepuklina pępkowa to wypuklenie zawartości jamy brzusznej (tłuszczu lub jelita) przez osłabione miejsce we wnętrzu pępka, czyli w miejscu po pępowinie. Wypuklenie tuż obok pępka, w linii środkowej (do 3 cm nad nim lub pod nim), to przepuklina okołopępkowa. Objawy i leczenie są podobne, a w klasyfikacjach międzynarodowych obie opisuje się razem jako przepukliny okolicy pępka.</p>
 <p>Występuje u około 2–4% dorosłych i stanowi 6–14% wszystkich przepuklin ściany brzucha.</p>""")
 b += sec("U dzieci i u dorosłych", f"""<p>U dzieci przepuklina pępkowa wynika z niepełnego zamknięcia pierścienia pępkowego i w około 90% przypadków zamyka się sama do wieku przedszkolnego.</p>
 <p>U dorosłych jest zwykle nabyta: powstaje przy wzroście ciśnienia w brzuchu i rzadko cofa się sama. Częściej wymaga operacji.</p>""")
