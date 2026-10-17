@@ -29,6 +29,7 @@ IMGS = {
  "e-budynek": "eskulap-budynek.jpg", "e-pokoj": "eskulap-pokoj.jpg", "e-recepcja": "eskulap-recepcja.jpg", "e-lazienka": "eskulap-lazienka.jpg", "e-obraz": "eskulap-pracownia-obrazowa.jpg",
  "e-zima": "eskulap-front.jpg", "e-lato": "eskulap-wejscie.jpg", "e-sala": "eskulap-sala-angio.jpg", "e-tomo": "eskulap-tomograf.jpg", "e-recep2": "eskulap-recepcja2.jpg", "e-mapa": "eskulap-wejscia-mapa.png",
  "prof": "SD_n_1-scaled.jpg",
+ "et1": "etap-przepukliny-1.png", "et2": "etap-przepukliny-2.png", "et3": "etap-przepukliny-3.png", "et4": "etap-przepukliny-4.png",
  "pep1": "pepkowa-1.jpg", "pep2": "pepkowa-2.jpg", "pep3": "pepkowa-3.jpg",
 }
 SIZES = {}
@@ -227,8 +228,9 @@ ALL = [
 home = hero("", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specjalizacja.</span>",
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
 home += """<div class="facts"><div><b>Doświadczony chirurg</b><span>operujący trudne przypadki</span></div><div><b>Prywatny szpital</b><span>leczenie i zabieg w świetnie wyposażonym prywatnym szpitalu</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
-home += sec(f"{DRAFT}Jak to wygląda", """<p>Na początku przepuklina to zwykle <b>miękki guzek</b>, który może pojawić się w różnych miejscach ściany brzucha: przy pępku, w bliźnie po operacji, w środku brzucha nad pępkiem albo z boku. Taką przepuklinę można <b>odprowadzić</b>, czyli przesunąć jej zawartość (tłuszcz lub jelito) z powrotem do jamy brzusznej. W pozycji leżącej, np. po nocy, guzek często sam znika.</p>
-<p>Chorzy opisują ją różnie: jako miękki guzek, <b>uwypuklenie</b> lub wybrzuszenie, <b>wpuklenie</b> albo miejsce, w którym ściana brzucha jest osłabiona i ustępuje pod palcem, a także jako <b>miejscową tkliwość</b> lub ból. Pod każdym z tych określeń zwykle kryje się <b>przepuklina ściany brzucha</b>. Na tej stronie nazywam to krótko: przepuklina. Pewność daje dopiero badanie lekarskie.</p>""", "wyglad")
+home += sec(f"{DRAFT}Jak to wygląda", f"""<p>Na początku przepuklina to zwykle <b>miękki guzek</b>, który może pojawić się w różnych miejscach ściany brzucha: przy pępku, w bliźnie po operacji, w środku brzucha nad pępkiem albo z boku. Taką przepuklinę można <b>odprowadzić</b>, czyli przesunąć jej zawartość (tłuszcz lub jelito) z powrotem do jamy brzusznej. W pozycji leżącej, np. po nocy, guzek często sam znika.</p>
+<p>Chorzy opisują ją różnie: jako miękki guzek, <b>uwypuklenie</b> lub wybrzuszenie, <b>wpuklenie</b> albo miejsce, w którym ściana brzucha jest osłabiona i ustępuje pod palcem, a także jako <b>miejscową tkliwość</b> lub ból. Pod każdym z tych określeń zwykle kryje się <b>przepuklina ściany brzucha</b>. Na tej stronie nazywam to krótko: przepuklina. Pewność daje dopiero badanie lekarskie.</p>
+<div class="stages">{img('et1','Ściana brzucha słabnie, jelito napiera na osłabione miejsce')}{img('et2','Jelito wypycha się przez otwór do worka przepuklinowego')}{img('et3','Worek przepukliny rośnie, jelito wypełnia go przez wąską szyję')}{img('et4','Jelito uwięźnięte w worku traci dopływ krwi')}</div>""", "wyglad", "wide")
 home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "problem")
 DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
