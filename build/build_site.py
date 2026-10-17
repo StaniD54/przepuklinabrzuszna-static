@@ -42,8 +42,15 @@ for _f in ImageSequence.Iterator(_g3):
     _x = _f.convert("RGB"); _x.thumbnail((900, 900)); _f3.append(_x.copy())
 _f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=[250 if _i in (15, 30) else 35 for _i in range(len(_f3))], loop=0, quality=65, method=6)
 SIZES["palec-guzek"] = _f3[0].size
-_g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
-for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
+_g2 = Image.open(f"{UP}/uwiezniecie.gif"); _a2, _b2 = [f.convert("RGBA").copy() for f in ImageSequence.Iterator(_g2)]
+_f2 = [_a2]; _d2 = [1500]
+def _fade(n, rev=False):
+    for k in range(1, n + 1):
+        t = k / (n + 1); t = t * t * (3 - 2 * t)
+        _f2.append(Image.blend(_b2, _a2, t) if rev else Image.blend(_a2, _b2, t)); _d2.append(90)
+_fade(12)
+_f2.append(_b2); _d2.append(1500)
+_fade(8, True)
 _f2[0].save(f"{OUT}/img/uwiezniecie.webp", save_all=True, append_images=_f2[1:], duration=_d2, loop=0, quality=80, method=6)
 SIZES["uwiezniecie"] = _f2[0].size
 for k, p in IMGS.items():
