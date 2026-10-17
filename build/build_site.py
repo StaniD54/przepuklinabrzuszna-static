@@ -40,7 +40,7 @@ SIZES["powieksza-sie"] = _fr[0].size
 _g3 = Image.open(f"{UP}/palec-guzek.gif"); _f3 = []
 for _f in ImageSequence.Iterator(_g3):
     _x = _f.convert("RGB"); _x.thumbnail((900, 900)); _f3.append(_x.copy())
-_f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=_g3.info.get("duration", 70), loop=0, quality=65, method=6)
+_f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=[250 if _i in (15, 30) else 35 for _i in range(len(_f3))], loop=0, quality=65, method=6)
 SIZES["palec-guzek"] = _f3[0].size
 _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
 for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
