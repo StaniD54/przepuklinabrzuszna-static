@@ -42,7 +42,7 @@ for _f in ImageSequence.Iterator(_g3):
     _x = _f.convert("RGB"); _x.thumbnail((900, 900)); _f3.append(_x.copy())
 _f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=[250 if _i in (15, 30) else 35 for _i in range(len(_f3))], loop=0, quality=65, method=6)
 SIZES["palec-guzek"] = _f3[0].size
-_g2 = Image.open(f"{UP}/uwiezniecie.gif"); _a2, _b2 = [f.convert("RGBA").copy() for f in ImageSequence.Iterator(_g2)]
+_g2 = Image.open(f"{UP}/uwiezniecie.gif"); _a2, _b2 = [Image.alpha_composite(Image.new("RGBA", f.size, (255, 255, 255, 255)), f.convert("RGBA")) for f in ImageSequence.Iterator(_g2)]
 _f2 = [_a2]; _d2 = [1500]
 def _fade(n, rev=False):
     for k in range(1, n + 1):
