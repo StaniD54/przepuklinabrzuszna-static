@@ -42,6 +42,22 @@ for _f in ImageSequence.Iterator(_g3):
     _x = _f.convert("RGB"); _x.thumbnail((900, 900)); _f3.append(_x.copy())
 _f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=[250 if _i in (15, 30) else 35 for _i in range(len(_f3))], loop=0, quality=65, method=6)
 SIZES["palec-guzek"] = _f3[0].size
+# miarka: usunięcie jednolitego tła (kluczowanie koloru z miękką krawędzią), przycięcie, animowany WebP z przezroczystością
+import numpy as _np
+_gm = Image.open(f"{UP}/miarka.gif"); _fm = []; _BG = _np.array([206, 203, 230], float)
+for _f in ImageSequence.Iterator(_gm):
+    _c = _np.array(_f.convert("RGB")).astype(float)
+    _d = _np.sqrt(((_c - _BG) ** 2).sum(2)); _al = _np.clip((_d - 14) / 46, 0, 1)
+    _rgb = _np.clip((_c - (1 - _al[..., None]) * _BG) / _np.maximum(_al[..., None], 1e-3), 0, 255)
+    _fm.append(_np.dstack([_rgb, _al * 255]).astype("uint8"))
+_box = None
+for _a in _fm:
+    _ys, _xs = _np.where(_a[..., 3] > 20)
+    _b = (_xs.min(), _ys.min(), _xs.max() + 1, _ys.max() + 1)
+    _box = _b if _box is None else (min(_box[0], _b[0]), min(_box[1], _b[1]), max(_box[2], _b[2]), max(_box[3], _b[3]))
+_fm = [Image.fromarray(_a, "RGBA").crop(_box) for _a in _fm]
+_fm[0].save(f"{OUT}/img/miarka.webp", save_all=True, append_images=_fm[1:], duration=40, loop=0, quality=80, method=6, lossless=False)
+SIZES["miarka"] = _fm[0].size
 _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _a2, _b2 = [Image.alpha_composite(Image.new("RGBA", f.size, (255, 255, 255, 255)), f.convert("RGBA")) for f in ImageSequence.Iterator(_g2)]
 # wyrównanie rozmiaru uwięźniętej przepukliny do klatki wyjściowej (przesunięcie konturu skóry wiersz po wierszu)
 import numpy as np
@@ -527,7 +543,7 @@ b += sec("Wyniki leczenia", f"""<p>Według danych światowych po jednej operacji
 b += sec("Co pogarsza wyniki", f"""<p>Nawrót zależy od przepukliny i od chorego. Czego nie da się zmienić: duży ubytek, przepuklina, która już wracała, operacja w trybie pilnym, płeć żeńska i starszy wiek. To, na co masz wpływ:</p>
 <ul class="check"><li><b>Otyłość.</b> To najsilniejszy czynnik, na który chory może wpłynąć. Ryzyko nawrotu rośnie razem z BMI. Przy BMI od około 35 jest prawie trzykrotnie większe.</li><li><b>Palenie papierosów.</b> Zwiększa ryzyko zakażenia rany, a ono samo ponad dwukrotnie zwiększa ryzyko nawrotu. Przy przepuklinie pooperacyjnej ryzyko nawrotu u palaczy jest kilka razy większe.</li><li><b>Cukrzyca</b> ze źle kontrolowanym cukrem: gorsze gojenie rany i większe ryzyko nawrotu.</li><li>Wodobrzusze i marskość wątroby, leki osłabiające odporność, przewlekły kaszel (choroby płuc), zaparcia, alkohol i niedożywienie.</li></ul>
 <p>Przy operacji małoinwazyjnej (laparoskopowej) wpływ otyłości i palenia na powikłania jest mniejszy niż przy operacji „na otwarto”.</p>""", "pogarsza")
-b += sec("Wielkość przepukliny", """<p>Im większa przepuklina, tym trudniejsza operacja i więcej powikłań, głównie w ranie (płyn pod skórą, zakażenie). Nie ma jednej granicy, ale ryzyko wyraźnie rośnie od szerokości około 6 cm. W dużym rejestrze operacji szerokość 6 cm i więcej wiązała się z około trzykrotnie większym ryzykiem powikłań niż ubytek poniżej 2 cm.</p>
+b += sec("Wielkość przepukliny", f"""<figure class="tape"><img src="/img/miarka.webp" width="{SIZES['miarka'][0]}" height="{SIZES['miarka'][1]}" alt="Miarka zwijana wysuwa taśmę" loading="lazy"></figure><p>Im większa przepuklina, tym trudniejsza operacja i więcej powikłań, głównie w ranie (płyn pod skórą, zakażenie). Nie ma jednej granicy, ale ryzyko wyraźnie rośnie od szerokości około 6 cm. W dużym rejestrze operacji szerokość 6 cm i więcej wiązała się z około trzykrotnie większym ryzykiem powikłań niż ubytek poniżej 2 cm.</p>
 <p>Za olbrzymią uważa się przepuklinę szeroką na ponad 10 cm (o powierzchni ponad 200 cm²). W jednym dużym ośrodku, po dobraniu porównywalnych chorych, powikłania rany miał co trzeci chory z olbrzymią przepukliną (34%) i co szósty z mniejszą (15%). Samo zakażenie rany wystąpiło u 11% chorych z olbrzymią przepukliną wobec 3,9% z mniejszą. Częściej były też kłopoty z oddychaniem po operacji, potrzebna była ponowna operacja (9,8% wobec 4,7%), a pobyt w szpitalu trwał około 2 dni dłużej. Natomiast <b>nawrotów nie było istotnie więcej</b> (4,3% wobec 2,4%), gdy ubytek zamknięto i założono dużą siatkę.</p>
 <p>Wniosek jest jeden: duża przepuklina nie przekreśla leczenia, ale jest trudniejsza i obarczona większym ryzykiem. Przepuklina rośnie z czasem, więc czekanie jej nie pomaga, a pogarsza warunki operacji.</p>""", "wielkosc")
 b += sec("Jak się przygotować", f"""<p>Przygotowanie przed operacją zmniejsza ryzyko powikłań, zwłaszcza ran. Co zrobić:</p>

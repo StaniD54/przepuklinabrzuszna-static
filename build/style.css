@@ -171,3 +171,7 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 .stages figure.ph{margin:0}
 .stages figure.ph img{width:100%;height:auto;border-radius:6px;display:block}
 @media (max-width:640px){.stages{grid-template-columns:1fr}}
+
+.tape{float:right;width:210px;margin:0 0 10px 18px}
+.tape img{width:100%;height:auto;display:block}
+@media (max-width:640px){.tape{width:150px}}
