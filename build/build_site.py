@@ -43,6 +43,19 @@ for _f in ImageSequence.Iterator(_g3):
 _f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=[250 if _i in (15, 30) else 35 for _i in range(len(_f3))], loop=0, quality=65, method=6)
 SIZES["palec-guzek"] = _f3[0].size
 _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _a2, _b2 = [Image.alpha_composite(Image.new("RGBA", f.size, (255, 255, 255, 255)), f.convert("RGBA")) for f in ImageSequence.Iterator(_g2)]
+# wyrównanie rozmiaru uwięźniętej przepukliny do klatki wyjściowej (przesunięcie konturu skóry wiersz po wierszu)
+import numpy as np
+def _left(a):
+    nw = (a.sum(2) < 740); l = np.array([np.argmax(nw[y]) if nw[y].any() else a.shape[1] for y in range(a.shape[0])], float)
+    return np.convolve(np.pad(l, 4, mode="edge"), np.ones(9) / 9, "valid")
+_A = np.array(_a2.convert("RGB")).astype(float); _B = np.array(_b2.convert("RGB")).astype(float)
+_lA, _lB = _left(_A), _left(_B); _W = _B.shape[1]; _xs = np.arange(_W); _out = _B.copy()
+for _y in range(_B.shape[0]):
+    _a, _b = _lA[_y], _lB[_y]
+    if _a >= 128 or _b >= 128 or abs(_a - _b) < 0.5: continue
+    _src = np.clip(np.where(_xs >= 128, _xs, np.where(_xs < _a, _xs - _a + _b, _b + (_xs - _a) * (128 - _b) / (128 - _a))), 0, _W - 1)
+    for _c in range(3): _out[_y, :, _c] = np.interp(_src, _xs, _B[_y, :, _c])
+_b2 = Image.fromarray(_out.clip(0, 255).astype("uint8")).convert("RGBA")
 _f2 = [_a2]; _d2 = [1500]
 def _fade(n, rev=False):
     for k in range(1, n + 1):
