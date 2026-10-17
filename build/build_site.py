@@ -40,6 +40,7 @@ _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
 for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
 _f2[0].save(f"{OUT}/img/uwiezniecie.webp", save_all=True, append_images=_f2[1:], duration=_d2, loop=0, quality=80, method=6)
 SIZES["uwiezniecie"] = _f2[0].size
+for _n in range(1, 5): shutil.copy(f"{ROOT}/build/diagrams/hernia-{_n}.svg", f"{OUT}/img/hernia-{_n}.svg")
 for k, p in IMGS.items():
     im = Image.open(f"{UP}/{p}").convert("RGB")
     im.thumbnail((900, 1100))
@@ -283,6 +284,8 @@ b += sec("Co to jest", f"""<p>Przepuklina brzuszna to wypuklenie zawartości jam
 b += sec("Objawy", f"""<p>Przepuklina, którą da się wsunąć z powrotem do brzucha, daje takie objawy (od najczęstszych):</p>
 <ol class="reasons"><li><b>Wybrzuszenie pod skórą.</b> To zwykle pierwszy objaw. Powiększa się przy kaszlu, staniu, wysiłku i parciu, a znika po położeniu się lub po wsunięciu ręką.</li><li><b>Uczucie ciężkości, ciągnięcia lub pełności</b> w tym miejscu.</li><li><b>Ból lub dyskomfort.</b> Nasila się przy kaszlu, wypróżnianiu, oddawaniu moczu, wysiłku i współżyciu. Zwykle jest najgorszy pod koniec dnia, a mija po położeniu się.</li><li><b>Ból piekący lub ostry</b> promieniujący w okolicę przepukliny.</li></ol>
 <p>Zdarza się, że przepuklina nie boli i widać tylko wybrzuszenie. To nie znaczy, że można czekać: przepuklina sama nie zniknie i z czasem się powiększa.</p>""", "objawy")
+b += sec(f"{DRAFT}Jak przepuklina się powiększa", """<div class="stages"><img src="/img/hernia-1.svg" width="400" height="300" alt="Etap 1: ściana brzucha słabnie i w mięśniach powstaje mały otwór" loading="lazy"><img src="/img/hernia-2.svg" width="400" height="300" alt="Etap 2: przez otwór wypycha się worek z pętlą jelita" loading="lazy"><img src="/img/hernia-3.svg" width="400" height="300" alt="Etap 3: worek rośnie, a jelito ma coraz mniej miejsca w wąskiej szyi" loading="lazy"><img src="/img/hernia-4.svg" width="400" height="300" alt="Etap 4: uwięźnięte jelito traci dopływ krwi" loading="lazy"></div>
+<p>Ściana brzucha słabnie, przez otwór wysuwa się worek z tłuszczem lub jelitem, z czasem rośnie, aż w wąskiej szyi jelito może się uwięznąć i stracić dopływ krwi.</p>""", "powieksza", "wide")
 b += sec("Objawy alarmowe", f"""<div class="two"><figure class="ph gifx"><img src="/img/uwiezniecie.webp" width="{SIZES['uwiezniecie'][0]}" height="{SIZES['uwiezniecie'][1]}" alt="Uwięźnięcie jelita w przepuklinie" loading="lazy"><figcaption>Uwięźnięcie jelita w przepuklinie.</figcaption></figure><div><p>Powikłanie rozwija się w dwóch krokach. Najpierw <b>uwięźnięcie</b>: przepuklinę nie da się już wsunąć. Potem <b>zadzierzgnięcie</b>: jelito traci dopływ krwi i obumiera.</p>
 <p>Objawy, od wczesnych do późnych:</p>
 <ol class="reasons"><li>wybrzuszenie, które wcześniej dawało się wsunąć, teraz „nie wchodzi” (może jeszcze nie boleć),</li><li>narastająca tkliwość i ból nad przepukliną,</li><li>nagły, bardzo silny ból,</li><li>kurczowy ból brzucha, nudności, wymioty, brak oddawania gazów i stolca, wzdęcie,</li><li>zaczerwienienie, obrzęk i ocieplenie skóry nad przepukliną,</li><li>późno: twarda, bardzo bolesna masa, gorączka, przyspieszone tętno, spadek ciśnienia, splątanie, krew w wymiocinach lub w stolcu.</li></ol></div></div>
