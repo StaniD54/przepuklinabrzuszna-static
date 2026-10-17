@@ -682,6 +682,8 @@ if STAGING:
     open(f"{OUT}/_headers", "w").write("/*\n  X-Robots-Tag: noindex, nofollow\n")
 else:
     open(f"{OUT}/robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
+    # adres roboczy workers.dev: nie indeksować (domena główna zostaje otwarta)
+    open(f"{OUT}/_headers", "w").write("https://przepuklinabrzuszna-static.s-dabrowiecki.workers.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://*.s-dabrowiecki.workers.dev/*\n  X-Robots-Tag: noindex, nofollow\n")
 open(f"{OUT}/_redirects", "w").write("/o-mnie/ /koszt-operacji-przepukliny-brzusznej/#o-mnie 301\n/rzadkie-przepukliny-brzuszne/ /inne-przepukliny-brzuszne/#rzadkie 301\n/przepukliny-wewnetrzne/ /inne-przepukliny-brzuszne/#wewnetrzne 301\n/przepuklina-rozworu-przelykowego/ /inne-przepukliny-brzuszne/#zoladek 301\n")
 urls = ["/"] + [u for u, _, _ in ALL] + ["/przepuklina-kresy-bialej/", "/przepuklina-pepkowa/", "/przepuklina-ledzwiowa/", "/inne-przepukliny-brzuszne/", "/wyniki-leczenia-przepukliny-brzusznej/", "/operacja-klasyczna-przepukliny-brzusznej/", "/operacja-laparoskopowa-przepukliny-brzusznej/", "/operacja-hybrydowa-przepukliny-brzusznej/", "/cookies/"]
 open(f"{OUT}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{BASE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
