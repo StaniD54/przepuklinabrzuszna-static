@@ -40,7 +40,6 @@ _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
 for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
 _f2[0].save(f"{OUT}/img/uwiezniecie.webp", save_all=True, append_images=_f2[1:], duration=_d2, loop=0, quality=80, method=6)
 SIZES["uwiezniecie"] = _f2[0].size
-for _n in range(1, 5): shutil.copy(f"{ROOT}/build/diagrams/hernia-{_n}.svg", f"{OUT}/img/hernia-{_n}.svg")
 for k, p in IMGS.items():
     im = Image.open(f"{UP}/{p}").convert("RGB")
     im.thumbnail((900, 1100))
@@ -229,9 +228,7 @@ home = hero("", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specj
             "Konsultacje w Bydgoszczy i Poznaniu oraz online. Operacje w prywatnym szpitalu Eskulap w Osielsku koło Bydgoszczy.")
 home += """<div class="facts"><div><b>Doświadczony chirurg</b><span>operujący trudne przypadki</span></div><div><b>Prywatny szpital</b><span>leczenie i zabieg w świetnie wyposażonym prywatnym szpitalu</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
 home += sec(f"{DRAFT}Jak to wygląda", """<p>Na początku przepuklina to zwykle <b>miękki guzek</b>, który może pojawić się w różnych miejscach ściany brzucha: przy pępku, w bliźnie po operacji, w środku brzucha nad pępkiem albo z boku. Taką przepuklinę można <b>odprowadzić</b>, czyli przesunąć jej zawartość (tłuszcz lub jelito) z powrotem do jamy brzusznej. W pozycji leżącej, np. po nocy, guzek często sam znika.</p>
-<p>Chorzy opisują ją różnie: jako miękki guzek, <b>uwypuklenie</b> lub wybrzuszenie, <b>wpuklenie</b> albo miejsce, w którym ściana brzucha jest osłabiona i ustępuje pod palcem, a także jako <b>miejscową tkliwość</b> lub ból. Pod każdym z tych określeń zwykle kryje się <b>przepuklina ściany brzucha</b>. Na tej stronie nazywam to krótko: przepuklina. Pewność daje dopiero badanie lekarskie.</p>
-<div class="stages"><img src="/img/hernia-1.svg" width="400" height="300" alt="Etap 1: ściana brzucha słabnie i w mięśniach powstaje mały otwór" loading="lazy"><img src="/img/hernia-2.svg" width="400" height="300" alt="Etap 2: przez otwór wypycha się worek z pętlą jelita" loading="lazy"><img src="/img/hernia-3.svg" width="400" height="300" alt="Etap 3: worek rośnie, a jelito ma coraz mniej miejsca w wąskiej szyi" loading="lazy"><img src="/img/hernia-4.svg" width="400" height="300" alt="Etap 4: uwięźnięte jelito traci dopływ krwi" loading="lazy"></div>
-<p>Ściana brzucha słabnie, przez otwór wysuwa się worek z tłuszczem lub jelitem, z czasem rośnie, aż w wąskiej szyi jelito może się uwięznąć i stracić dopływ krwi.</p>""", "wyglad", "wide")
+<p>Chorzy opisują ją różnie: jako miękki guzek, <b>uwypuklenie</b> lub wybrzuszenie, <b>wpuklenie</b> albo miejsce, w którym ściana brzucha jest osłabiona i ustępuje pod palcem, a także jako <b>miejscową tkliwość</b> lub ból. Pod każdym z tych określeń zwykle kryje się <b>przepuklina ściany brzucha</b>. Na tej stronie nazywam to krótko: przepuklina. Pewność daje dopiero badanie lekarskie.</p>""", "wyglad")
 home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "problem")
 DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
