@@ -37,6 +37,11 @@ from PIL import ImageSequence
 _g = Image.open(f"{UP}/powieksza-sie.gif"); _fr = [f.convert("RGB").copy() for f in ImageSequence.Iterator(_g)]
 _fr[0].save(f"{OUT}/img/powieksza-sie.webp", save_all=True, append_images=_fr[1:], duration=_g.info.get("duration", 120), loop=0, quality=65, method=6)
 SIZES["powieksza-sie"] = _fr[0].size
+_g3 = Image.open(f"{UP}/palec-guzek.gif"); _f3 = []
+for _f in ImageSequence.Iterator(_g3):
+    _x = _f.convert("RGB"); _x.thumbnail((900, 900)); _f3.append(_x.copy())
+_f3[0].save(f"{OUT}/img/palec-guzek.webp", save_all=True, append_images=_f3[1:], duration=_g3.info.get("duration", 70), loop=0, quality=65, method=6)
+SIZES["palec-guzek"] = _f3[0].size
 _g2 = Image.open(f"{UP}/uwiezniecie.gif"); _f2 = []; _d2 = []
 for _f in ImageSequence.Iterator(_g2): _f2.append(_f.convert("RGBA").copy()); _d2.append(_f.info.get("duration", 1000))
 _f2[0].save(f"{OUT}/img/uwiezniecie.webp", save_all=True, append_images=_f2[1:], duration=_d2, loop=0, quality=80, method=6)
@@ -230,7 +235,7 @@ home = hero("", "<span>Operuję przepukliny brzuszne.</span> <span>To moja specj
 home += """<div class="facts"><div><b>Doświadczony chirurg</b><span>operujący trudne przypadki</span></div><div><b>Prywatny szpital</b><span>leczenie i zabieg w świetnie wyposażonym prywatnym szpitalu</span></div><div><b>od 6000 zł</b><span>koszt operacji prostej przepukliny; dokładny koszt ustalam po badaniu</span></div></div>"""
 home += sec(f"{DRAFT}Jak to wygląda", f"""<p>Na początku przepuklina to zwykle <b>miękki guzek</b>, który może pojawić się w różnych miejscach ściany brzucha: przy pępku, w bliźnie po operacji, w środku brzucha nad pępkiem albo z boku. Taką przepuklinę można <b>odprowadzić</b>, czyli przesunąć jej zawartość (tłuszcz lub jelito) z powrotem do jamy brzusznej. W pozycji leżącej, np. po nocy, guzek często sam znika.</p>
 <p>Chorzy opisują ją różnie: jako miękki guzek, <b>uwypuklenie</b> lub wybrzuszenie, <b>wpuklenie</b> albo miejsce, w którym ściana brzucha jest osłabiona i ustępuje pod palcem, a także jako <b>miejscową tkliwość</b> lub ból. Pod każdym z tych określeń zwykle kryje się <b>przepuklina ściany brzucha</b>. Na tej stronie nazywam to krótko: przepuklina. Pewność daje dopiero badanie lekarskie.</p>
-<div class="stages">{img('et1','Ściana brzucha słabnie, jelito napiera na osłabione miejsce','1. Osłabienie ściany brzucha')}{img('et2','Jelito wypycha się przez otwór do worka przepuklinowego','2. Jelito wypycha się przez otwór')}{img('et3','Worek przepukliny rośnie, jelito wypełnia go przez wąską szyję','3. Rosnący worek przepukliny')}{img('et4','Jelito uwięźnięte w worku traci dopływ krwi','4. Uwięźnięcie jelita')}</div>""", "wyglad", "wide")
+<figure class="ph"><img src="/img/palec-guzek.webp" width="{SIZES['palec-guzek'][0]}" height="{SIZES['palec-guzek'][1]}" alt="Jelito napiera na osłabione miejsce w ścianie brzucha, a palec wskazuje powstający guzek" loading="lazy"></figure>""", "wyglad", "wide")
 home += sec("Problem", """<p>Gdy jama brzuszna jest otwierana cięciem chirurgicznym, jest <b>duże ryzyko powstania przepukliny pooperacyjnej</b>. Przepuklina w bliźnie może się pojawić od razu po operacji, po miesiącach, a nawet po wielu latach. Są też przepukliny po operacjach laparoskopowych. Bywają też takie, które powstają samoistnie.</p>
 <p><b>Gdy przepuklina się pojawi, sama już nie zniknie. Jedyna rada to operacja.</b> Nigdy nie należy dopuszczać do zaawansowanego stanu choroby.</p>""", "problem")
 DESC = {"/przepuklina-brzuszna-objawy-zdjecia/": "Jak wygląda, objawy, zdjęcia i skutki odkładania operacji",
@@ -254,6 +259,7 @@ def _tiles_from_menu():
 home += sec("Dlaczego operować", f"""<div class="why"><div><p>Przepuklina to na początku defekt kosmetyczny, ale gdy się powiększa, zaczyna stopniowo coraz bardziej utrudniać życie. Nieleczona może doprowadzić do tego, że do worka przepuklinowego przemieszczą się wszystkie jelita. Może dojść do ich uwięźnięcia i zadzierzgnięcia, co jest ostrym problemem i wymaga pilnego leczenia szpitalnego. Nie lekceważ więc przepukliny.</p>
 <p><a href="/przepuklina-brzuszna-objawy-zdjecia/">Objawy, objawy alarmowe i zdjęcia →</a></p></div>
 <figure class="ph"><img src="/img/powieksza-sie.webp" width="{SIZES['powieksza-sie'][0]}" height="{SIZES['powieksza-sie'][1]}" alt="Przepuklina stopniowo się powiększa" loading="lazy"><figcaption>Przepuklina nie stoi w miejscu, powoli i stopniowo się powiększa.</figcaption></figure></div>
+<div class="stages">{img('et1','Ściana brzucha słabnie, jelito napiera na osłabione miejsce','1. Osłabienie ściany brzucha')}{img('et2','Jelito wypycha się przez otwór do worka przepuklinowego','2. Jelito wypycha się przez otwór')}{img('et3','Worek przepukliny rośnie, jelito wypełnia go przez wąską szyję','3. Rosnący worek przepukliny')}{img('et4','Jelito uwięźnięte w worku traci dopływ krwi','4. Uwięźnięcie jelita')}</div>
 <div class="grid4">{img('zan1','Duża przepuklina brzuszna')}{img('zan2','Przepuklina brzuszna, widok z przodu')}{img('zan3','Przepuklina ze zmianami skóry')}{img('zan4','Duża przepuklina brzuszna, widok z boku')}</div>
 <p class="note">Zaawansowane, wieloletnie przepukliny brzuszne.</p>""", "dlaczego", "wide")
 home += sec("Jakie przepukliny operuję", """<p>Zajmuję się przepuklinami ściany brzucha. Każda wymaga indywidualnego planu leczenia, ustalanego po zbadaniu chorego.</p>

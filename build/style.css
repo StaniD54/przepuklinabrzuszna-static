@@ -167,7 +167,7 @@ h3.grp{font-family:var(--font-body);font-size:.95rem;letter-spacing:.04em;text-t
 .pager .up:hover::after,.pager .up:focus-visible::after{opacity:1}
 @media(max-width:600px){.pager .up::after{display:none}}
 
-.stages{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
+.stages{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 18px}
 .stages figure.ph{margin:0}
 .stages figure.ph img{width:100%;height:auto;border-radius:6px;display:block}
 @media (max-width:640px){.stages{grid-template-columns:1fr}}
