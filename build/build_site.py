@@ -140,6 +140,37 @@ def pager(path):
     lab = nt
     return f'<div class="pager"><a class="up" href="#top" aria-label="Do góry" data-tip="do góry"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V4M4 12l8-8 8 8"/></svg></a><a class="next" href="{nu}">{lab} →</a></div>'
 
+import json as _json, re as _re, html as _html
+def schema_ld(path, title, desc, body):
+    name = title.split(" | ")[0]
+    lekarz = {
+        "@type": ["Physician", "MedicalBusiness"], "@id": BASE + "/#lekarz",
+        "name": "Prof. dr hab. Stanisław Dąbrowiecki", "url": BASE + "/",
+        "medicalSpecialty": "Surgery", "telephone": "+48" + TEL, "email": EMAIL,
+        "description": "Chirurg, leczenie przepuklin brzusznych: konsultacje w Bydgoszczy, Poznaniu i online, operacje w szpitalu Eskulap w Osielsku.",
+        "areaServed": {"@type": "Country", "name": "Polska"},
+        "address": {"@type": "PostalAddress", "streetAddress": "ul. Mierosławskiego 9/3", "postalCode": "85-654", "addressLocality": "Bydgoszcz", "addressCountry": "PL"},
+        "location": [
+            {"@type": "Place", "name": "Gabinet w Bydgoszczy", "address": {"@type": "PostalAddress", "streetAddress": "ul. Mierosławskiego 9/3", "postalCode": "85-654", "addressLocality": "Bydgoszcz", "addressCountry": "PL"}, "telephone": "+48" + TEL},
+            {"@type": "Place", "name": "Gabinet w Poznaniu (Dąbrowa k. Poznania)", "address": {"@type": "PostalAddress", "streetAddress": "ul. Szafirowa 3/5", "postalCode": "62-070", "addressLocality": "Dąbrowa", "addressCountry": "PL"}, "telephone": "+48618550662"}],
+        "hospitalAffiliation": {"@type": "Hospital", "name": "Szpital Eskulap", "address": {"@type": "PostalAddress", "addressLocality": "Osielsko", "addressCountry": "PL"}},
+        "priceRange": "od 6000 zł (operacja), konsultacja 300 zł, online 200 zł",
+    }
+    page_ = {"@type": "WebPage", "@id": BASE + path + "#strona", "url": BASE + path, "name": name, "description": desc,
+             "inLanguage": "pl-PL", "about": {"@id": BASE + "/#lekarz"}}
+    graph = [lekarz, page_]
+    if path != "/":
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Start", "item": BASE + "/"},
+            {"@type": "ListItem", "position": 2, "name": name, "item": BASE + path}]})
+    faqs = _re.findall(r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", body, flags=_re.S)
+    if faqs:
+        clean = lambda t: _html.unescape(_re.sub(r"<[^>]+>", "", t)).strip()
+        graph.append({"@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": clean(q), "acceptedAnswer": {"@type": "Answer", "text": clean(a)}} for q, a in faqs]})
+    out = _json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
+    return '<script type="application/ld+json">' + out + "</script>"
+
 def page(path, title, desc, body, h1_schema=None):
     nav = build_nav(path)
     canon = BASE + path
@@ -156,6 +187,7 @@ def page(path, title, desc, body, h1_schema=None):
 <link rel="preload" href="/fonts/hanken-grotesk-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/source-serif-4-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
+{schema_ld(path, title, desc, body)}
 </head>
 <body>
 <div class="wrap" id="top">
